@@ -1,0 +1,6 @@
+{
+  "name": "Screen Showcase App",
+  "description": "A multi-screen interactive application featuring curated onboarding, discovery feed, product details, cart, and profile flows.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

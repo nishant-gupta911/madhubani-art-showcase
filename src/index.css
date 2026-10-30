@@ -1,0 +1,734 @@
+@import "tailwindcss";
+
+/* ================================================================
+   MITHILA ATELIER — DESIGN SYSTEM
+   Madhubani / Mithila Art Brand — Premium Editorial Commerce
+   ================================================================ */
+
+/* ─── GOOGLE FONTS ─────────────────────────────────────────────── */
+/* Cormorant Garamond: display / headlines */
+/* DM Sans: UI / body */
+
+@layer base {
+  :root {
+    /* ── Canvas ── */
+    --ivory:        #FAF6EF; /* handmade paper — primary bg */
+    --ivory-deep:   #F2EBE0; /* card backgrounds */
+    --ivory-warm:   #EDE0CA; /* section accent bg */
+    --ivory-dimmed: #E5D9C8; /* borders, subtle fills */
+
+    /* ── Night (for dark sections) ── */
+    --night:        #100B04; /* deep lampblack dark */
+    --night-soft:   #1C1208; /* slightly lighter dark */
+    --night-raised: #251806; /* raised dark panels */
+
+    /* ── Ink ── */
+    --ink:          #1A1209; /* primary text (lampblack) */
+    --ink-soft:     #3A2C1A; /* body copy */
+    --ink-muted:    #6B5A44; /* captions, meta */
+    --ink-dim:      #9A8570; /* placeholder, dim */
+
+    /* ── Vermilion (primary accent — sindoor) ── */
+    --vermilion:        #B03020;
+    --vermilion-dark:   #8C2418;
+    --vermilion-hover:  #C03828;
+    --vermilion-light:  #F5D0C8;
+    --vermilion-tint:   #FBF0EE;
+
+    /* ── Turmeric (secondary — gold/highlight) ── */
+    --turmeric:       #B87A0A;
+    --turmeric-light: #F5E6C0;
+    --turmeric-tint:  #FBF5E6;
+
+    /* ── Indigo (tertiary accent) ── */
+    --indigo:       #2C3E7A;
+    --indigo-light: #C4CCE8;
+
+    /* ── Leaf (success/nature) ── */
+    --leaf:       #3A6B3A;
+    --leaf-light: #C8E0C8;
+
+    /* ── Terracotta ── */
+    --terracotta: #A0522D;
+
+    /* ── Borders ── */
+    --hairline:      #E0D0BC; /* warm borders */
+    --hairline-soft: #EDE4D6; /* subtle dividers */
+    --hairline-dark: #30200A; /* borders on dark sections */
+
+    /* ── Semantic ── */
+    --success: #3A6B3A;
+    --overlay: rgba(16, 11, 4, 0.55);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--ivory);
+    color: var(--ink);
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-feature-settings: 'kern', 'liga', 'calt';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6;
+  }
+
+  img { display: block; }
+  p, li, span, div, button, input, textarea, select { font-family: inherit; }
+}
+
+/* ================================================================
+   TYPOGRAPHY
+   ================================================================ */
+
+/* Display — Cormorant Garamond, expressive editorial */
+.font-display { font-family: 'Cormorant Garamond', Georgia, serif; }
+.font-sc      { font-family: 'Cormorant SC', Georgia, serif; }
+.font-sans    { font-family: 'DM Sans', system-ui, sans-serif; }
+
+.text-display {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  font-weight: 700;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+}
+.text-headline {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2rem, 4vw, 3.75rem);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+}
+.text-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+.text-subhead {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.125rem, 1.8vw, 1.5rem);
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.35;
+}
+.text-eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.text-body-lg {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.0625rem;
+  font-weight: 400;
+  line-height: 1.7;
+}
+.text-body {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.65;
+}
+.text-body-sm {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+.text-caption {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+.text-ui {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+.text-display-md {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  font-weight: 600;
+  line-height: 1.2;
+}
+.text-caption-uppercase {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* ================================================================
+   LAYOUT CONTAINER
+   ================================================================ */
+.container {
+  width: 100%;
+  max-width: 1320px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+@media (min-width: 640px)  { .container { padding-left: 2rem;   padding-right: 2rem; } }
+@media (min-width: 1024px) { .container { padding-left: 3rem;   padding-right: 3rem; } }
+@media (min-width: 1280px) { .container { padding-left: 4rem;   padding-right: 4rem; } }
+
+/* ================================================================
+   BUTTONS
+   ================================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.8125rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 3px;
+  transition: all 0.22s ease;
+  user-select: none;
+  white-space: nowrap;
+  padding: 0.75rem 1.5rem;
+  position: relative;
+}
+.btn:active { transform: translateY(1px); }
+:focus-visible { outline: 2px solid var(--vermilion); outline-offset: 3px; }
+
+/* Primary — Vermilion */
+.btn-primary {
+  background: var(--vermilion);
+  color: var(--ivory);
+  border: 1px solid var(--vermilion);
+}
+.btn-primary:hover {
+  background: var(--vermilion-hover);
+  border-color: var(--vermilion-hover);
+}
+
+/* Secondary — outlined on ivory */
+.btn-outline {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--hairline);
+}
+.btn-outline:hover {
+  background: var(--ivory-deep);
+  border-color: var(--ink-muted);
+}
+
+/* Ghost dark — on night sections */
+.btn-ghost-light {
+  background: transparent;
+  color: var(--ivory);
+  border: 1px solid rgba(250, 246, 239, 0.35);
+}
+.btn-ghost-light:hover {
+  background: rgba(250, 246, 239, 0.12);
+  border-color: rgba(250, 246, 239, 0.6);
+}
+
+/* Ghost vermilion — text link style */
+.btn-ghost-vermilion {
+  background: transparent;
+  color: var(--vermilion);
+  border: none;
+  padding-left: 0;
+  padding-right: 0;
+  letter-spacing: 0.08em;
+}
+.btn-ghost-vermilion::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--vermilion);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.btn-ghost-vermilion:hover::after { transform: scaleX(1); }
+
+/* Icon button */
+.btn-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--hairline);
+  color: var(--ink-soft);
+  border-radius: 50%;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.btn-icon:hover {
+  background: var(--ivory-deep);
+  border-color: var(--ink-muted);
+  color: var(--ink);
+}
+.btn-icon-dark {
+  border-color: var(--hairline-dark);
+  color: var(--ivory);
+}
+.btn-icon-dark:hover {
+  background: rgba(255,255,255,0.1);
+  color: var(--ivory);
+}
+
+/* Sizes */
+.btn-lg { padding: 1rem 2rem; font-size: 0.875rem; }
+.btn-sm { padding: 0.55rem 1rem; font-size: 0.75rem; }
+.btn-xs { padding: 0.4rem 0.75rem; font-size: 0.7rem; }
+
+/* Dark mode button aliases */
+.btn-ferrari-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--vermilion);
+  color: #fff;
+  border: 1px solid var(--vermilion);
+  font-family: var(--font-ui);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 2px;
+}
+.btn-ferrari-primary:hover {
+  background-color: var(--vermilion-hover);
+  border-color: var(--vermilion-hover);
+}
+.btn-ferrari-outline-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  font-family: var(--font-ui);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 2px;
+}
+.btn-ferrari-outline-dark:hover {
+  border-color: #fff;
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* ================================================================
+   CARDS
+   ================================================================ */
+.card {
+  background: var(--ivory);
+  border: 1px solid var(--hairline-soft);
+  color: var(--ink);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  overflow: hidden;
+}
+.card:hover {
+  border-color: var(--hairline);
+  box-shadow: 0 8px 32px rgba(16, 11, 4, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Art card — gallery standard */
+.art-card {
+  background: var(--ivory);
+  border: 1px solid var(--hairline-soft);
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  cursor: pointer;
+}
+.art-card:hover {
+  box-shadow: 0 12px 40px rgba(16, 11, 4, 0.1);
+  transform: translateY(-3px);
+}
+.art-card .art-img {
+  transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.art-card:hover .art-img { transform: scale(1.04); }
+
+/* ================================================================
+   BADGES
+   ================================================================ */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.28rem 0.65rem;
+  border-radius: 2px;
+}
+.badge-vermilion { background: var(--vermilion); color: var(--ivory); }
+.badge-turmeric  { background: var(--turmeric-light); color: var(--turmeric); border: 1px solid var(--turmeric); }
+.badge-warm      { background: var(--ivory-warm); color: var(--ink-soft); border: 1px solid var(--hairline); }
+.badge-night     { background: var(--night-raised); color: var(--ivory); }
+.badge-outline   { background: transparent; border: 1px solid var(--hairline); color: var(--ink-muted); }
+.badge-indigo    { background: var(--indigo-light); color: var(--indigo); }
+
+/* ================================================================
+   SECTION BANDS
+   ================================================================ */
+.band-ivory     { background: var(--ivory);       color: var(--ink); }
+.band-warm      { background: var(--ivory-warm);  color: var(--ink); }
+.band-deep      { background: var(--ivory-deep);  color: var(--ink); }
+.band-night     { background: var(--night);       color: var(--ivory); }
+.band-night-soft { background: var(--night-soft); color: var(--ivory); }
+.band-night-raised { background: var(--night-raised); color: var(--ivory); }
+
+/* ================================================================
+   FORM ELEMENTS
+   ================================================================ */
+.input {
+  width: 100%;
+  background: var(--ivory);
+  border: 1px solid var(--hairline);
+  border-radius: 3px;
+  padding: 0.75rem 1rem;
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9375rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+.input::placeholder { color: var(--ink-dim); }
+.input:focus { border-color: var(--vermilion); }
+
+.input-dark {
+  background: rgba(255,255,255,0.06);
+  border-color: var(--hairline-dark);
+  color: var(--ivory);
+}
+.input-dark::placeholder { color: rgba(250, 246, 239, 0.4); }
+.input-dark:focus { border-color: rgba(250, 246, 239, 0.5); }
+
+.input-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+/* ================================================================
+   DECORATIVE DIVIDER CLASSES
+   ================================================================ */
+.ornament-divider {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.ornament-divider::before,
+.ornament-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--hairline);
+}
+
+/* Registration corner marks */
+.corner-mark {
+  position: relative;
+}
+.corner-mark::before,
+.corner-mark::after {
+  content: '';
+  position: absolute;
+  border-color: var(--vermilion);
+  border-style: solid;
+  width: 0.75rem;
+  height: 0.75rem;
+  pointer-events: none;
+}
+.corner-mark::before { top: 0; left: 0; border-width: 2px 0 0 2px; }
+.corner-mark::after  { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
+
+/* ================================================================
+   STARS
+   ================================================================ */
+.star-filled { color: var(--turmeric); fill: var(--turmeric); }
+.star-empty  { color: var(--ivory-dimmed); fill: var(--ivory-dimmed); }
+.star-filled-dark { color: #C8A040; fill: #C8A040; }
+.star-empty-dark  { color: rgba(250,246,239,0.2); fill: rgba(250,246,239,0.2); }
+
+/* ================================================================
+   SCROLLBAR
+   ================================================================ */
+::-webkit-scrollbar       { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: var(--ivory); }
+::-webkit-scrollbar-thumb { background: var(--ivory-dimmed); border-radius: 0; }
+::-webkit-scrollbar-thumb:hover { background: var(--vermilion); }
+
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* ================================================================
+   ANIMATIONS
+   ================================================================ */
+
+/* Fade up on appear */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up {
+  animation: fadeSlideUp 0.65s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+.anim-delay-1 { animation-delay: 0.08s; }
+.anim-delay-2 { animation-delay: 0.18s; }
+.anim-delay-3 { animation-delay: 0.28s; }
+.anim-delay-4 { animation-delay: 0.38s; }
+
+/* Marquee scroll */
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marqueeScroll 28s linear infinite;
+  will-change: transform;
+}
+.animate-marquee:hover { animation-play-state: paused; }
+
+/* Subtle shimmer on loading */
+@keyframes shimmer {
+  from { background-position: -200% 0; }
+  to   { background-position: 200% 0; }
+}
+.shimmer {
+  background: linear-gradient(90deg, var(--ivory-deep) 25%, var(--ivory-warm) 50%, var(--ivory-deep) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Progress bar */
+@keyframes fillBar {
+  from { width: 0%; }
+  to   { width: var(--fill); }
+}
+.progress-fill { animation: fillBar 0.9s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
+
+/* ================================================================
+   SELECTION
+   ================================================================ */
+::selection { background: var(--vermilion-light); color: var(--ink); }
+
+/* ================================================================
+   BRAND LOGO MARK
+   ================================================================ */
+.brand-mark {
+  width: 2.5rem;
+  height: 2.5rem;
+  flex: 0 0 2.5rem;
+  overflow: hidden;
+  border: 1.5px solid var(--hairline);
+  border-radius: 50%;
+  background: var(--ivory-deep);
+}
+.brand-mark img {
+  width: 140%;
+  height: 140%;
+  max-width: none;
+  object-fit: cover;
+  transform: translate(-14%, 5%);
+}
+
+/* ================================================================
+   PRODUCT CARD OVERLAY ACTIONS
+   ================================================================ */
+.card-actions {
+  position: absolute;
+  inset: 0;
+  background: rgba(16, 11, 4, 0);
+  transition: background 0.3s ease;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+.art-card:hover .card-actions {
+  background: rgba(16, 11, 4, 0.35);
+  opacity: 1;
+}
+
+/* ================================================================
+   HEADER SPECIFIC
+   ================================================================ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(250, 246, 239, 0.96);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--hairline-soft);
+  transition: box-shadow 0.3s ease;
+}
+.site-header.scrolled {
+  box-shadow: 0 2px 20px rgba(16, 11, 4, 0.06);
+}
+
+/* ================================================================
+   MOBILE MENU
+   ================================================================ */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: var(--ivory);
+  transform: translateX(-100%);
+  transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.mobile-menu.open {
+  transform: translateX(0);
+}
+
+/* ================================================================
+   PRODUCT GRID
+   ================================================================ */
+.product-grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (min-width: 768px)  { .product-grid { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; } }
+@media (min-width: 1024px) { .product-grid { grid-template-columns: repeat(4, 1fr); gap: 1.75rem; } }
+@media (min-width: 1280px) { .product-grid { grid-template-columns: repeat(4, 1fr); gap: 2rem; } }
+
+.product-grid-3 {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (min-width: 768px)  { .product-grid-3 { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; } }
+
+/* ================================================================
+   FRAME OPTIONS (product detail)
+   ================================================================ */
+.frame-option {
+  border: 2px solid var(--hairline);
+  background: var(--ivory);
+  border-radius: 3px;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  font-family: 'DM Sans', sans-serif;
+}
+.frame-option:hover { border-color: var(--ink-muted); }
+.frame-option.selected { border-color: var(--vermilion); background: var(--vermilion-tint); }
+
+/* ================================================================
+   MASONRY (optional)
+   ================================================================ */
+.masonry-grid { columns: 2; column-gap: 1.25rem; }
+@media (min-width: 768px)  { .masonry-grid { columns: 3; } }
+@media (min-width: 1024px) { .masonry-grid { columns: 4; } }
+.masonry-item { break-inside: avoid; margin-bottom: 1.25rem; }
+
+/* ================================================================
+   UTILITY OVERRIDES
+   ================================================================ */
+.text-vermilion      { color: var(--vermilion); }
+.text-turmeric       { color: var(--turmeric); }
+.text-indigo         { color: var(--indigo); }
+.text-ink            { color: var(--ink); }
+.text-ink-soft       { color: var(--ink-soft); }
+.text-ink-muted      { color: var(--ink-muted); }
+.text-ink-dim        { color: var(--ink-dim); }
+.text-ivory          { color: var(--ivory); }
+.bg-vermilion        { background: var(--vermilion); }
+.bg-ivory            { background: var(--ivory); }
+.bg-ivory-deep       { background: var(--ivory-deep); }
+.bg-night            { background: var(--night); }
+.border-hairline     { border-color: var(--hairline); }
+.border-hairline-soft { border-color: var(--hairline-soft); }
+
+/* ================================================================
+   DATA TABLE (cart, orders)
+   ================================================================ */
+.data-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+.data-table th {
+  background: var(--ivory-deep);
+  color: var(--ink-muted);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-family: 'DM Sans', sans-serif;
+  padding: 0.875rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--hairline);
+}
+.data-table td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--hairline-soft);
+  vertical-align: middle;
+  color: var(--ink-soft);
+}
+.data-table tr:hover td { background: var(--ivory-deep); }
+
+/* ================================================================
+   FILTER SIDEBAR
+   ================================================================ */
+.filter-section + .filter-section {
+  border-top: 1px solid var(--hairline-soft);
+  padding-top: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+/* ================================================================
+   TOAST / NOTIFICATION
+   ================================================================ */
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
+  z-index: 500;
+  background: var(--night);
+  color: var(--ivory);
+  padding: 0.75rem 1.5rem;
+  border-radius: 3px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+  animation: toastIn 0.3s ease;
+}
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
