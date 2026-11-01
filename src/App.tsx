@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { CartItem, MadhubaniProduct, MithilaStyle, Order, ScreenType } from './types';
 import madhubaniData from './data/madhubaniProducts.json';
@@ -9,12 +11,14 @@ import { AboutTraditionScreen } from './components/screens/AboutTraditionScreen'
 import { CartCheckoutScreen } from './components/screens/CartCheckoutScreen';
 import { ContactCommissionScreen } from './components/screens/ContactCommissionScreen';
 import { ProfileScreen } from './components/screens/ProfileScreen';
+import { PortfolioScreen } from './components/screens/PortfolioScreen';
 import { AllScreensOverview } from './components/screens/AllScreensOverview';
 import { QuickViewModal } from './components/QuickViewModal';
 import { OrderSuccessModal } from './components/OrderSuccessModal';
 import { AuthModal } from './components/AuthModal';
 import { MithilaMotif } from './components/MithilaMotif';
 import { ArrowRight, Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import { siteConfig } from './config/site';
 
 const ALL_PRODUCTS  = madhubaniData.products as MadhubaniProduct[];
 const ALL_CATEGORIES = madhubaniData.categories;
@@ -108,17 +112,17 @@ const Footer: React.FC<{ onNavigate: (s: ScreenType) => void }> = ({ onNavigate 
               <div className="text-left leading-none">
                 <div
                   className="font-display font-semibold"
-                  style={{ fontSize: '1rem', color: 'var(--ivory)', letterSpacing: '-0.01em' }}
+                  style={{ fontSize: '1.05rem', color: 'var(--ivory)', letterSpacing: '-0.01em' }}
                 >
-                  Mithila Atelier
+                  Vernika Enterprises
                 </div>
-                <div className="text-eyebrow mt-0.5" style={{ fontSize: '0.5rem', color: 'rgba(250,246,239,0.45)' }}>
-                  by Vernika Enterprises
+                <div className="text-eyebrow mt-0.5" style={{ fontSize: '0.52rem', color: 'rgba(250,246,239,0.55)' }}>
+                  Handpainted by Natasha Gupta
                 </div>
               </div>
             </button>
-            <p className="text-body-sm leading-relaxed" style={{ color: 'rgba(250,246,239,0.5)', maxWidth: '200px' }}>
-              Handmade Madhubani paintings directly from master artisan families in Jitwarpur, Bihar.
+            <p className="text-body-sm leading-relaxed" style={{ color: 'rgba(250,246,239,0.5)', maxWidth: '240px' }}>
+              Authentic Madhubani (Mithila) art handpainted by Natasha Gupta in {siteConfig.origin}. GI-tagged heritage art.
             </p>
             <div className="flex items-center gap-2.5">
               <div
@@ -155,6 +159,15 @@ const Footer: React.FC<{ onNavigate: (s: ScreenType) => void }> = ({ onNavigate 
                   </button>
                 </li>
               ))}
+              <li>
+                <a
+                  href="/admin"
+                  className="text-body-sm transition-colors duration-200 text-vermilion hover:underline flex items-center gap-1"
+                >
+                  <span>Studio Portal (Admin)</span>
+                  <ArrowRight size={11} />
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -179,35 +192,35 @@ const Footer: React.FC<{ onNavigate: (s: ScreenType) => void }> = ({ onNavigate 
 
           {/* Contact */}
           <div className="space-y-4">
-            <p className="text-eyebrow" style={{ color: 'rgba(250,246,239,0.4)', fontSize: '0.6rem' }}>Contact</p>
+            <p className="text-eyebrow" style={{ color: 'rgba(250,246,239,0.4)', fontSize: '0.6rem' }}>Contact & Studio</p>
             <ul className="space-y-3">
               <li className="flex items-start gap-2.5">
                 <Mail size={13} style={{ color: 'var(--vermilion)', marginTop: '2px', flexShrink: 0 }} />
-                <span className="text-body-sm" style={{ color: 'rgba(250,246,239,0.55)' }}>
-                  studio@mithilaatelier.com
-                </span>
+                <a href="mailto:vernikaenterprises14@gmail.com" className="text-body-sm hover:underline" style={{ color: 'rgba(250,246,239,0.7)' }}>
+                  vernikaenterprises14@gmail.com
+                </a>
               </li>
               <li className="flex items-start gap-2.5">
                 <Phone size={13} style={{ color: 'var(--vermilion)', marginTop: '2px', flexShrink: 0 }} />
-                <span className="text-body-sm" style={{ color: 'rgba(250,246,239,0.55)' }}>
-                  +91 92345 67890
-                </span>
+                <a href="https://wa.me/917870909889" target="_blank" rel="noopener noreferrer" className="text-body-sm hover:underline" style={{ color: 'rgba(250,246,239,0.7)' }}>
+                  +91 78709 09889 (WhatsApp)
+                </a>
               </li>
               <li className="flex items-start gap-2.5">
                 <MapPin size={13} style={{ color: 'var(--vermilion)', marginTop: '2px', flexShrink: 0 }} />
                 <span className="text-body-sm leading-relaxed" style={{ color: 'rgba(250,246,239,0.55)' }}>
-                  Jitwarpur, Madhubani<br />Bihar 847226, India
+                  Vernika Enterprises, Natasha Gupta<br />{siteConfig.origin}
                 </span>
               </li>
             </ul>
             <div className="flex items-center gap-2 pt-2">
               <a
-                href="#"
-                className="w-8 h-8 rounded-full flex items-center justify-center transition-colors"
-                style={{ background: 'rgba(255,255,255,0.08)', color: 'rgba(250,246,239,0.6)' }}
-                aria-label="Instagram"
+                href="https://wa.me/917870909889"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-sm btn-outline text-xs text-white border-white/20 hover:border-vermilion"
               >
-                <Instagram size={14} />
+                Chat on WhatsApp
               </a>
             </div>
           </div>
@@ -218,8 +231,8 @@ const Footer: React.FC<{ onNavigate: (s: ScreenType) => void }> = ({ onNavigate 
       <div style={{ borderTop: '1px solid var(--hairline-dark)' }}>
         <div className="container py-5">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
-            <p className="text-caption" style={{ color: 'rgba(250,246,239,0.35)' }}>
-              © 2026 Mithila Atelier by Vernika Enterprises. All artworks are one-of-one originals.
+            <p className="text-caption" style={{ color: 'rgba(250,246,239,0.45)' }}>
+              © 2026 Vernika Enterprises by Natasha Gupta. GI-Tagged Madhubani Art.
             </p>
             <div className="flex items-center gap-2">
               <span className="text-caption" style={{ color: 'rgba(250,246,239,0.3)' }}>
@@ -238,11 +251,49 @@ const Footer: React.FC<{ onNavigate: (s: ScreenType) => void }> = ({ onNavigate 
 };
 
 // ─── Main App ─────────────────────────────────────────────────────────────────
-export default function App() {
+export default function App({ initialProducts }: { initialProducts?: MadhubaniProduct[] }) {
+  const [productsList,      setProductsList]      = useState<MadhubaniProduct[]>(initialProducts || ALL_PRODUCTS);
   const [currentScreen,     setCurrentScreen]     = useState<ScreenType>('home');
-  const [selectedProduct,   setSelectedProduct]   = useState<MadhubaniProduct>(ALL_PRODUCTS[0]);
+  const [selectedProduct,   setSelectedProduct]   = useState<MadhubaniProduct>(productsList[0] || ALL_PRODUCTS[0]);
   const [shopInitialCategory, setShopInitialCategory] = useState<string>('all');
   const [shopInitialStyle,  setShopInitialStyle]  = useState<MithilaStyle | undefined>(undefined);
+
+  // Fetch live MongoDB products on mount if not provided server-side
+  React.useEffect(() => {
+    if (!initialProducts || initialProducts.length === 0) {
+      fetch('/api/products')
+        .then(res => res.json())
+        .then(data => {
+          if (data.products && data.products.length > 0) {
+            const mapped: MadhubaniProduct[] = data.products.map((p: any) => ({
+              id: p.id || p.ref,
+              ref: p.ref,
+              slug: p.slug,
+              title: p.name,
+              category: p.category,
+              categoryShort: p.category === 'paintings' ? 'Painting' : (p.category === 'dupattas' ? 'Dupatta' : 'Bag'),
+              style: (p.technique?.includes('Kachni') ? 'Kachni' : (p.technique?.includes('Bharni') ? 'Bharni' : (p.technique?.includes('Kohbar') ? 'Kohbar' : 'Bharni'))) as any,
+              price: Math.round(p.price / 100),
+              dimensions: p.dimensions?.displayString || 'Standard',
+              medium: p.paintMedium || 'Traditional natural soot/pigments',
+              material: p.material || 'Handmade bamboo paper',
+              image: p.images?.[0]?.url || '/products/1.webp',
+              gallery: p.images?.map((im: any) => im.url) || ['/products/1.webp'],
+              shortDescription: p.description?.slice(0, 140) || '',
+              description: p.description || '',
+              story: p.story || '',
+              stock: p.stock,
+              tags: p.tags || [],
+              isFeatured: p.featured || false,
+              isNew: true,
+              technique: p.technique,
+            }));
+            setProductsList(mapped);
+          }
+        })
+        .catch(() => {});
+    }
+  }, [initialProducts]);
 
   const [cart,      setCart]     = useState<CartItem[]>([]);
   const [wishlist,  setWishlist] = useState<string[]>([ALL_PRODUCTS[0].id, ALL_PRODUCTS[5].id]);
@@ -299,20 +350,20 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleCheckout = () => {
-    const orderNum = `MITHILA-ORD-${Math.floor(1000 + Math.random() * 9000)}`;
-    const total = cartTotal + (cartTotal >= 1999 ? 0 : 149) + Math.round(cartTotal * 0.05);
+  const handleCheckout = (orderInfo?: { number: string; total: number }) => {
+    const orderNum = orderInfo?.number || `VE-${new Date().toISOString().slice(2, 4)}${String(new Date().getMonth() + 1).padStart(2, '0')}${String(new Date().getDate()).padStart(2, '0')}-${Math.floor(1000 + Math.random() * 9000)}`;
+    const finalTotal = orderInfo?.total || cartTotal;
     setOrders(prev => [{
       id: orderNum,
       date: new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }),
-      status: 'Processing',
-      total,
+      status: 'Confirmed',
+      total: finalTotal,
       items: [...cart],
       trackingNumber: '',
-      estimatedDelivery: '5–7 business days',
+      estimatedDelivery: '3–5 business days',
     }, ...prev]);
     setCart([]);
-    setOrderSuccess({ number: orderNum, total });
+    setOrderSuccess({ number: orderNum, total: finalTotal });
   };
 
   const renderScreen = () => {
@@ -320,7 +371,7 @@ export default function App() {
       case 'home':
         return (
           <HomeScreen
-            products={ALL_PRODUCTS}
+            products={productsList}
             onSelectProduct={handleSelectProduct}
             onNavigateToShop={navigateToShop}
             onNavigateToAbout={() => setCurrentScreen('about')}
@@ -331,7 +382,7 @@ export default function App() {
       case 'shop':
         return (
           <ShopGalleryScreen
-            products={ALL_PRODUCTS}
+            products={productsList}
             categories={ALL_CATEGORIES}
             styles={ALL_STYLES}
             wishlist={wishlist}
@@ -347,7 +398,7 @@ export default function App() {
         return (
           <ProductDetailScreen
             product={selectedProduct}
-            products={ALL_PRODUCTS}
+            products={productsList}
             wishlist={wishlist}
             cartCount={cartCount}
             onBack={() => setCurrentScreen('shop')}
@@ -359,6 +410,8 @@ export default function App() {
         );
       case 'about':
         return <AboutTraditionScreen onNavigateToShop={() => navigateToShop()} />;
+      case 'portfolio':
+        return <PortfolioScreen products={productsList} onSelectProduct={handleSelectProduct} />;
       case 'cart':
         return (
           <CartCheckoutScreen
@@ -377,7 +430,7 @@ export default function App() {
         return (
           <ProfileScreen
             wishlist={wishlist}
-            products={ALL_PRODUCTS}
+            products={productsList}
             orders={orders}
             onSelectProduct={handleSelectProduct}
             onNavigateToShop={() => navigateToShop()}

@@ -13,24 +13,38 @@ export interface FramingDetail {
 
 export interface MadhubaniProduct {
   id: string;
+  ref?: string;
+  name?: string;
+  slug?: string;
   filename: string;
   image: string;
+  cardImage?: string;
+  galleryImages?: string[];
   title: string;
   category: string;
+  subCategory?: string;
   categoryName: string;
   categoryShort: string;
-  style: MithilaStyle;
+  style?: MithilaStyle;
   price: number;
+  pricePaise?: number;
   originalPrice?: number;
+  compareAtPrice?: number | null;
   shortDescription: string;
   longDescription: string;
+  story?: string;
   dimensions: string;
   medium: string;
+  material?: string;
+  technique?: string;
+  type?: string;
   stock: number;
-  rating: number;
-  reviewsCount: number;
+  leadTimeDays?: number;
+  rating?: number;
+  reviewsCount?: number;
   isFeatured?: boolean;
   isNew?: boolean;
+  isFramed?: boolean;
   tags: string[];
 }
 
@@ -48,46 +62,44 @@ export interface CartItem {
   quantity: number;
   framing?: FramingOption;
   framingPrice?: number;
+  isGiftWrapped?: boolean;
+  giftNote?: string;
 }
 
 export interface Order {
   id: string;
+  orderId?: string;
   date: string;
-  status: 'Processing' | 'Shipped' | 'Delivered';
+  status: 'Processing' | 'Shipped' | 'Delivered' | 'Confirmed' | 'Pending' | 'Packed';
   total: number;
   items: CartItem[];
-  trackingNumber: string;
-  estimatedDelivery: string;
-  shippingAddress?: string;
-  carrier?: string;
+  trackingNumber?: string;
+  courier?: string;
+  estimatedDelivery?: string;
+  customerName?: string;
+  customerPhone?: string;
+  customerEmail?: string;
+  shippingAddress?: {
+    line1: string;
+    line2?: string;
+    city: string;
+    state: string;
+    pincode: string;
+    country: string;
+  };
+  paymentMethod?: 'razorpay' | 'cod';
+  paymentStatus?: 'paid' | 'cod_pending' | 'failed' | 'refunded';
 }
 
-export interface Review {
-  id: string;
-  author: string;
-  location: string;
-  avatar?: string;
-  rating: number;
-  date: string;
-  comment: string;
-  verified: boolean;
-  artworkTitle?: string;
-}
-
-export type ScreenType = 
+export type ScreenType =
   | 'home'
   | 'shop'
+  | 'product'
   | 'detail'
   | 'about'
   | 'cart'
   | 'contact'
   | 'profile'
+  | 'portfolio'
+  | 'track'
   | 'all-screens';
-
-export type DeviceFrameType = 'responsive' | 'mobile' | 'tablet' | 'all-grid';
-
-export interface CurrencyRate {
-  symbol: string;
-  rate: number; // multiplier from INR
-  prefix: string;
-}

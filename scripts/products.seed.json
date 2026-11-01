@@ -1,0 +1,2819 @@
+[
+  {
+    "id": "prod-p01",
+    "ref": "P01",
+    "name": "Mithila Harmony Slim Strip Paintings (Set of 3)",
+    "slug": "mithila-harmony-slim-strip-paintings-set-of-3",
+    "category": "paintings",
+    "subCategory": "strips_and_sets",
+    "type": "original_painting",
+    "stock": 1,
+    "leadTimeDays": 0,
+    "price": 649900,
+    "compareAtPrice": 749900,
+    "dimensions": {
+      "widthCm": 30,
+      "heightCm": 60,
+      "displayString": "3 strips, 10 x 60 cm each"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Handmade paper, framed in sleek black wooden frame with cream matting",
+    "isFramed": true,
+    "description": "An exquisite triptych of three slender Madhubani strips showcasing classic motifs: lively parrots in foliage, celestial fish in calm blue waves, and an intertwining flowering vine of abundance.",
+    "story": "In Mithila art, the combination of birds, aquatic life, and blossoming vines symbolizes the complete harmony of nature\u2014sky, water, and earth together bringing tranquility to the home.",
+    "tags": [
+      "Set of 3",
+      "Triptych",
+      "Parrot",
+      "Fish",
+      "Floral Vine",
+      "Framed",
+      "Living Room"
+    ],
+    "featured": true,
+    "status": "published",
+    "images": [
+      {
+        "filename": "3.jpeg",
+        "alt": "Three slim vertical framed Madhubani paintings on wall",
+        "shotType": "lifestyle",
+        "isHero": true
+      },
+      {
+        "filename": "5.jpeg",
+        "alt": "Parrots on black pattern detail strip",
+        "shotType": "detail",
+        "isHero": false
+      },
+      {
+        "filename": "6.jpeg",
+        "alt": "Flowering vine detail strip",
+        "shotType": "detail",
+        "isHero": false
+      }
+    ]
+  },
+  {
+    "id": "prod-p02",
+    "ref": "P02",
+    "name": "Twin Peacocks and Sacred Tree Statement Painting (Framed)",
+    "slug": "twin-peacocks-sacred-tree-statement-painting",
+    "category": "paintings",
+    "subCategory": "peacock_and_birds",
+    "type": "original_painting",
+    "stock": 1,
+    "leadTimeDays": 0,
+    "price": 349900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 28,
+      "heightCm": 66,
+      "widthIn": 11,
+      "heightIn": 26,
+      "displayString": "11 x 26 in (28 x 66 cm)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Fine nib pen and pigments on handmade paper, framed with protective glass",
+    "isFramed": true,
+    "description": "A striking vertical masterpiece rendered in precise Kachni line work with vermilion red highlights. Features twin peacocks perched harmoniously beside the sacred tree of life with fish swimming at its roots.",
+    "story": "The peacock (Mayura) represents divine beauty, grace, and eternal love in Mithila culture. Paired with fish at the water's base, it connects heaven and water in continuous celebration.",
+    "tags": [
+      "Peacock",
+      "Tree of Life",
+      "Kachni",
+      "Vertical",
+      "Framed",
+      "Black & White"
+    ],
+    "featured": true,
+    "status": "published",
+    "images": [
+      {
+        "filename": "4.jpeg",
+        "alt": "Peacock pair on tree with fish vertical framed painting 11x26 in",
+        "shotType": "hero",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-p03",
+    "ref": "P03",
+    "name": "Parrots in Canopy Vertical Madhubani Strip (Framed)",
+    "slug": "parrots-in-canopy-vertical-madhubani-strip",
+    "category": "paintings",
+    "subCategory": "peacock_and_birds",
+    "type": "original_painting",
+    "stock": 1,
+    "leadTimeDays": 0,
+    "price": 249900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 15,
+      "heightCm": 50,
+      "displayString": "15 x 50 cm (6 x 20 in)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Handmade paper, framed in matte black frame",
+    "isFramed": true,
+    "description": "Slender vertical panel depicting playful green and orange parrots resting among stylized black scalloped leaves.",
+    "story": "The parrot (Tota) in Mithila folklore brings joyful tidings and speaks of fidelity and blossoming companionship.",
+    "tags": [
+      "Parrot",
+      "Slim Strip",
+      "Handmade",
+      "Framed"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "5.jpeg",
+        "alt": "Parrots on black pattern background framed strip",
+        "shotType": "hero",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-p04",
+    "ref": "P04",
+    "name": "Flowering Vine of Abundance Madhubani Strip (Framed)",
+    "slug": "flowering-vine-of-abundance-madhubani-strip",
+    "category": "paintings",
+    "subCategory": "tree_of_life",
+    "type": "original_painting",
+    "stock": 1,
+    "leadTimeDays": 0,
+    "price": 249900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 15,
+      "heightCm": 50,
+      "displayString": "15 x 50 cm (6 x 20 in)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Handmade paper, framed with cream mat",
+    "isFramed": true,
+    "description": "A graceful ascending creeper adorned with blooming petals and sacred buds in traditional Mithila botanical rhythm.",
+    "story": "Vines (Lata) signify continuous spiritual growth, flourishing family lineage, and grounded resilience.",
+    "tags": [
+      "Floral Vine",
+      "Nature",
+      "Framed",
+      "Vertical"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "6.jpeg",
+        "alt": "Flowering vine on cream background framed strip",
+        "shotType": "hero",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-p05",
+    "ref": "P05",
+    "name": "Crimson Fish Mandala Madhubani Painting (Framed)",
+    "slug": "crimson-fish-mandala-madhubani-painting",
+    "category": "paintings",
+    "subCategory": "fish",
+    "type": "original_painting",
+    "stock": 1,
+    "leadTimeDays": 0,
+    "price": 399900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 30,
+      "heightCm": 40,
+      "displayString": "30 x 40 cm (12 x 16 in)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Natural pigments on handmade paper, custom black frame with cream mat",
+    "isFramed": true,
+    "description": "An hypnotic radial composition of sacred fish swirling in eternal harmony on an auspicious deep vermilion ground.",
+    "story": "The fish (Matsya) is an ancient avatar of Vishnu, revered in Mithila as the supreme sign of prosperity, fertile abundance, and water's life-giving energy.",
+    "tags": [
+      "Fish",
+      "Mandala",
+      "Red",
+      "Vermilion",
+      "Framed",
+      "Matsya"
+    ],
+    "featured": true,
+    "status": "published",
+    "images": [
+      {
+        "filename": "7.jpeg",
+        "alt": "Fish mandala in red vertical framed painting",
+        "shotType": "hero",
+        "isHero": true
+      },
+      {
+        "filename": "10.jpeg",
+        "alt": "Fish mandala trio displayed together",
+        "shotType": "lifestyle",
+        "isHero": false
+      }
+    ]
+  },
+  {
+    "id": "prod-p06",
+    "ref": "P06",
+    "name": "Azure Waters Fish Mandala Madhubani Painting (Framed)",
+    "slug": "azure-waters-fish-mandala-madhubani-painting",
+    "category": "paintings",
+    "subCategory": "fish",
+    "type": "original_painting",
+    "stock": 1,
+    "leadTimeDays": 0,
+    "price": 399900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 30,
+      "heightCm": 40,
+      "displayString": "30 x 40 cm (12 x 16 in)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Handmade paper, matte black frame with double matting",
+    "isFramed": true,
+    "description": "Intricate black-line fish swimming in a calming circular orbit over a tranquil deep indigo-blue field.",
+    "story": "Blue invokes the primordial waters from which all life emerges, offering calm focus and clarity.",
+    "tags": [
+      "Fish",
+      "Mandala",
+      "Blue",
+      "Indigo",
+      "Framed"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "8.jpeg",
+        "alt": "Fish mandala in blue vertical framed painting",
+        "shotType": "hero",
+        "isHero": true
+      },
+      {
+        "filename": "10.jpeg",
+        "alt": "Fish mandala trio displayed together",
+        "shotType": "lifestyle",
+        "isHero": false
+      }
+    ]
+  },
+  {
+    "id": "prod-p07",
+    "ref": "P07",
+    "name": "Emerald Grove Fish Mandala Madhubani Painting (Framed)",
+    "slug": "emerald-grove-fish-mandala-madhubani-painting",
+    "category": "paintings",
+    "subCategory": "fish",
+    "type": "original_painting",
+    "stock": 1,
+    "leadTimeDays": 0,
+    "price": 399900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 30,
+      "heightCm": 40,
+      "displayString": "30 x 40 cm (12 x 16 in)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Handmade paper, framed in black wood with gold inner fillet",
+    "isFramed": true,
+    "description": "Deep forest-green backdrop highlighting the geometric fine-line patterns of interlocking swimming fish.",
+    "story": "Green reflects the lush fertile soils of Bihar's river basins, heralding rejuvenation and peace.",
+    "tags": [
+      "Fish",
+      "Mandala",
+      "Green",
+      "Framed"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "9.jpeg",
+        "alt": "Fish mandala in green vertical framed painting",
+        "shotType": "hero",
+        "isHero": true
+      },
+      {
+        "filename": "10.jpeg",
+        "alt": "Fish mandala trio displayed together",
+        "shotType": "lifestyle",
+        "isHero": false
+      }
+    ]
+  },
+  {
+    "id": "prod-p08",
+    "ref": "P08",
+    "name": "Matsya Triptych: Three Fish Mandalas (Blue, Green, Red)",
+    "slug": "matsya-triptych-three-fish-mandalas",
+    "category": "paintings",
+    "subCategory": "strips_and_sets",
+    "type": "original_painting",
+    "stock": 1,
+    "leadTimeDays": 0,
+    "price": 1049900,
+    "compareAtPrice": 1199700,
+    "dimensions": {
+      "widthCm": 100,
+      "heightCm": 40,
+      "displayString": "Set of 3 frames, 30 x 40 cm each"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Set of 3 individual framed paintings with protective acrylic glass",
+    "isFramed": true,
+    "description": "Complete collector's bundle of all three Matsya mandalas (Azure, Emerald, and Crimson). Creates a showstopping gallery-wall centerpiece.",
+    "story": "Displaying the three elements together balances warmth (fire/red), growth (earth/green), and calm (water/blue).",
+    "tags": [
+      "Bundle",
+      "Set of 3",
+      "Fish",
+      "Mandala",
+      "Collector Piece",
+      "Framed"
+    ],
+    "featured": true,
+    "status": "published",
+    "images": [
+      {
+        "filename": "10.jpeg",
+        "alt": "Trio of fish mandalas on living room wall",
+        "shotType": "lifestyle",
+        "isHero": true
+      },
+      {
+        "filename": "7.jpeg",
+        "alt": "Red mandala close",
+        "shotType": "detail",
+        "isHero": false
+      },
+      {
+        "filename": "8.jpeg",
+        "alt": "Blue mandala close",
+        "shotType": "detail",
+        "isHero": false
+      },
+      {
+        "filename": "9.jpeg",
+        "alt": "Green mandala close",
+        "shotType": "detail",
+        "isHero": false
+      }
+    ]
+  },
+  {
+    "id": "prod-p09",
+    "ref": "P09",
+    "name": "Spiral of Plenty Fish Painting on Vermilion (Framed)",
+    "slug": "spiral-of-plenty-fish-painting-on-vermilion",
+    "category": "paintings",
+    "subCategory": "fish",
+    "type": "original_painting",
+    "stock": 1,
+    "leadTimeDays": 0,
+    "price": 429900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 35,
+      "heightCm": 45,
+      "displayString": "35 x 45 cm (14 x 18 in)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Handmade paper, solid wooden frame",
+    "isFramed": true,
+    "description": "Dynamic composition featuring shoals of fish swirling in an organic spiral across a fiery red field.",
+    "story": "The spiral embodies the ceaseless cycle of cosmic time and renewal in folk iconography.",
+    "tags": [
+      "Fish",
+      "Spiral",
+      "Red",
+      "Framed"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "11.jpeg",
+        "alt": "Fish spiral on red ground framed painting",
+        "shotType": "hero",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-p10",
+    "ref": "P10",
+    "name": "Bichhandi Tree of Life with Fish Leaves (Framed)",
+    "slug": "bichhandi-tree-of-life-with-fish-leaves",
+    "category": "paintings",
+    "subCategory": "tree_of_life",
+    "type": "original_painting",
+    "stock": 1,
+    "leadTimeDays": 0,
+    "price": 189900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 14,
+      "heightCm": 18,
+      "displayString": "14 x 18 cm (5.5 x 7 in)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Handmade paper, black frame with ivory border",
+    "isFramed": true,
+    "description": "Intricate compact masterpiece where every leaf of the Tree of Life is painted as a miniature swimming fish in black and vermilion.",
+    "story": "The Tree of Life (Kalpavriksha) connects underground roots with celestial branches, granting boons and eternal protection.",
+    "tags": [
+      "Tree of Life",
+      "Miniature",
+      "Fish",
+      "Small Frame",
+      "Gift Ready"
+    ],
+    "featured": true,
+    "status": "published",
+    "images": [
+      {
+        "filename": "12.jpeg",
+        "alt": "Tree of Life with fish leaves 18x14 cm",
+        "shotType": "hero",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-p11",
+    "ref": "P11",
+    "name": "Peacock Pair in Bloom Madhubani Painting (Framed)",
+    "slug": "peacock-pair-in-bloom-madhubani-painting",
+    "category": "paintings",
+    "subCategory": "peacock_and_birds",
+    "type": "original_painting",
+    "stock": 1,
+    "leadTimeDays": 0,
+    "price": 289900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 25,
+      "heightCm": 35,
+      "displayString": "25 x 35 cm (10 x 14 in)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Handmade paper, bordered in geometric triangles, black frame",
+    "isFramed": true,
+    "description": "Symmetrical twin peacocks facing a sacred blossoming tree, rendered in classic black linework with coral red fills.",
+    "story": "Facing peacocks symbolize marital fidelity and the joyful anticipation of celebrations.",
+    "tags": [
+      "Peacock",
+      "Floral Tree",
+      "Symmetry",
+      "Framed"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "13.jpeg",
+        "alt": "Peacock pair with flowering tree painting",
+        "shotType": "hero",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-p12",
+    "ref": "P12",
+    "name": "Maa Mahakali Fierce Compassion Painting (Framed)",
+    "slug": "maa-mahakali-fierce-compassion-painting",
+    "category": "paintings",
+    "subCategory": "figures_and_deities",
+    "type": "original_painting",
+    "stock": 1,
+    "leadTimeDays": 0,
+    "price": 749900,
+    "compareAtPrice": 849900,
+    "dimensions": {
+      "widthCm": 40,
+      "heightCm": 55,
+      "displayString": "40 x 55 cm (16 x 22 in)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Mineral colors and ink on handmade paper, museum quality frame",
+    "isFramed": true,
+    "description": "A profound Tantrik and Bharni style depiction of Goddess Mahakali in full divine splendor, bearing sacred weapons, standing in triumph over timeless illusion.",
+    "story": "In Mithila tradition, Kali is venerated not only as the destroyer of darkness and ego, but as the primordial mother offering fierce unconditional protection.",
+    "tags": [
+      "Kali",
+      "Deity",
+      "Sacred Art",
+      "Tantrik",
+      "Statement Piece",
+      "Framed"
+    ],
+    "featured": true,
+    "status": "published",
+    "images": [
+      {
+        "filename": "14.jpeg",
+        "alt": "Goddess Kali large colorful deity painting framed",
+        "shotType": "hero",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-p13",
+    "ref": "P13",
+    "name": "Twin Owls in Sacred Foliage Folk Painting (Framed)",
+    "slug": "twin-owls-in-sacred-foliage-folk-painting",
+    "category": "paintings",
+    "subCategory": "peacock_and_birds",
+    "type": "original_painting",
+    "stock": 1,
+    "leadTimeDays": 0,
+    "price": 279900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 25,
+      "heightCm": 30,
+      "displayString": "25 x 30 cm (10 x 12 in)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Handmade paper, framed in black",
+    "isFramed": true,
+    "description": "Charming vibrant depiction of two sacred owls (Uluka) nestled in verdant green foliage with watchful amber eyes.",
+    "story": "The owl is the vahana (mount) of Goddess Lakshmi, signifying quiet wisdom, nocturnal vigilance, and auspicious wealth.",
+    "tags": [
+      "Owls",
+      "Birds",
+      "Lakshmi Vahana",
+      "Wisdom",
+      "Framed"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "15.jpeg",
+        "alt": "Two colorful owls on tree branch",
+        "shotType": "hero",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-p14",
+    "ref": "P14",
+    "name": "Mithila Maiden with Hand Fan Painting (Framed)",
+    "slug": "mithila-maiden-with-hand-fan-painting",
+    "category": "paintings",
+    "subCategory": "figures_and_deities",
+    "type": "original_painting",
+    "stock": 1,
+    "leadTimeDays": 0,
+    "price": 499900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 30,
+      "heightCm": 45,
+      "displayString": "30 x 45 cm (12 x 18 in)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Handmade paper, framed with ivory border",
+    "isFramed": true,
+    "description": "A poetic portrayal of a village maiden in traditional ochre and crimson saree holding a hand fan by an ornate jali window.",
+    "story": "Celebrates the quiet contemplative moments of daily domestic life and grace in rural Mithila.",
+    "tags": [
+      "Village Life",
+      "Maiden",
+      "Portrait",
+      "Folk Art",
+      "Framed"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "16.jpeg",
+        "alt": "Village lady with hand fan framed painting",
+        "shotType": "hero",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-p15",
+    "ref": "P15",
+    "name": "Mithila Bride with Nath and Veil Portrait (Framed)",
+    "slug": "mithila-bride-with-nath-and-veil-portrait",
+    "category": "paintings",
+    "subCategory": "figures_and_deities",
+    "type": "original_painting",
+    "stock": 1,
+    "leadTimeDays": 0,
+    "price": 549900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 35,
+      "heightCm": 45,
+      "displayString": "35 x 45 cm (14 x 18 in)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Handmade paper, framed with gold accent line",
+    "isFramed": true,
+    "description": "An iconic bridal profile featuring the ceremonial nose ring (Nath), vermilion sindoor, and detailed veil with floral geometric borders.",
+    "story": "Mithila wedding customs celebrate the bride as Lakshmi herself bringing auspicious light to a new household.",
+    "tags": [
+      "Bride",
+      "Portrait",
+      "Nath",
+      "Wedding",
+      "Framed"
+    ],
+    "featured": true,
+    "status": "published",
+    "images": [
+      {
+        "filename": "17.jpeg",
+        "alt": "Mithila bride with nose ring portrait painting",
+        "shotType": "hero",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-p16",
+    "ref": "P16",
+    "name": "Matsya & Kamal on Azure Waves Slim Panel (Framed)",
+    "slug": "matsya-and-kamal-on-azure-waves-slim-panel",
+    "category": "paintings",
+    "subCategory": "fish",
+    "type": "original_painting",
+    "stock": 1,
+    "leadTimeDays": 0,
+    "price": 199900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 10,
+      "heightCm": 24,
+      "widthIn": 3.94,
+      "heightIn": 9.45,
+      "displayString": "24 x 10 cm (9.45 x 3.94 in)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Handmade paper, black sleek frame",
+    "isFramed": true,
+    "description": "A refined slender vertical painting depicting a sacred fish leaping towards an unfolding pink lotus above rolling blue waves.",
+    "story": "The union of fish and lotus represents purity rising untainted from worldly waters.",
+    "tags": [
+      "Fish",
+      "Lotus",
+      "Slim Frame",
+      "Desk Art",
+      "Framed"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "18.jpeg",
+        "alt": "Fish with lotus on blue waves 24x10 cm",
+        "shotType": "hero",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-p17",
+    "ref": "P17",
+    "name": "Twin Dancing Peacocks Vertical Strip (Framed)",
+    "slug": "twin-dancing-peacocks-vertical-strip",
+    "category": "paintings",
+    "subCategory": "peacock_and_birds",
+    "type": "original_painting",
+    "stock": 1,
+    "leadTimeDays": 0,
+    "price": 269900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 15,
+      "heightCm": 50,
+      "displayString": "15 x 50 cm (6 x 20 in)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Handmade paper, framed in black wood",
+    "isFramed": true,
+    "description": "Two slender peacocks in joyous vertical ascent, their plumage intertwined with colorful blooming branches.",
+    "story": "Peacocks dancing together herald the arrival of life-giving monsoon showers across the Mithila plains.",
+    "tags": [
+      "Peacock",
+      "Vertical",
+      "Folk Art",
+      "Framed"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "19.jpeg",
+        "alt": "Two colorful peacocks on tree branches",
+        "shotType": "hero",
+        "isHero": true
+      },
+      {
+        "filename": "21.jpeg",
+        "alt": "Peacocks detail alternate shot",
+        "shotType": "detail",
+        "isHero": false
+      }
+    ]
+  },
+  {
+    "id": "prod-p18",
+    "ref": "P18",
+    "name": "Radha-Krishna Divine Flute Melody Strip (Framed)",
+    "slug": "radha-krishna-divine-flute-melody-strip",
+    "category": "paintings",
+    "subCategory": "figures_and_deities",
+    "type": "original_painting",
+    "stock": 1,
+    "leadTimeDays": 0,
+    "price": 329900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 18,
+      "heightCm": 55,
+      "displayString": "18 x 55 cm (7 x 22 in)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Handmade paper, framed in matte black",
+    "isFramed": true,
+    "description": "Graceful representation of Radha and Krishna under the Kadamba tree, Krishna playing his enchanting flute with Radha listening in devotion.",
+    "story": "Radha-Krishna symbolizes the highest soul-devotion (Bhakti) and spiritual harmony.",
+    "tags": [
+      "Radha Krishna",
+      "Divine Couple",
+      "Flute",
+      "Framed"
+    ],
+    "featured": true,
+    "status": "published",
+    "images": [
+      {
+        "filename": "20.jpeg",
+        "alt": "Radha Krishna divine couple framed painting",
+        "shotType": "hero",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-p19",
+    "ref": "P19",
+    "name": "Kohbar Nuptial Chamber Grand Landscape (Framed)",
+    "slug": "kohbar-nuptial-chamber-grand-landscape",
+    "category": "paintings",
+    "subCategory": "figures_and_deities",
+    "type": "original_painting",
+    "stock": 1,
+    "leadTimeDays": 0,
+    "price": 849900,
+    "compareAtPrice": 999900,
+    "dimensions": {
+      "widthCm": 80,
+      "heightCm": 50,
+      "displayString": "80 x 50 cm (32 x 20 in)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Red ink and natural dyes on handmade paper, wide gallery frame",
+    "isFramed": true,
+    "description": "A magnificent wide-format Kohbar ceremonial painting filled with traditional fertility and prosperity symbols: sun, moon, bamboo stalk, lotus mandalas, and paired creatures.",
+    "story": "Historically painted on the nuptial bedroom walls (Kohbar Ghar) to bless newlyweds with enduring love, fertility, and cosmic protection.",
+    "tags": [
+      "Kohbar",
+      "Wedding",
+      "Ceremonial",
+      "Grand Statement",
+      "Red Monochrome",
+      "Framed"
+    ],
+    "featured": true,
+    "status": "published",
+    "images": [
+      {
+        "filename": "22.jpeg",
+        "alt": "Kohbar nuptial ceremonial landscape painting",
+        "shotType": "hero",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-p20",
+    "ref": "P20",
+    "name": "Grand Peacock & Kalpavriksha Masterpiece (Framed)",
+    "slug": "grand-peacock-kalpavriksha-masterpiece",
+    "category": "paintings",
+    "subCategory": "peacock_and_birds",
+    "type": "original_painting",
+    "stock": 1,
+    "leadTimeDays": 0,
+    "price": 949900,
+    "compareAtPrice": 1199900,
+    "dimensions": {
+      "widthCm": 90,
+      "heightCm": 60,
+      "displayString": "90 x 60 cm (36 x 24 in)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Handmade paper, premium black frame with UV protective acrylic",
+    "isFramed": true,
+    "description": "Natasha Gupta's signature large statement piece: a magnificent fanned peacock amidst lush jungle foliage, fish ponds, and ancient tree canopies.",
+    "story": "The pinnacle of Bharni and Kachni fusion art, embodying nature in its most triumphant and generous expression.",
+    "tags": [
+      "Masterpiece",
+      "Statement Piece",
+      "Peacock",
+      "Large Art",
+      "Living Room",
+      "Framed"
+    ],
+    "featured": true,
+    "status": "published",
+    "images": [
+      {
+        "filename": "23.jpeg",
+        "alt": "Grand peacock statement landscape painting above sofa",
+        "shotType": "hero",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-p21",
+    "ref": "P21",
+    "name": "Buddha Enlightenment Lotus Mandala (Framed)",
+    "slug": "buddha-enlightenment-lotus-mandala",
+    "category": "paintings",
+    "subCategory": "figures_and_deities",
+    "type": "original_painting",
+    "stock": 1,
+    "leadTimeDays": 0,
+    "price": 799900,
+    "compareAtPrice": 899900,
+    "dimensions": {
+      "widthCm": 75,
+      "heightCm": 50,
+      "displayString": "75 x 50 cm (30 x 20 in)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Monochrome black ink on handmade paper, custom black frame",
+    "isFramed": true,
+    "description": "A serene, contemplative horizontal painting depicting Lord Buddha in meditation at the heart of an intricate multi-petaled lotus mandala.",
+    "story": "Mithila borders Bihar's historic Buddhist lands; this artwork bridges ancient folk lines with profound meditative serenity.",
+    "tags": [
+      "Buddha",
+      "Monochrome",
+      "Mandala",
+      "Meditation",
+      "Peace",
+      "Framed"
+    ],
+    "featured": true,
+    "status": "published",
+    "images": [
+      {
+        "filename": "24.jpeg",
+        "alt": "Buddha lotus mandala monochrome landscape painting",
+        "shotType": "hero",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-p22",
+    "ref": "P22",
+    "name": "Royal Airavata Elephant in Yellow (Framed)",
+    "slug": "royal-airavata-elephant-in-yellow",
+    "category": "paintings",
+    "subCategory": "elephants",
+    "type": "original_painting",
+    "stock": 1,
+    "leadTimeDays": 0,
+    "price": 649900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 60,
+      "heightCm": 40,
+      "displayString": "60 x 40 cm (24 x 16 in)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Handmade paper, black frame with double mat",
+    "isFramed": true,
+    "description": "A majestic royal elephant decorated in ceremonial saddle cloths, lifting a sacred lotus on a luminous turmeric-yellow ground.",
+    "story": "The elephant (Gaja) signifies steadfast loyalty, physical strength, regal majesty, and the removal of obstacles.",
+    "tags": [
+      "Elephant",
+      "Airavata",
+      "Yellow",
+      "Prosperity",
+      "Framed"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "25.jpeg",
+        "alt": "Elephant on yellow ground landscape framed painting",
+        "shotType": "hero",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-p23",
+    "ref": "P23",
+    "name": "Ornate Peacock Medallion Miniature (Framed)",
+    "slug": "ornate-peacock-medallion-miniature",
+    "category": "paintings",
+    "subCategory": "peacock_and_birds",
+    "type": "original_painting",
+    "stock": 1,
+    "leadTimeDays": 0,
+    "price": 189900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 15.24,
+      "heightCm": 17.78,
+      "widthIn": 6,
+      "heightIn": 7,
+      "displayString": "7 x 6 in (17.78 x 15.24 cm)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Handmade paper, framed with decorative inner border",
+    "isFramed": true,
+    "description": "Delicate miniature peacock with fan tail surrounded by an intricate geometric border.",
+    "story": "Compact art piece designed to bring handmade warmth to work desks and entry consoles.",
+    "tags": [
+      "Peacock",
+      "Miniature",
+      "Framed",
+      "Desk Art"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "26.jpeg",
+        "alt": "Peacock with border 7x6 in painting",
+        "shotType": "hero",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-p24",
+    "ref": "P24",
+    "name": "Parrot in Diamond Lattice Folk Painting (Framed)",
+    "slug": "parrot-in-diamond-lattice-folk-painting",
+    "category": "paintings",
+    "subCategory": "peacock_and_birds",
+    "type": "original_painting",
+    "stock": 1,
+    "leadTimeDays": 0,
+    "price": 179900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 14,
+      "heightCm": 19,
+      "widthIn": 5.51,
+      "heightIn": 7.48,
+      "displayString": "19 x 14 cm (7.48 x 5.51 in)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Handmade paper, framed in black",
+    "isFramed": true,
+    "description": "Stylized parrot face framed with traditional leaf and diamond border motifs in joyful folk colors.",
+    "story": "The bird's watchful eye brings protection and positive energy to personal spaces.",
+    "tags": [
+      "Parrot",
+      "Diamond Border",
+      "Miniature",
+      "Framed"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "27.jpeg",
+        "alt": "Parrot bird face with diamond border 19x14 cm",
+        "shotType": "hero",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-p25",
+    "ref": "P25",
+    "name": "Mayura on Kadamba Branch Miniature (Framed)",
+    "slug": "mayura-on-kadamba-branch-miniature",
+    "category": "paintings",
+    "subCategory": "peacock_and_birds",
+    "type": "original_painting",
+    "stock": 1,
+    "leadTimeDays": 0,
+    "price": 179900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 13,
+      "heightCm": 18,
+      "widthIn": 5.12,
+      "heightIn": 7.09,
+      "displayString": "18 x 13 cm (7.09 x 5.12 in)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Handmade paper, black frame with ivory mat",
+    "isFramed": true,
+    "description": "A resting peacock perched gracefully among delicate leaves and buds.",
+    "story": "Captures the quiet grace of birds in the peaceful Mithila orchards.",
+    "tags": [
+      "Peacock",
+      "Branch",
+      "Miniature",
+      "Framed"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "28.jpeg",
+        "alt": "Peacock on branch 18x13 cm painting",
+        "shotType": "hero",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-p26",
+    "ref": "P26",
+    "name": "Matsya Leaping on Azure Waves (Framed)",
+    "slug": "matsya-leaping-on-azure-waves",
+    "category": "paintings",
+    "subCategory": "fish",
+    "type": "original_painting",
+    "stock": 1,
+    "leadTimeDays": 0,
+    "price": 169900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 17.78,
+      "heightCm": 15.24,
+      "widthIn": 7,
+      "heightIn": 6,
+      "displayString": "6 x 7 in (15.24 x 17.78 cm)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Handmade paper, red border frame",
+    "isFramed": true,
+    "description": "Playful fish swimming across concentric blue waves framed by an auspicious red border.",
+    "story": "Ideal gift for housewarmings, ushering in wealth and good fortune.",
+    "tags": [
+      "Fish",
+      "Waves",
+      "Auspicious",
+      "Gift Ready",
+      "Framed"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "29.jpeg",
+        "alt": "Fish on blue waves 6x7 in painting",
+        "shotType": "hero",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-p27",
+    "ref": "P27",
+    "name": "Peacock in Teal Garden Miniature (Framed)",
+    "slug": "peacock-in-teal-garden-miniature",
+    "category": "paintings",
+    "subCategory": "peacock_and_birds",
+    "type": "original_painting",
+    "stock": 1,
+    "leadTimeDays": 0,
+    "price": 169900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 12,
+      "heightCm": 17.78,
+      "widthIn": 4.7,
+      "heightIn": 7,
+      "displayString": "7 in x 12 cm"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Handmade paper, black sleek frame",
+    "isFramed": true,
+    "description": "Vibrant peacock perched on a flowering tree against an uncommon rich teal background.",
+    "story": "Teal reflects the deep twilight sky of rural Bihar during festive evenings.",
+    "tags": [
+      "Peacock",
+      "Teal",
+      "Miniature",
+      "Framed"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "30.jpeg",
+        "alt": "Peacock on tree teal background painting",
+        "shotType": "hero",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-d01",
+    "ref": "D01",
+    "name": "Sunlit Yellow Lotus & Fish Handpainted Dupatta",
+    "slug": "sunlit-yellow-lotus-fish-handpainted-dupatta",
+    "category": "dupattas",
+    "subCategory": "womens_dupattas",
+    "type": "made_to_order",
+    "stock": 3,
+    "leadTimeDays": 7,
+    "price": 249900,
+    "compareAtPrice": 299900,
+    "dimensions": {
+      "widthCm": 90,
+      "heightCm": 240,
+      "displayString": "2.4 m x 90 cm"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "100% Pure Breathable Fine Cotton with Hand-Tied Tassels",
+    "description": "Luminous lemon-yellow cotton dupatta adorned with handpainted lotus flowers and sacred fish motifs dancing along the borders and pallu.",
+    "story": "Yellow represents the auspicious basant (spring) and turmeric of wedding blessings, paired with fish for boundless prosperity.",
+    "tags": [
+      "Yellow",
+      "Lotus",
+      "Fish",
+      "Cotton",
+      "Handpainted",
+      "Made to Order"
+    ],
+    "featured": true,
+    "status": "published",
+    "images": [
+      {
+        "filename": "32.jpeg",
+        "alt": "Yellow dupatta with lotus and fish border",
+        "shotType": "hero",
+        "isHero": true
+      },
+      {
+        "filename": "57.jpeg",
+        "alt": "Infographic showing lotus and fish dupatta details",
+        "shotType": "infographic",
+        "isHero": false
+      }
+    ]
+  },
+  {
+    "id": "prod-d02",
+    "ref": "D02",
+    "name": "Ivory & Crimson Fish Border Handpainted Dupatta",
+    "slug": "ivory-crimson-fish-border-handpainted-dupatta",
+    "category": "dupattas",
+    "subCategory": "womens_dupattas",
+    "type": "made_to_order",
+    "stock": 2,
+    "leadTimeDays": 7,
+    "price": 219900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 90,
+      "heightCm": 240,
+      "displayString": "2.4 m x 90 cm"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Pure Handloom Cotton with Temple Edge Work",
+    "description": "Timeless off-white dupatta highlighted with striking vermilion red fish and leaf borders, understated and deeply regal.",
+    "story": "The red-and-white pairing echoes traditional Bengali and Maithil ceremonial attire.",
+    "tags": [
+      "Ivory",
+      "Red",
+      "Fish",
+      "Cotton",
+      "Handpainted"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "33.jpeg",
+        "alt": "Off-white dupatta with red fish and leaf border",
+        "shotType": "hero",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-d03",
+    "ref": "D03",
+    "name": "Blush Rose Floral Vine Handpainted Dupatta",
+    "slug": "blush-rose-floral-vine-handpainted-dupatta",
+    "category": "dupattas",
+    "subCategory": "womens_dupattas",
+    "type": "made_to_order",
+    "stock": 2,
+    "leadTimeDays": 7,
+    "price": 239900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 90,
+      "heightCm": 240,
+      "displayString": "2.4 m x 90 cm"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Soft Mulmul Cotton",
+    "description": "Delicate rose-pink dupatta framed with multicolored floral vines and leaf borders painted with meticulous care.",
+    "story": "Flowers in Mithila painting invoke spring festivals and joy.",
+    "tags": [
+      "Pink",
+      "Floral",
+      "Mulmul",
+      "Handpainted"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "34.jpeg",
+        "alt": "Pink dupatta with floral vine border",
+        "shotType": "hero",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-d04",
+    "ref": "D04",
+    "name": "Sky Blue Matsya Tribal Border Handpainted Dupatta",
+    "slug": "sky-blue-matsya-tribal-border-handpainted-dupatta",
+    "category": "dupattas",
+    "subCategory": "womens_dupattas",
+    "type": "made_to_order",
+    "stock": 2,
+    "leadTimeDays": 7,
+    "price": 259900,
+    "compareAtPrice": 299900,
+    "dimensions": {
+      "widthCm": 90,
+      "heightCm": 240,
+      "displayString": "2.4 m x 90 cm"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Fine Chanderi Cotton Blend",
+    "description": "Refreshing turquoise-blue dupatta featuring bold black twin-fish (Jugal Matsya) motifs and geometric tribal bands.",
+    "story": "Twin fish signify happy union and harmony between partners.",
+    "tags": [
+      "Blue",
+      "Aqua",
+      "Twin Fish",
+      "Handpainted",
+      "Festive"
+    ],
+    "featured": true,
+    "status": "published",
+    "images": [
+      {
+        "filename": "35.jpeg",
+        "alt": "Aqua blue dupatta with twin-fish motif",
+        "shotType": "hero",
+        "isHero": true
+      },
+      {
+        "filename": "48.jpeg",
+        "alt": "Sky blue dupatta lifestyle display with sign",
+        "shotType": "lifestyle",
+        "isHero": false
+      }
+    ]
+  },
+  {
+    "id": "prod-d05",
+    "ref": "D05",
+    "name": "Natural Cream Dancing Peacock Border Dupatta",
+    "slug": "natural-cream-dancing-peacock-border-dupatta",
+    "category": "dupattas",
+    "subCategory": "womens_dupattas",
+    "type": "made_to_order",
+    "stock": 2,
+    "leadTimeDays": 7,
+    "price": 279900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 90,
+      "heightCm": 240,
+      "displayString": "2.4 m x 90 cm"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Pure Tussar-look Handloom Fabric",
+    "description": "Rich cream fabric draped with colorful pairs of peacocks on flowering branches, flanked by blue floral buttis.",
+    "story": "The peacock is the eternal muse of the Mithila artisan, bringing majesty to any festive ensemble.",
+    "tags": [
+      "Cream",
+      "Peacock",
+      "Handloom",
+      "Handpainted"
+    ],
+    "featured": true,
+    "status": "published",
+    "images": [
+      {
+        "filename": "36.jpeg",
+        "alt": "Cream dupatta with colorful peacock pair border",
+        "shotType": "hero",
+        "isHero": true
+      },
+      {
+        "filename": "46.jpeg",
+        "alt": "Peacock dupatta alternate flat view",
+        "shotType": "flat",
+        "isHero": false
+      }
+    ]
+  },
+  {
+    "id": "prod-d06",
+    "ref": "D06",
+    "name": "Coral Pink Twin-Fish Medallion Dupatta",
+    "slug": "coral-pink-twin-fish-medallion-dupatta",
+    "category": "dupattas",
+    "subCategory": "womens_dupattas",
+    "type": "made_to_order",
+    "stock": 2,
+    "leadTimeDays": 7,
+    "price": 239900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 90,
+      "heightCm": 240,
+      "displayString": "2.4 m x 90 cm"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Fine Soft Cotton",
+    "description": "Vibrant pink base showcasing twin fish inside geometric circles with fine Kachni line work.",
+    "story": "Combines contemporary pastel tones with heritage Mithila line patterns.",
+    "tags": [
+      "Pink",
+      "Fish",
+      "Medallion",
+      "Handpainted"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "37.jpeg",
+        "alt": "Pink dupatta with black twin-fish motif",
+        "shotType": "hero",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-d07",
+    "ref": "D07",
+    "name": "Beige Scalloped Fish Arch Handpainted Dupatta",
+    "slug": "beige-scalloped-fish-arch-handpainted-dupatta",
+    "category": "dupattas",
+    "subCategory": "womens_dupattas",
+    "type": "made_to_order",
+    "stock": 2,
+    "leadTimeDays": 7,
+    "price": 229900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 90,
+      "heightCm": 240,
+      "displayString": "2.4 m x 90 cm"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Unbleached Natural Cotton Fabric",
+    "description": "Earthy beige dupatta with black ink fish buttis and scalloped temple arches along the pallu.",
+    "story": "Earthy monochrome tones celebrate raw handloom textures.",
+    "tags": [
+      "Beige",
+      "Earthy",
+      "Fish",
+      "Handpainted"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "38.jpeg",
+        "alt": "Beige dupatta with black fish arch border",
+        "shotType": "hero",
+        "isHero": true
+      },
+      {
+        "filename": "45.jpeg",
+        "alt": "Beige dupatta alternate flat shot",
+        "shotType": "flat",
+        "isHero": false
+      }
+    ]
+  },
+  {
+    "id": "prod-d08",
+    "ref": "D08",
+    "name": "Marigold Sunflower Bloom Handpainted Dupatta",
+    "slug": "marigold-sunflower-bloom-handpainted-dupatta",
+    "category": "dupattas",
+    "subCategory": "womens_dupattas",
+    "type": "made_to_order",
+    "stock": 2,
+    "leadTimeDays": 7,
+    "price": 269900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 90,
+      "heightCm": 240,
+      "displayString": "2.4 m x 90 cm"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Pure Handwoven Cotton",
+    "description": "Bold marigold and sunflower circular rosettes along the border in rich autumn colors (red, gold, indigo).",
+    "story": "Sunflowers honor Surya, the Sun deity, bringing warmth and energy to the wearer.",
+    "tags": [
+      "Sunflower",
+      "Marigold",
+      "Festive",
+      "Handpainted"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "39.jpeg",
+        "alt": "Cream dupatta with sunflower floral border",
+        "shotType": "hero",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-d09",
+    "ref": "D09",
+    "name": "Pastel Lemon Paisley & Lotus Bud Dupatta",
+    "slug": "pastel-lemon-paisley-lotus-bud-dupatta",
+    "category": "dupattas",
+    "subCategory": "womens_dupattas",
+    "type": "made_to_order",
+    "stock": 2,
+    "leadTimeDays": 7,
+    "price": 219900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 90,
+      "heightCm": 240,
+      "displayString": "2.4 m x 90 cm"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Fine Soft Cotton",
+    "description": "Light yellow dupatta featuring red monochrome paisley leaves and delicate lotus buds.",
+    "story": "Paisley (Kalka) carries ancestral protection and fertility wishes.",
+    "tags": [
+      "Yellow",
+      "Paisley",
+      "Lotus",
+      "Handpainted"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "40.jpeg",
+        "alt": "Light yellow dupatta with paisley and lotus border",
+        "shotType": "hero",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-d10",
+    "ref": "D10",
+    "name": "Mithila Forest Parrots Row Handpainted Dupatta",
+    "slug": "mithila-forest-parrots-row-handpainted-dupatta",
+    "category": "dupattas",
+    "subCategory": "womens_dupattas",
+    "type": "made_to_order",
+    "stock": 2,
+    "leadTimeDays": 7,
+    "price": 259900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 90,
+      "heightCm": 240,
+      "displayString": "2.4 m x 90 cm"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Pure Cotton with Hand-Tied Tassels",
+    "description": "Cream base adorned with rows of vibrant green and orange parrots nestled between zigzag geometric borders.",
+    "story": "Parrots in rows symbolize celebratory song and community warmth.",
+    "tags": [
+      "Parrot",
+      "Cream",
+      "Forest",
+      "Handpainted"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "41.jpeg",
+        "alt": "Cream dupatta with parrot row border",
+        "shotType": "hero",
+        "isHero": true
+      },
+      {
+        "filename": "44.jpeg",
+        "alt": "Parrot dupatta flat alternate shot",
+        "shotType": "flat",
+        "isHero": false
+      }
+    ]
+  },
+  {
+    "id": "prod-d11",
+    "ref": "D11",
+    "name": "Peach Blossom Lotus Arch Handpainted Dupatta",
+    "slug": "peach-blossom-lotus-arch-handpainted-dupatta",
+    "category": "dupattas",
+    "subCategory": "womens_dupattas",
+    "type": "made_to_order",
+    "stock": 2,
+    "leadTimeDays": 7,
+    "price": 239900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 90,
+      "heightCm": 240,
+      "displayString": "2.4 m x 90 cm"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Fine Soft Cotton",
+    "description": "Subtle peach/apricot tone featuring stylized lotus petals inside scalloped gateway arches.",
+    "story": "Gateway arches represent welcoming guests into a blessed sanctum.",
+    "tags": [
+      "Peach",
+      "Lotus Arch",
+      "Pastel",
+      "Handpainted"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "42.jpeg",
+        "alt": "Peach dupatta with lotus arch border",
+        "shotType": "hero",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-d12",
+    "ref": "D12",
+    "name": "Royal Elephant Parade Green Border Dupatta",
+    "slug": "royal-elephant-parade-green-border-dupatta",
+    "category": "dupattas",
+    "subCategory": "womens_dupattas",
+    "type": "made_to_order",
+    "stock": 2,
+    "leadTimeDays": 7,
+    "price": 279900,
+    "compareAtPrice": 329900,
+    "dimensions": {
+      "widthCm": 90,
+      "heightCm": 240,
+      "displayString": "2.4 m x 90 cm"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Pure Handloom Cotton",
+    "description": "Majestic painted elephants marching in regal procession along the hem with crisp green leaf trims.",
+    "story": "The elephant procession heralds victory and brings grounded stability.",
+    "tags": [
+      "Elephant",
+      "Green Border",
+      "Royal",
+      "Handpainted"
+    ],
+    "featured": true,
+    "status": "published",
+    "images": [
+      {
+        "filename": "43.jpeg",
+        "alt": "Cream dupatta with elephant and green border",
+        "shotType": "hero",
+        "isHero": true
+      },
+      {
+        "filename": "47.jpeg",
+        "alt": "Elephant dupatta flat alternate shot",
+        "shotType": "flat",
+        "isHero": false
+      }
+    ]
+  },
+  {
+    "id": "prod-d13",
+    "ref": "D13",
+    "name": "Mithila Bird Grid All-Over Jaal Dupatta",
+    "slug": "mithila-bird-grid-all-over-jaal-dupatta",
+    "category": "dupattas",
+    "subCategory": "womens_dupattas",
+    "type": "made_to_order",
+    "stock": 1,
+    "leadTimeDays": 10,
+    "price": 379900,
+    "compareAtPrice": 429900,
+    "dimensions": {
+      "widthCm": 90,
+      "heightCm": 240,
+      "displayString": "2.4 m x 90 cm"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Premium Fine Cotton Canvas Weave",
+    "description": "A labor-intensive masterwork: the entire body is painted with an intricate geometric grid filled with individual colorful birds.",
+    "story": "All-over jaal patterns require weeks of continuous artisan dedication, turning wearable fabric into museum art.",
+    "tags": [
+      "Masterpiece",
+      "All-over Jaal",
+      "Bird Grid",
+      "Handpainted",
+      "Collector Dupatta"
+    ],
+    "featured": true,
+    "status": "published",
+    "images": [
+      {
+        "filename": "49.jpeg",
+        "alt": "Cream dupatta with all-over bird grid pattern",
+        "shotType": "hero",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-d14",
+    "ref": "D14",
+    "name": "Kalash & Ceremonial Figures Heritage Dupatta",
+    "slug": "kalash-ceremonial-figures-heritage-dupatta",
+    "category": "dupattas",
+    "subCategory": "womens_dupattas",
+    "type": "made_to_order",
+    "stock": 2,
+    "leadTimeDays": 7,
+    "price": 299900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 90,
+      "heightCm": 240,
+      "displayString": "2.4 m x 90 cm"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Tussar-look Breathable Cotton",
+    "description": "Features sacred Kalash pots with mango leaves, betel leaves, and traditional figures in celebratory dance.",
+    "story": "The Purna Kalash signifies abundance, health, and hospitable welcome.",
+    "tags": [
+      "Kalash",
+      "Ceremonial",
+      "Heritage",
+      "Handpainted"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "50.jpeg",
+        "alt": "Beige dupatta with kalash, lotus and figures",
+        "shotType": "hero",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-d15",
+    "ref": "D15",
+    "name": "Peacock Medallions Crimson Border Dupatta",
+    "slug": "peacock-medallions-crimson-border-dupatta",
+    "category": "dupattas",
+    "subCategory": "womens_dupattas",
+    "type": "made_to_order",
+    "stock": 2,
+    "leadTimeDays": 7,
+    "price": 289900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 90,
+      "heightCm": 240,
+      "displayString": "2.4 m x 90 cm"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Pure Fine Cotton with Tassels",
+    "description": "Circular peacock chakras placed gracefully across cream ground with rich crimson temple border.",
+    "story": "Circular medallions echo the solar discs revered across ancient Mithila.",
+    "tags": [
+      "Peacock",
+      "Medallions",
+      "Crimson Border",
+      "Handpainted"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "51.jpeg",
+        "alt": "Beige dupatta with peacock medallions lifestyle shot",
+        "shotType": "lifestyle",
+        "isHero": true
+      },
+      {
+        "filename": "59.jpeg",
+        "alt": "Peacock medallion dupatta detail split view",
+        "shotType": "detail",
+        "isHero": false
+      }
+    ]
+  },
+  {
+    "id": "prod-d16",
+    "ref": "D16",
+    "name": "Mithila Matsya & Kamal Model Dupatta (Ivory)",
+    "slug": "mithila-matsya-kamal-model-dupatta-ivory",
+    "category": "dupattas",
+    "subCategory": "womens_dupattas",
+    "type": "made_to_order",
+    "stock": 2,
+    "leadTimeDays": 7,
+    "price": 279900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 90,
+      "heightCm": 240,
+      "displayString": "2.4 m x 90 cm"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Pure Handloom Fine Cotton",
+    "description": "As featured on the model: delicate fish and blooming lotus border in vermilion, cobalt blue, and leaf green.",
+    "story": "An all-time favorite that pairs effortlessly with solid white, yellow, or red kurtas.",
+    "tags": [
+      "Model Style",
+      "Fish",
+      "Lotus",
+      "Handpainted",
+      "Best Seller"
+    ],
+    "featured": true,
+    "status": "published",
+    "images": [
+      {
+        "filename": "56.jpeg",
+        "alt": "Model holding open cream dupatta with fish and lotus border",
+        "shotType": "model",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-d17",
+    "ref": "D17",
+    "name": "Kachni Elephant Black Temple Border Dupatta",
+    "slug": "kachni-elephant-black-temple-border-dupatta",
+    "category": "dupattas",
+    "subCategory": "womens_dupattas",
+    "type": "made_to_order",
+    "stock": 2,
+    "leadTimeDays": 7,
+    "price": 249900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 90,
+      "heightCm": 240,
+      "displayString": "2.4 m x 90 cm"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Pure Handloom Cotton with Tassels",
+    "description": "Striking black linework elephants on natural cream cotton with temple tooth borders and scattered floral buttis.",
+    "story": "Monochrome Kachni line work highlights pure draughtsmanship without color distractions.",
+    "tags": [
+      "Elephant",
+      "Black & White",
+      "Temple Border",
+      "Handpainted"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "58.jpeg",
+        "alt": "Cream dupatta with black elephant motifs and temple border",
+        "shotType": "hero",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-d18",
+    "ref": "D18",
+    "name": "Ceremonial Elephant Pair Teal Border Dupatta",
+    "slug": "ceremonial-elephant-pair-teal-border-dupatta",
+    "category": "dupattas",
+    "subCategory": "womens_dupattas",
+    "type": "made_to_order",
+    "stock": 2,
+    "leadTimeDays": 7,
+    "price": 269900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 90,
+      "heightCm": 240,
+      "displayString": "2.4 m x 90 cm"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Pure Cotton with Braided Trim",
+    "description": "Facing ceremonial elephant pair carrying lotus blooms, bordered in peacock blue and emerald green braid patterns.",
+    "story": "Facing elephants invoke the Gajalakshmi blessing of supreme auspiciousness.",
+    "tags": [
+      "Elephant Pair",
+      "Teal Border",
+      "Ceremonial",
+      "Handpainted"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "60.jpeg",
+        "alt": "Cream dupatta with elephant pair and lotus motifs",
+        "shotType": "hero",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-d19",
+    "ref": "D19",
+    "name": "Circular Fish Medallions Temple Edge Dupatta",
+    "slug": "circular-fish-medallions-temple-edge-dupatta",
+    "category": "dupattas",
+    "subCategory": "womens_dupattas",
+    "type": "made_to_order",
+    "stock": 2,
+    "leadTimeDays": 7,
+    "price": 239900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 90,
+      "heightCm": 240,
+      "displayString": "2.4 m x 90 cm"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Pure Soft Cotton",
+    "description": "Distinctive circular fish medallions surrounded by geometric line borders and delicate corner tassels.",
+    "story": "A serene everyday statement of heritage artistry.",
+    "tags": [
+      "Fish",
+      "Circular Medallions",
+      "Temple Edge",
+      "Handpainted"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "61.jpeg",
+        "alt": "Cream dupatta with black fish medallions and temple border",
+        "shotType": "hero",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-d20",
+    "ref": "D20",
+    "name": "Matsya & Kurma Diamond Border Festive Dupatta",
+    "slug": "matsya-kurma-diamond-border-festive-dupatta",
+    "category": "dupattas",
+    "subCategory": "womens_dupattas",
+    "type": "made_to_order",
+    "stock": 2,
+    "leadTimeDays": 7,
+    "price": 279900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 90,
+      "heightCm": 240,
+      "displayString": "2.4 m x 90 cm"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Fine Cotton with Multicolor Border",
+    "description": "Sacred fish (Matsya) paired with cosmic turtle (Kurma) motifs along a vibrant multicolored diamond border.",
+    "story": "The turtle represents cosmic endurance and stability, holding up the foundations of the world.",
+    "tags": [
+      "Fish",
+      "Turtle",
+      "Kurma",
+      "Diamond Border",
+      "Handpainted"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "62.jpeg",
+        "alt": "Cream dupatta with fish and turtle motifs",
+        "shotType": "hero",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-d21",
+    "ref": "D21",
+    "name": "Indigo Royal Aquatic Garden Handpainted Dupatta",
+    "slug": "indigo-royal-aquatic-garden-handpainted-dupatta",
+    "category": "dupattas",
+    "subCategory": "womens_dupattas",
+    "type": "made_to_order",
+    "stock": 2,
+    "leadTimeDays": 7,
+    "price": 289900,
+    "compareAtPrice": 329900,
+    "dimensions": {
+      "widthCm": 90,
+      "heightCm": 240,
+      "displayString": "2.4 m x 90 cm"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Rich Indigo Chanderi Silk Blend",
+    "description": "Dramatic royal blue dupatta showcasing aquatic life, swimming fish, and blooming water lilies in lively contrast.",
+    "story": "Deep indigo shades capture the cool waters of Mithila's sacred temple tanks.",
+    "tags": [
+      "Indigo",
+      "Blue",
+      "Silk Blend",
+      "Handpainted",
+      "Occasion Wear"
+    ],
+    "featured": true,
+    "status": "published",
+    "images": [
+      {
+        "filename": "67.jpeg",
+        "alt": "Model holding blue fish and aquatic flora dupatta",
+        "shotType": "model",
+        "isHero": true
+      },
+      {
+        "filename": "63.jpeg",
+        "alt": "Infographic showing blue dupatta features and closeups",
+        "shotType": "infographic",
+        "isHero": false
+      }
+    ]
+  },
+  {
+    "id": "prod-d22",
+    "ref": "D22",
+    "name": "Royal Purple Border Peacock Grand Dupatta",
+    "slug": "royal-purple-border-peacock-grand-dupatta",
+    "category": "dupattas",
+    "subCategory": "womens_dupattas",
+    "type": "made_to_order",
+    "stock": 2,
+    "leadTimeDays": 7,
+    "price": 299900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 90,
+      "heightCm": 240,
+      "displayString": "2.4 m x 90 cm"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Fine Handloom Cotton Silk",
+    "description": "Opulent purple and mauve temple border framing handpainted peacock pairs in radiant folk feathers.",
+    "story": "Purple represents royal sovereignty and festive grandeur.",
+    "tags": [
+      "Purple",
+      "Mauve",
+      "Peacock",
+      "Handpainted"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "65.jpeg",
+        "alt": "Infographic for purple-border peacock dupatta",
+        "shotType": "infographic",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-d23",
+    "ref": "D23",
+    "name": "Fiery Orange & Vermilion Peacock Grand Dupatta",
+    "slug": "fiery-orange-vermilion-peacock-grand-dupatta",
+    "category": "dupattas",
+    "subCategory": "womens_dupattas",
+    "type": "made_to_order",
+    "stock": 2,
+    "leadTimeDays": 7,
+    "price": 299900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 90,
+      "heightCm": 240,
+      "displayString": "2.4 m x 90 cm"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Pure Handloom Fine Cotton",
+    "description": "Vibrant festive dupatta featuring fiery orange and scarlet peacock motifs with detailed Kachni wings.",
+    "story": "Ideal for Karwa Chauth, Diwali, and festive family poojas.",
+    "tags": [
+      "Orange",
+      "Vermilion",
+      "Peacock",
+      "Festive",
+      "Handpainted"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "66.jpeg",
+        "alt": "Infographic for orange/red peacock dupatta",
+        "shotType": "infographic",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-a01",
+    "ref": "A01",
+    "name": "Men's Tussar Angvastra: Matsya & Sacred Vine",
+    "slug": "mens-tussar-angvastra-matsya-sacred-vine",
+    "category": "dupattas",
+    "subCategory": "mens_angvastra",
+    "type": "made_to_order",
+    "stock": 3,
+    "leadTimeDays": 5,
+    "price": 149900,
+    "compareAtPrice": 179900,
+    "dimensions": {
+      "widthCm": 55,
+      "heightCm": 200,
+      "displayString": "2.0 m x 55 cm (78 x 22 in)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Beige Tussar-Look Handloom Fabric with Finished Edges",
+    "description": "Elegant men's ceremonial stole (Angvastra) in natural tussar beige, decorated with handpainted fish motifs and winding creepers.",
+    "story": "Worn by men during pujas, weddings, and formal cultural gatherings as a mark of Vedic respect and understated elegance.",
+    "tags": [
+      "Men's Stole",
+      "Angvastra",
+      "Tussar Look",
+      "Fish",
+      "Ceremonial",
+      "Handpainted"
+    ],
+    "featured": true,
+    "status": "published",
+    "images": [
+      {
+        "filename": "52.jpeg",
+        "alt": "Male model in white kurta wearing beige angvastra with fish and vine",
+        "shotType": "model",
+        "isHero": true
+      },
+      {
+        "filename": "64.jpeg",
+        "alt": "Infographic showing angvastra details and styling",
+        "shotType": "infographic",
+        "isHero": false
+      }
+    ]
+  },
+  {
+    "id": "prod-a02",
+    "ref": "A02",
+    "name": "Men's Tussar Angvastra: Mayura & Sacred Vine",
+    "slug": "mens-tussar-angvastra-mayura-sacred-vine",
+    "category": "dupattas",
+    "subCategory": "mens_angvastra",
+    "type": "made_to_order",
+    "stock": 3,
+    "leadTimeDays": 5,
+    "price": 149900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 55,
+      "heightCm": 200,
+      "displayString": "2.0 m x 55 cm (78 x 22 in)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Tussar-Look Handloom Fabric",
+    "description": "Features a regal peacock perched amidst flowering creepers along the border ends.",
+    "story": "Complements traditional kurtas, bandhgalas, and dhotis with dignified artistry.",
+    "tags": [
+      "Men's Stole",
+      "Angvastra",
+      "Peacock",
+      "Ceremonial",
+      "Handpainted"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "53.jpeg",
+        "alt": "Male model wearing peacock motif angvastra",
+        "shotType": "model",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-a03",
+    "ref": "A03",
+    "name": "Men's Tussar Angvastra: Floral Bloom & Matsya",
+    "slug": "mens-tussar-angvastra-floral-bloom-matsya",
+    "category": "dupattas",
+    "subCategory": "mens_angvastra",
+    "type": "made_to_order",
+    "stock": 3,
+    "leadTimeDays": 5,
+    "price": 149900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 55,
+      "heightCm": 200,
+      "displayString": "2.0 m x 55 cm (78 x 22 in)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Tussar-Look Handloom Fabric",
+    "description": "Auspicious combination of traditional Mithila water flora and paired fish in subtle earthy tones.",
+    "story": "A thoughtful gift for fathers, grooms, and festival hosts.",
+    "tags": [
+      "Men's Stole",
+      "Angvastra",
+      "Floral",
+      "Fish",
+      "Handpainted"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "54.jpeg",
+        "alt": "Male model wearing floral and fish motif angvastra",
+        "shotType": "model",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-a04",
+    "ref": "A04",
+    "name": "Men's Tussar Angvastra: Kamal & Sacred Vine",
+    "slug": "mens-tussar-angvastra-kamal-sacred-vine",
+    "category": "dupattas",
+    "subCategory": "mens_angvastra",
+    "type": "made_to_order",
+    "stock": 3,
+    "leadTimeDays": 5,
+    "price": 149900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 55,
+      "heightCm": 200,
+      "displayString": "2.0 m x 55 cm (78 x 22 in)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Tussar-Look Handloom Fabric",
+    "description": "Delicate sacred lotus medallions and winding vines handpainted along the border ends.",
+    "story": "Symbolizes spiritual purity and focused determination in ancient tradition.",
+    "tags": [
+      "Men's Stole",
+      "Angvastra",
+      "Lotus",
+      "Handpainted"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "55.jpeg",
+        "alt": "Male model wearing lotus motif angvastra",
+        "shotType": "model",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-b01",
+    "ref": "B01",
+    "name": "Handpainted Mithila Heritage Document File Folder",
+    "slug": "handpainted-mithila-heritage-document-file-folder",
+    "category": "bags_and_files",
+    "subCategory": "file_folders",
+    "type": "made_to_order",
+    "stock": 5,
+    "leadTimeDays": 5,
+    "price": 64900,
+    "compareAtPrice": 74900,
+    "dimensions": {
+      "widthCm": 25,
+      "heightCm": 35,
+      "displayString": "35 x 25 cm (Fits A4 & Legal Docs)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Eco-friendly Sturdy Canvas / Board with Secure Closure",
+    "description": "Keep certificates, manuscripts, and office documents in a work of art. Individually handpainted in traditional motifs (Fish, Peacock, Radha-Krishna, or Floral).",
+    "story": "Replaces dull plastic folders with handcrafted Indian soul. A favorite corporate and conference gift.",
+    "tags": [
+      "File Folder",
+      "Eco-friendly",
+      "Office",
+      "Gifting",
+      "A4 Size",
+      "Handpainted"
+    ],
+    "featured": true,
+    "status": "published",
+    "images": [
+      {
+        "filename": "69.jpeg",
+        "alt": "Infographic showing handpainted file folders in multiple designs",
+        "shotType": "infographic",
+        "isHero": true
+      },
+      {
+        "filename": "70.jpeg",
+        "alt": "File folders and pouches group desk shot",
+        "shotType": "group",
+        "isHero": false
+      }
+    ]
+  },
+  {
+    "id": "prod-b02",
+    "ref": "B02",
+    "name": "Handpainted Canvas Zipper Pouches (Trio Set)",
+    "slug": "handpainted-canvas-zipper-pouches-trio-set",
+    "category": "bags_and_files",
+    "subCategory": "sling_and_zip_pouches",
+    "type": "made_to_order",
+    "stock": 5,
+    "leadTimeDays": 5,
+    "price": 99900,
+    "compareAtPrice": 119900,
+    "dimensions": {
+      "widthCm": 20,
+      "heightCm": 14,
+      "displayString": "20 x 14 cm each (Set of 3)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Heavyweight Cotton Canvas with Smooth Metal Zipper",
+    "description": "Set of three handy zipper pouches handpainted with Peacock, Matsya (Fish), and Ganesha motifs. Ideal for cosmetics, stationery, travel essentials, and coins.",
+    "story": "Carry a touch of folk culture wherever your travels take you.",
+    "tags": [
+      "Set of 3",
+      "Pouches",
+      "Travel",
+      "Cosmetic Pouch",
+      "Handpainted",
+      "Gift Ready"
+    ],
+    "featured": true,
+    "status": "published",
+    "images": [
+      {
+        "filename": "71.jpeg",
+        "alt": "Infographic for handpainted zipper pouches with motifs",
+        "shotType": "infographic",
+        "isHero": true
+      },
+      {
+        "filename": "70.jpeg",
+        "alt": "Pouches on wooden desk",
+        "shotType": "group",
+        "isHero": false
+      },
+      {
+        "filename": "72.jpeg",
+        "alt": "Collection view with pouches and tote",
+        "shotType": "lifestyle",
+        "isHero": false
+      }
+    ]
+  },
+  {
+    "id": "prod-b03",
+    "ref": "B03",
+    "name": "Everyday Artisan Canvas Tote Bag: Fish Mandala",
+    "slug": "everyday-artisan-canvas-tote-bag-fish-mandala",
+    "category": "bags_and_files",
+    "subCategory": "tote_bags",
+    "type": "made_to_order",
+    "stock": 4,
+    "leadTimeDays": 5,
+    "price": 109900,
+    "compareAtPrice": 129900,
+    "dimensions": {
+      "widthCm": 35.5,
+      "heightCm": 45.7,
+      "widthIn": 14,
+      "heightIn": 18,
+      "displayString": "18 x 14 x 4 in (45.7 x 35.5 x 10 cm)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "100% Eco-Friendly Sturdy Canvas with Reinforced Shoulder Straps",
+    "description": "Spacious everyday canvas tote featuring an intricate circular fish and peacock mandala. Holds a 15-inch laptop, books, groceries, and water bottle comfortably.",
+    "story": "An honest, zero-plastic statement that brings traditional GI-tagged art into modern daily life.",
+    "tags": [
+      "Tote Bag",
+      "Canvas",
+      "Eco-friendly",
+      "Fish Mandala",
+      "Everyday Bag",
+      "Handpainted"
+    ],
+    "featured": true,
+    "status": "published",
+    "images": [
+      {
+        "filename": "73.jpeg",
+        "alt": "Infographic for classic canvas tote bag 18x14x4 in",
+        "shotType": "infographic",
+        "isHero": true
+      },
+      {
+        "filename": "72.jpeg",
+        "alt": "Tote bag with pouches collection view",
+        "shotType": "lifestyle",
+        "isHero": false
+      }
+    ]
+  },
+  {
+    "id": "prod-b04",
+    "ref": "B04",
+    "name": "Radha-Krishna Vegan Leather Base Clutch Pouch",
+    "slug": "radha-krishna-vegan-leather-base-clutch-pouch",
+    "category": "bags_and_files",
+    "subCategory": "hand_purses_and_handbags",
+    "type": "made_to_order",
+    "stock": 3,
+    "leadTimeDays": 5,
+    "price": 79900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 26,
+      "heightCm": 18,
+      "displayString": "26 x 18 cm (10 x 7 in)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Durable Canvas with Structured Faux-Leather Bottom and Zipper",
+    "description": "Chic handheld clutch featuring an auspicious circular Radha-Krishna painting on sturdy canvas, anchored by a reinforced black faux-leather bottom.",
+    "story": "Blends ethnic art with contemporary urban style for dinners, events, or stylish organizing.",
+    "tags": [
+      "Clutch",
+      "Hand Pouch",
+      "Radha Krishna",
+      "Faux Leather Base",
+      "Handpainted"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "74.jpeg",
+        "alt": "Infographic for Radha-Krishna clutch with black leather base",
+        "shotType": "infographic",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-b05",
+    "ref": "B05",
+    "name": "Radha-Krishna Structured Tote Bag with Leather Base",
+    "slug": "radha-krishna-structured-tote-bag-with-leather-base",
+    "category": "bags_and_files",
+    "subCategory": "tote_bags",
+    "type": "made_to_order",
+    "stock": 3,
+    "leadTimeDays": 5,
+    "price": 144900,
+    "compareAtPrice": 159900,
+    "dimensions": {
+      "widthCm": 38,
+      "heightCm": 40,
+      "displayString": "40 x 38 x 10 cm (16 x 15 x 4 in)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Heavyweight Cotton Canvas with Reinforced Faux-Leather Base & Straps",
+    "description": "Premium structured tote bag adorned with a central Radha-Krishna mandala. Built with a tough wipe-clean leather base that stands upright and protects your art.",
+    "story": "Designed for working professionals and art enthusiasts who want durability paired with sacred folk motifs.",
+    "tags": [
+      "Tote Bag",
+      "Structured",
+      "Radha Krishna",
+      "Leather Base",
+      "Premium",
+      "Handpainted"
+    ],
+    "featured": true,
+    "status": "published",
+    "images": [
+      {
+        "filename": "75.jpeg",
+        "alt": "Infographic for Radha-Krishna tote with faux-leather base",
+        "shotType": "infographic",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-b06",
+    "ref": "B06",
+    "name": "Two-Sided Fish Mandala Tote with Lotus Pocket",
+    "slug": "two-sided-fish-mandala-tote-with-lotus-pocket",
+    "category": "bags_and_files",
+    "subCategory": "tote_bags",
+    "type": "made_to_order",
+    "stock": 3,
+    "leadTimeDays": 5,
+    "price": 129900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 36,
+      "heightCm": 42,
+      "displayString": "42 x 36 x 10 cm (16.5 x 14 in)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Durable Natural Canvas with Zippered Inner Pocket and Back Pocket",
+    "description": "Double the art: features a full fish mandala on the front face, and a delicate handpainted lotus on the quick-access rear pocket.",
+    "story": "Every angle of this tote bag tells a story of aquatic harmony and thoughtful craftsmanship.",
+    "tags": [
+      "Tote Bag",
+      "Two Sided",
+      "Lotus Pocket",
+      "Fish Mandala",
+      "Handpainted"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "76.jpeg",
+        "alt": "Infographic for two-sided fish mandala tote bag",
+        "shotType": "infographic",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-b07",
+    "ref": "B07",
+    "name": "Urban Charcoal Hand Purse: Fish Mandala",
+    "slug": "urban-charcoal-hand-purse-fish-mandala",
+    "category": "bags_and_files",
+    "subCategory": "hand_purses_and_handbags",
+    "type": "made_to_order",
+    "stock": 4,
+    "leadTimeDays": 5,
+    "price": 109900,
+    "compareAtPrice": 129900,
+    "dimensions": {
+      "widthCm": 24,
+      "heightCm": 18,
+      "displayString": "24 x 18 cm (9.5 x 7 in)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Sturdy Charcoal Grey Canvas with Fabric Lining and Inner Pocket",
+    "description": "Sophisticated grey hand purse featuring black-line fish mandala art on the front and scattered fish on the back. Includes secure zip closure.",
+    "story": "Modern neutral grey tone that lets black-ink Madhubani lines pop with urban elegance.",
+    "tags": [
+      "Hand Purse",
+      "Grey",
+      "Fish Mandala",
+      "Compact",
+      "Handpainted"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "77.jpeg",
+        "alt": "Infographic for grey hand purse with black fish mandala",
+        "shotType": "infographic",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-b08",
+    "ref": "B08",
+    "name": "Natural Linen-Beige Handbag: Circular Matsya",
+    "slug": "natural-linen-beige-handbag-circular-matsya",
+    "category": "bags_and_files",
+    "subCategory": "hand_purses_and_handbags",
+    "type": "made_to_order",
+    "stock": 3,
+    "leadTimeDays": 5,
+    "price": 119900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 28,
+      "heightCm": 22,
+      "displayString": "28 x 22 x 8 cm (11 x 8.5 in)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Natural Unbleached Canvas with Sturdy Cotton Webbing Handles",
+    "description": "Understated handheld bag featuring a bold central fish medallion with geometric border bands.",
+    "story": "Brings organic warmth to daily errands, lunch outings, and temple visits.",
+    "tags": [
+      "Handbag",
+      "Natural Beige",
+      "Fish",
+      "Eco-friendly",
+      "Handpainted"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "78.jpeg",
+        "alt": "Infographic for beige canvas handbag with circular fish",
+        "shotType": "infographic",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-b09",
+    "ref": "B09",
+    "name": "Cerulean Blue Raw Silk Handbag with Wooden Handle",
+    "slug": "cerulean-blue-raw-silk-handbag-wooden-handle",
+    "category": "bags_and_files",
+    "subCategory": "hand_purses_and_handbags",
+    "type": "made_to_order",
+    "stock": 2,
+    "leadTimeDays": 7,
+    "price": 139900,
+    "compareAtPrice": 169900,
+    "dimensions": {
+      "widthCm": 30,
+      "heightCm": 24,
+      "displayString": "30 x 24 cm (12 x 9.5 in)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Handwoven Silk Fabric with Smooth Natural Teak-Wood Handle",
+    "description": "Natasha Gupta's showpiece handbag: vibrant royal blue silk body with an intricate handpainted band of lotus flowers and swimming fish, crowned with a sculpted wooden grab handle.",
+    "story": "A true boutique statement bag that turns heads at weddings, exhibitions, and cultural evenings.",
+    "tags": [
+      "Silk Handbag",
+      "Wooden Handle",
+      "Royal Blue",
+      "Statement Bag",
+      "Lotus & Fish",
+      "Handpainted"
+    ],
+    "featured": true,
+    "status": "published",
+    "images": [
+      {
+        "filename": "79.jpeg",
+        "alt": "Blue silk handbag with natural wooden handle and lotus-fish band",
+        "shotType": "hero",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-b10",
+    "ref": "B10",
+    "name": "Artisan Canvas Laptop Bag: Radha-Krishna (Red Trim)",
+    "slug": "artisan-canvas-laptop-bag-radha-krishna-red-trim",
+    "category": "bags_and_files",
+    "subCategory": "laptop_bags",
+    "type": "made_to_order",
+    "stock": 3,
+    "leadTimeDays": 7,
+    "price": 174900,
+    "compareAtPrice": 199900,
+    "dimensions": {
+      "widthCm": 40,
+      "heightCm": 30,
+      "displayString": "40 x 30 x 6 cm (Fits up to 15.6 inch laptops)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Padded Heavy Canvas with Crimson Red Faux-Leather Trim and Adjustable Shoulder Strap",
+    "description": "Padded protection meets classical Indian art. Features an elaborate Radha-Krishna central medallion on front, flight of sacred birds on rear, and dedicated padded compartments for laptop, charger, and documents.",
+    "story": "Carry tradition, carry art, carry pride into modern corporate boardrooms.",
+    "tags": [
+      "Laptop Bag",
+      "Radha Krishna",
+      "Padded",
+      "15.6 inch",
+      "Red Trim",
+      "Handpainted"
+    ],
+    "featured": true,
+    "status": "published",
+    "images": [
+      {
+        "filename": "80.jpeg",
+        "alt": "Infographic for red-trimmed canvas laptop bag with Radha-Krishna",
+        "shotType": "infographic",
+        "isHero": true
+      },
+      {
+        "filename": "81.jpeg",
+        "alt": "Infographic showing laptop bag interior and details",
+        "shotType": "detail",
+        "isHero": false
+      }
+    ]
+  },
+  {
+    "id": "prod-b11",
+    "ref": "B11",
+    "name": "Surya & Deepavali Maiden 3-Panel Wall Hanging Organizer",
+    "slug": "surya-deepavali-maiden-3-panel-wall-hanging-organizer",
+    "category": "bags_and_files",
+    "subCategory": "wall_hangings",
+    "type": "made_to_order",
+    "stock": 3,
+    "leadTimeDays": 5,
+    "price": 134900,
+    "compareAtPrice": 149900,
+    "dimensions": {
+      "widthCm": 25.4,
+      "heightCm": 55.8,
+      "widthIn": 10,
+      "heightIn": 22,
+      "displayString": "22 x 10 in (55.8 x 25.4 cm)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Sturdy Natural Cotton Canvas with Hanging Loop and 3 Storage Pockets",
+    "description": "Functional wall art for entryways, pooja rooms, and studies. 3 deep utility pockets handpainted with Surya (Sun), a woman bearing a ceremonial Diya, and celestial solar rosettes in vermilion borders.",
+    "story": "Organizes mail, keys, pens, and glasses while blessing your entrance with the light of Surya and Deepavali.",
+    "tags": [
+      "Wall Hanging",
+      "Organizer",
+      "Surya",
+      "Diya",
+      "Pockets",
+      "Handpainted"
+    ],
+    "featured": true,
+    "status": "published",
+    "images": [
+      {
+        "filename": "82.jpeg",
+        "alt": "3-panel wall hanging organizer with Sun and Diya maiden",
+        "shotType": "infographic",
+        "isHero": true
+      }
+    ]
+  },
+  {
+    "id": "prod-b12",
+    "ref": "B12",
+    "name": "Surya-Chandra & Songbirds 3-Panel Wall Hanging Organizer",
+    "slug": "surya-chandra-songbirds-3-panel-wall-hanging-organizer",
+    "category": "bags_and_files",
+    "subCategory": "wall_hangings",
+    "type": "made_to_order",
+    "stock": 3,
+    "leadTimeDays": 5,
+    "price": 134900,
+    "compareAtPrice": null,
+    "dimensions": {
+      "widthCm": 25.4,
+      "heightCm": 55.8,
+      "widthIn": 10,
+      "heightIn": 22,
+      "displayString": "22 x 10 in (55.8 x 25.4 cm)"
+    },
+    "technique": "handpainted",
+    "paintMedium": null,
+    "material": "Heavy Canvas with Wooden Rod and 3 Pockets",
+    "description": "3-pocket fabric wall organizer showcasing sacred songbirds, the twin celestial Surya-Chandra face, and blossoming creepers in rich earthy pigments.",
+    "story": "Surya-Chandra represents the harmony of day and night, sun and moon, intellect and intuition.",
+    "tags": [
+      "Wall Hanging",
+      "Organizer",
+      "Surya Chandra",
+      "Sun Moon",
+      "Birds",
+      "Handpainted"
+    ],
+    "featured": false,
+    "status": "published",
+    "images": [
+      {
+        "filename": "83.jpeg",
+        "alt": "3-panel wall hanging organizer with Sun-Moon and Birds",
+        "shotType": "infographic",
+        "isHero": true
+      }
+    ]
+  }
+]

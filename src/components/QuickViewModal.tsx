@@ -79,17 +79,11 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
               </h2>
 
               <div className="flex items-center gap-2">
-                <div className="flex gap-0.5">
-                  {[1,2,3,4,5].map(s => (
-                    <Star
-                      key={s}
-                      size={12}
-                      className={s <= Math.round(product.rating) ? 'star-filled' : 'star-empty'}
-                    />
-                  ))}
-                </div>
-                <span className="text-caption" style={{ color: 'var(--ink-muted)' }}>
-                  ({product.reviewsCount} reviews)
+                <span className="badge badge-warm text-[10px]">
+                  {product.technique || 'Handpainted Freehand'}
+                </span>
+                <span className="text-caption text-ink-muted">
+                  {product.medium || 'Mithila Folk Tradition'}
                 </span>
               </div>
 

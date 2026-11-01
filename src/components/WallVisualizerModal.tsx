@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { MadhubaniProduct, FramingOption } from '../types';
 import { X, Check, ShoppingBag, Eye, Maximize, Sliders, Palette } from 'lucide-react';

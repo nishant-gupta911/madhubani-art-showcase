@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { MadhubaniProduct, MithilaStyle } from '../../types';
 import { ArrowRight, Star, ShoppingBag, Eye, ArrowUpRight, Quote } from 'lucide-react';
 import { MithilaMotif, SectionEyebrow } from '../MithilaMotif';
+import { siteConfig } from '../../config/site';
 
 interface HomeScreenProps {
   products: MadhubaniProduct[];
@@ -21,17 +22,10 @@ const TRADITIONS: { name: MithilaStyle; tagline: string; desc: string; img: stri
 ];
 
 const TRUST_PILLARS = [
-  { title: 'Artisan Certificate',   body: 'Every painting is individually documented with the artisan\'s name, village, lineage, and pigment sources.',           icon: '✦' },
-  { title: 'Natural Pigments Only', body: 'Turmeric ochre, fermented indigo, lamp soot, crushed marigold. Zero synthetic dyes, zero chemical fixatives.',       icon: '✦' },
-  { title: 'Museum Packaging',      body: 'Acid-free tissue, double-walled archival board, fully insured express courier. Arrives ready to display.',            icon: '✦' },
-  { title: 'Direct from Mithila',   body: 'No middlemen. Your purchase goes directly to the artisan family in Jitwarpur, Bihar. 100% of profit to the maker.', icon: '✦' },
-];
-
-const REVIEWS = [
-  { name: 'Priya K.',      loc: 'Mumbai',     rating: 5, text: 'The Kachni piece arrived perfectly packaged. The line detail is extraordinary — far more intricate than I imagined from photographs. Truly museum-quality work.' },
-  { name: 'James R.',      loc: 'London, UK', rating: 5, text: 'Bought the Lakshmi Bharni piece. The natural pigments have an incredible warmth you simply cannot get from commercial prints. The provenance certificate is a beautiful touch.' },
-  { name: 'Sunayana P.',   loc: 'Bengaluru',  rating: 5, text: 'The Kohbar painting we commissioned for our wedding was beyond perfect. Direct, thoughtful communication with the studio. This is an heirloom we\'ll pass down.' },
-  { name: 'Marc T.',       loc: 'Paris, FR',  rating: 5, text: 'I\'ve collected folk art for twenty years. What sets this apart is the absolute authenticity — traditional techniques, real pigments, and genuine provenance documentation.' },
+  { title: 'Handpainted by Natasha Gupta', body: `Every single piece is personally sketched and painted by Natasha Gupta in ${siteConfig.origin}, preserving authentic Mithila tradition.`, icon: '✦' },
+  { title: 'GI-Tagged Heritage Art',      body: 'Madhubani (Mithila) art is a protected Geographical Indication of Bihar, celebrated for millennia.', icon: '✦' },
+  { title: 'Museum-Grade Packaging',       body: 'Framed art protected with corner shields and archival wrapping. Free shipping across India on orders above ₹1,499.', icon: '✦' },
+  { title: 'Direct from the Artist',       body: 'Zero middlemen, honest pricing, and transparent craftsmanship. Custom sizes and motifs available on request.', icon: '✦' },
 ];
 
 const HERO_ARTWORKS = [
@@ -46,7 +40,6 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
   const featured    = products.filter(p => p.isFeatured).slice(0, 8);
   const newArrivals = products.filter(p => p.isNew).slice(0, 6);
   const [heroIdx,   setHeroIdx]   = useState(0);
-  const [reviewIdx, setReviewIdx] = useState(0);
   const [addedId,   setAddedId]   = useState<string | null>(null);
   const heroTimer = useRef<number | null>(null);
 
@@ -56,12 +49,6 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       setHeroIdx(i => (i + 1) % HERO_ARTWORKS.length);
     }, 5500);
     return () => { if (heroTimer.current) clearInterval(heroTimer.current); };
-  }, []);
-
-  // Auto-cycle reviews
-  useEffect(() => {
-    const t = setInterval(() => setReviewIdx(i => (i + 1) % REVIEWS.length), 5000);
-    return () => clearInterval(t);
   }, []);
 
   const handleAddToCart = (p: MadhubaniProduct) => {
@@ -133,9 +120,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             </div>
 
             {/* Body */}
-            <p className="text-body-lg" style={{ color: 'var(--ink-soft)', maxWidth: '400px' }}>
-              Hand-painted with turmeric ochre, fermented indigo, and bamboo-quill soot on museum-grade paper.
-              Direct from master artisan families in Bihar.
+            <p className="text-body-lg" style={{ color: 'var(--ink-soft)', maxWidth: '440px' }}>
+              Madhubani art, handpainted by Natasha Gupta in {siteConfig.origin}. Discover original framed paintings,
+              wearable handloom dupattas, and handcrafted artisan accessories.
             </p>
 
             {/* CTAs */}
@@ -144,7 +131,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 onClick={() => onNavigateToShop()}
                 className="btn btn-primary btn-lg"
               >
-                Explore 80 Artworks
+                Explore Shop ({products.length} Artworks)
                 <ArrowRight size={16} />
               </button>
               <button
@@ -202,6 +189,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             <button
               key={i}
               onClick={() => setHeroIdx(i)}
+              aria-label={`Go to slide ${i + 1}`}
               className="rounded-full transition-all duration-300"
               style={{
                 width: i === heroIdx ? '24px' : '6px',
@@ -296,6 +284,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                       <button
                         onClick={e => { e.stopPropagation(); handleAddToCart(p); }}
                         className="btn btn-primary btn-sm"
+                        aria-label={`Add ${p.name || p.title} to Cart`}
                       >
                         <ShoppingBag size={13} />
                       </button>
@@ -333,16 +322,11 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   >
                     {p.title}
                   </h3>
-                  {/* Stars */}
-                  <div className="flex items-center gap-1">
-                    {[1,2,3,4,5].map(s => (
-                      <Star
-                        key={s}
-                        size={11}
-                        className={s <= Math.round(p.rating) ? 'star-filled' : 'star-empty'}
-                      />
-                    ))}
-                    <span className="text-caption ml-1" style={{ color: 'var(--ink-dim)' }}>({p.reviewsCount})</span>
+                  {/* Dimensions & Medium */}
+                  <div className="flex items-center gap-1.5 text-caption text-ink-muted">
+                    <span>{p.dimensions}</span>
+                    <span>•</span>
+                    <span>{p.medium}</span>
                   </div>
                   {/* Price row */}
                   <div
@@ -418,9 +402,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               {/* Pillars */}
               <ul className="space-y-5">
                 {[
-                  { t: 'Individual artisan certificate', s: 'Each piece registered with lineage master name and village of origin' },
-                  { t: 'Bamboo quill & natural pigments', s: 'Turmeric, indigo, lamp soot, and crushed flowers — no synthetic chemicals' },
-                  { t: 'Museum-grade archival packaging', s: 'Acid-free lining, double-walled board, fully insured express courier worldwide' },
+                  { t: 'Original Handpainted Art', s: 'Handcrafted individually by artist Natasha Gupta in Bihar' },
+                  { t: 'Fine Freehand Linework', s: 'Detailed double-line borders and motifs painted with fine brushes and traditional nibs' },
+                  { t: 'Damage-Proof Secure Packaging', s: 'Sturdy protective packaging with insured delivery across India' },
                 ].map(item => (
                   <li key={item.t} className="flex items-start gap-4">
                     <div
@@ -696,19 +680,18 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       </section>
 
       {/* ════════════════════════════════════════════════════════════
-          TESTIMONIALS — Collector voices
+          AUTHENTIC PROVENANCE & ARTIST PLEDGE
           ════════════════════════════════════════════════════════════ */}
       <section className="py-24" style={{ background: 'var(--night)', color: 'var(--ivory)' }}>
         <div className="container">
-          <div className="max-w-3xl mx-auto text-center space-y-12">
+          <div className="max-w-3xl mx-auto text-center space-y-8">
             <SectionEyebrow
-              eyebrow="Collector Voices"
-              headline="What collectors say"
+              eyebrow="The Artisan Pledge"
+              headline="Honest Heritage, Zero Compromise"
               align="center"
               light
             />
 
-            {/* Active review */}
             <div
               className="px-8 py-10 relative"
               style={{
@@ -719,45 +702,23 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             >
               <MithilaMotif type="four-corners" color="rgba(176,48,32,0.5)" />
 
-              {/* Star row */}
-              <div className="flex justify-center gap-1 mb-6">
-                {[1,2,3,4,5].map(s => (
-                  <Star key={s} size={15} className="star-filled-dark" />
-                ))}
-              </div>
-
               <blockquote
                 className="font-display"
-                style={{ fontSize: 'clamp(1.125rem, 2vw, 1.5rem)', fontStyle: 'italic', color: 'rgba(250,246,239,0.9)', lineHeight: '1.5', letterSpacing: '-0.01em' }}
-                key={reviewIdx}
+                style={{ fontSize: 'clamp(1.125rem, 2vw, 1.45rem)', fontStyle: 'italic', color: 'rgba(250,246,239,0.9)', lineHeight: '1.6', letterSpacing: '-0.01em' }}
               >
-                "{REVIEWS[reviewIdx].text}"
+                "Every painting, dupatta, and accessory in this collection is created by hand with devotion.
+                No machine prints, no inflated markups, and no false claims. Madhubani art is sacred to our roots,
+                and each piece carries the genuine living culture of Mithila."
               </blockquote>
 
               <footer className="mt-8 space-y-1">
-                <p className="font-display font-semibold" style={{ color: 'var(--ivory)', fontSize: '1rem' }}>
-                  {REVIEWS[reviewIdx].name}
+                <p className="font-display font-semibold" style={{ color: 'var(--ivory)', fontSize: '1.05rem' }}>
+                  Natasha Gupta
                 </p>
-                <p className="text-eyebrow" style={{ color: 'rgba(250,246,239,0.45)', fontSize: '0.6rem' }}>
-                  {REVIEWS[reviewIdx].loc} · Verified Collector
+                <p className="text-eyebrow" style={{ color: 'var(--vermilion)', fontSize: '0.62rem', letterSpacing: '0.14em' }}>
+                  Founder & Artist · Vernika Enterprises
                 </p>
               </footer>
-            </div>
-
-            {/* Carousel dots */}
-            <div className="flex justify-center gap-2">
-              {REVIEWS.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setReviewIdx(i)}
-                  className="rounded-full transition-all duration-300"
-                  style={{
-                    width: i === reviewIdx ? '28px' : '7px',
-                    height: '7px',
-                    background: i === reviewIdx ? 'var(--vermilion)' : 'rgba(250,246,239,0.2)',
-                  }}
-                />
-              ))}
             </div>
           </div>
         </div>

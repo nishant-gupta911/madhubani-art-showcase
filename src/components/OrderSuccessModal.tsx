@@ -42,7 +42,7 @@ export const OrderSuccessModal: React.FC<OrderSuccessModalProps> = ({
         <div className="space-y-2">
           <h2 className="font-display font-bold text-headline" style={{ color: 'var(--ink)' }}>Order Confirmed!</h2>
           <p className="text-body-sm leading-relaxed" style={{ color: 'var(--ink-soft)' }}>
-            Your artwork is being prepared for museum-grade packaging. Thank you for supporting Jitwarpur artisan families.
+            Your handpainted artwork is being carefully prepared for archival packaging. Thank you for supporting Natasha Gupta's authentic Mithila craft.
           </p>
         </div>
 

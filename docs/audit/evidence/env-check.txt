@@ -1,0 +1,20 @@
+========================================================================
+           VERNIKA ENTERPRISES — ENVIRONMENT CONNECTIVITY AUDIT         
+========================================================================
+
+VARIABLE                  | STATUS | TAG       | DETAILS
+--------------------------------------------------------------------------------
+MONGODB_URI               | WARN   | SIMULATED | Connected to Localhost MongoDB (mongodb://127.0.0.1:27017/vernika_store) — NOT Atlas. Valid for local dev, Atlas required for production audits.
+NEXT_PUBLIC_SITE_URL      | PASS   | REAL      | http://localhost:3000
+NEXT_PUBLIC_SELLER_CITY   | PASS   | REAL      | Patna
+NEXT_PUBLIC_SELLER_STATE  | PASS   | REAL      | Bihar
+ADMIN_EMAIL               | PASS   | REAL      | vernikaenterprises14@gmail.com
+ADMIN_PASSWORD_HASH       | WARN   | SIMULATED | Missing bcrypt hash. Run `npm run admin:create` to generate one. Dev fallback active.
+SESSION_SECRET            | PASS   | REAL      | Secret length >= 32 chars
+RAZORPAY_KEYS             | FAIL   | MISSING   | Razorpay rejected credentials: {"error":{"description":"Authentication failed","code":"BAD_REQUEST_ERROR"}}
+RAZORPAY_WEBHOOK_SECRET   | WARN   | SIMULATED | Unset. Set in Razorpay Dashboard for live webhook signature verification.
+CLOUDINARY                | WARN   | SIMULATED | Unset. Mock direct upload adapter active in development.
+RESEND                    | WARN   | SIMULATED | Unset. Console logger mock email adapter active.
+UPSTASH_REDIS             | WARN   | SIMULATED | Unset. In-memory sliding-window rate limiter active.
+CRON_SECRET               | WARN   | SIMULATED | Unset. Development cron fallback open.
+========================================================================

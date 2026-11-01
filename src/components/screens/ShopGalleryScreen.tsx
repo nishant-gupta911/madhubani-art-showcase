@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useMemo, useCallback } from 'react';
 import { MadhubaniProduct, MithilaStyle } from '../../types';
 import { Search, X, Star, ShoppingBag, Eye, Heart, SlidersHorizontal, ArrowRight, ChevronDown } from 'lucide-react';
@@ -7,16 +9,16 @@ interface ShopGalleryScreenProps {
   products: MadhubaniProduct[];
   categories: { id: string; name: string; short: string }[];
   styles: MithilaStyle[];
-  wishlist: string[];
-  onSelectProduct: (p: MadhubaniProduct) => void;
-  onAddToCart: (p: MadhubaniProduct) => void;
-  onQuickView: (p: MadhubaniProduct) => void;
-  onToggleWishlist: (id: string) => void;
+  wishlist?: string[];
+  onSelectProduct?: (p: MadhubaniProduct) => void;
+  onAddToCart?: (p: MadhubaniProduct) => void;
+  onQuickView?: (p: MadhubaniProduct) => void;
+  onToggleWishlist?: (id: string) => void;
   initialCategory?: string;
   initialStyle?: MithilaStyle;
 }
 
-type SortOption = 'featured' | 'price-asc' | 'price-desc' | 'rating' | 'newest';
+type SortOption = 'featured' | 'price-asc' | 'price-desc' | 'newest';
 
 const PRICE_RANGES = [
   { label: 'Under ₹1,000',     min: 0,    max: 999  },
@@ -30,11 +32,10 @@ const SORT_OPTIONS: { value: SortOption; label: string }[] = [
   { value: 'newest',     label: 'Newest First' },
   { value: 'price-asc',  label: 'Price: Low to High' },
   { value: 'price-desc', label: 'Price: High to Low' },
-  { value: 'rating',     label: 'Top Rated' },
 ];
 
 export const ShopGalleryScreen: React.FC<ShopGalleryScreenProps> = ({
-  products, categories, styles, wishlist,
+  products, categories, styles, wishlist = [],
   onSelectProduct, onAddToCart, onQuickView, onToggleWishlist,
   initialCategory = 'all', initialStyle,
 }) => {
@@ -47,9 +48,23 @@ export const ShopGalleryScreen: React.FC<ShopGalleryScreenProps> = ({
   const [addedIds,       setAddedIds]       = useState<Set<string>>(new Set());
   const [showSortMenu,   setShowSortMenu]   = useState(false);
 
+  const handleSelectProduct = (p: MadhubaniProduct) => {
+    if (onSelectProduct) onSelectProduct(p);
+    else if (typeof window !== 'undefined') window.location.href = `/shop/${p.slug || p.id}`;
+  };
+
+  const handleQuickView = (p: MadhubaniProduct) => {
+    if (onQuickView) onQuickView(p);
+    else if (typeof window !== 'undefined') window.location.href = `/shop/${p.slug || p.id}`;
+  };
+
   const handleAddToCart = useCallback((p: MadhubaniProduct, e: React.MouseEvent) => {
     e.stopPropagation();
-    onAddToCart(p);
+    if (onAddToCart) {
+      onAddToCart(p);
+    } else if (typeof window !== 'undefined') {
+      window.location.href = `/shop/${p.slug || p.id}`;
+    }
     setAddedIds(prev => {
       const s = new Set(prev);
       s.add(p.id);
@@ -64,8 +79,8 @@ export const ShopGalleryScreen: React.FC<ShopGalleryScreenProps> = ({
       const q = searchQuery.toLowerCase();
       list = list.filter(p =>
         p.title.toLowerCase().includes(q) ||
-        p.style.toLowerCase().includes(q) ||
-        p.categoryShort.toLowerCase().includes(q) ||
+        (p.style ? p.style.toLowerCase().includes(q) : false) ||
+        (p.categoryShort ? p.categoryShort.toLowerCase().includes(q) : false) ||
         (p.tags || []).some(t => t.toLowerCase().includes(q))
       );
     }
@@ -78,7 +93,6 @@ export const ShopGalleryScreen: React.FC<ShopGalleryScreenProps> = ({
     switch (sortBy) {
       case 'price-asc':  list.sort((a, b) => a.price - b.price); break;
       case 'price-desc': list.sort((a, b) => b.price - a.price); break;
-      case 'rating':     list.sort((a, b) => b.rating - a.rating); break;
       case 'newest':     list.sort((a, b) => (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0)); break;
       default:           list.sort((a, b) => (b.isFeatured ? 1 : 0) - (a.isFeatured ? 1 : 0));
     }
@@ -419,10 +433,10 @@ export const ShopGalleryScreen: React.FC<ShopGalleryScreenProps> = ({
                     product={p}
                     isWishlisted={wishlist.includes(p.id)}
                     addedToCart={addedIds.has(p.id)}
-                    onSelect={onSelectProduct}
+                    onSelect={handleSelectProduct}
                     onAddToCart={handleAddToCart}
-                    onQuickView={onQuickView}
-                    onToggleWishlist={onToggleWishlist}
+                    onQuickView={handleQuickView}
+                    onToggleWishlist={onToggleWishlist || (() => {})}
                     index={i}
                   />
                 ))}
@@ -566,14 +580,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
           {p.title}
         </h3>
 
-        {/* Stars */}
-        <div className="flex items-center gap-1">
-          {[1,2,3,4,5].map(s => (
-            <Star key={s} size={10} className={s <= Math.round(p.rating) ? 'star-filled' : 'star-empty'} />
-          ))}
-          <span className="text-caption ml-1" style={{ color: 'var(--ink-dim)', fontSize: '0.65rem' }}>
-            ({p.reviewsCount})
-          </span>
+        {/* Dimensions & Medium */}
+        <div className="flex items-center gap-1.5 text-caption text-ink-muted">
+          <span>{p.dimensions}</span>
+          <span>•</span>
+          <span>{p.medium}</span>
         </div>
 
         {/* Price */}

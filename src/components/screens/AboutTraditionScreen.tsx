@@ -1,9 +1,11 @@
+'use client';
+
 import React from 'react';
 import { Award, Feather, Leaf, Users, BookOpen, ArrowRight } from 'lucide-react';
 import { MithilaMotif, SectionEyebrow } from '../MithilaMotif';
 
 interface AboutTraditionScreenProps {
-  onNavigateToShop: () => void;
+  onNavigateToShop?: () => void;
 }
 
 const TIMELINE = [
@@ -11,8 +13,8 @@ const TIMELINE = [
   { year: '1934 AD',     title: 'Earthquake Rediscovery',  desc: 'A massive Bihar earthquake destroys homes, exposing the vibrant painted interior walls of Jitwarpur village to British art officer William G. Archer.' },
   { year: '1962 AD',     title: 'Transition to Paper',     desc: 'Pupul Jayakar and Bhaskar Kulkarni introduce paper to Jitwarpur artisans as a drought relief project, transitioning the wall art to a collectible medium.' },
   { year: '1969 AD',     title: 'National Recognition',    desc: "Sita Devi receives the Padma Shri award, honoring Madhubani painters with India's highest civilian recognition for the first time." },
-  { year: '2003 AD',     title: 'UNESCO Heritage Listing', desc: 'Madhubani painting is added to the UNESCO Intangible Cultural Heritage list, securing its global value.' },
-  { year: 'Present',     title: 'Preserving the Guild',    desc: 'Mithila Atelier connects master artisan families in Bihar directly to collectors worldwide, maintaining zero intermediaries.' },
+  { year: '2007 AD',     title: 'Geographical Indication (GI Tag)', desc: 'Madhubani painting is granted official Geographical Indication (GI) status under Indian law, legally affirming its heritage origin in Mithila, Bihar.' },
+  { year: 'Present',     title: 'Vernika Enterprises by Natasha Gupta', desc: 'Continuing the sacred tradition through original framed paintings, handloom dupattas, and artisan accessories crafted with devotion.' },
 ];
 
 const TECHNIQUES = [
@@ -72,7 +74,13 @@ export const AboutTraditionScreen: React.FC<AboutTraditionScreenProps> = ({ onNa
               Born from a royal commission and preserved through unbroken matriarchal inheritance in Bihar, Madhubani painting stands as one of humanity's most resilient living folk traditions.
             </p>
 
-            <button onClick={onNavigateToShop} className="btn btn-primary btn-lg">
+            <button
+            onClick={() => {
+              if (onNavigateToShop) onNavigateToShop();
+              else if (typeof window !== 'undefined') window.location.href = '/shop';
+            }}
+            className="btn btn-primary btn-lg"
+          >
               Explore the Archive <ArrowRight size={16} />
             </button>
           </div>
@@ -276,10 +284,16 @@ export const AboutTraditionScreen: React.FC<AboutTraditionScreenProps> = ({ onNa
             Own a Piece of Living History
           </h2>
           <p className="text-body" style={{ color: 'var(--ink-muted)' }}>
-            Every acquisition sustains master artisan families in Bihar directly and guarantees the survival of Mithila's heritage.
+            Every acquisition sustains authentic Mithila art and directly supports the handcrafted tradition of Natasha Gupta.
           </p>
-          <button onClick={onNavigateToShop} className="btn btn-primary btn-lg">
-            View all 80 Artworks <ArrowRight size={16} />
+          <button
+            onClick={() => {
+              if (onNavigateToShop) onNavigateToShop();
+              else if (typeof window !== 'undefined') window.location.href = '/shop';
+            }}
+            className="btn btn-primary btn-lg"
+          >
+            Explore the Shop Collection <ArrowRight size={16} />
           </button>
         </div>
       </section>
