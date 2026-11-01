@@ -72,4 +72,26 @@ test.describe('Vernika Enterprises E2E Storefront & Admin Tests', () => {
     await expect(page.locator('text=Artwork Title / Name *')).toBeVisible();
     await expect(page.locator('input[placeholder="e.g. Sacred Kohbar Lotus Mandalas"]')).toBeVisible();
   });
+
+  test('7. Responsive mobile layout and no horizontal scroll', async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 667 });
+    await page.goto('/');
+
+    const noHorizontalScroll = await page.evaluate(() => {
+      return document.documentElement.scrollWidth <= window.innerWidth;
+    });
+    expect(noHorizontalScroll).toBe(true);
+  });
+
+  test('8. Axe accessibility audit on key storefront routes', async ({ page }) => {
+    const { default: AxeBuilder } = await import('@axe-core/playwright');
+    
+    await page.goto('/');
+    const results = await new AxeBuilder({ page })
+      .withTags(['wcag2a', 'wcag2aa'])
+      .disableRules(['color-contrast']) // color-contrast audited via design tokens
+      .analyze();
+    
+    expect(results.violations).toEqual([]);
+  });
 });

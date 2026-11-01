@@ -1,0 +1,12 @@
+node_modules
+.next
+public/products
+public/portfolio-pages
+assets-source
+docs/audit/evidence
+coverage
+playwright-report
+test-results
+package-lock.json
+*.webp
+*.log

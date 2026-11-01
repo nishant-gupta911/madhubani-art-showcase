@@ -15,6 +15,7 @@
     "admin:create": "tsx scripts/admin_create.ts",
     "content:lint": "tsx scripts/content_lint.ts",
     "load:test": "tsx scripts/load_test.ts",
+    "audit:baseline": "tsx scripts/baseline_audit.ts",
     "verify": "tsx scripts/verify.ts"
   },
   "dependencies": {
@@ -38,6 +39,7 @@
     "zustand": "^5.0.16"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
     "@playwright/test": "^1.64.1",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/bcryptjs": "^2.4.6",

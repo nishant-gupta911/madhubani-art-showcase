@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useMemo, useCallback } from 'react';
+import Image from 'next/image';
 import { MadhubaniProduct, MithilaStyle } from '../../types';
 import { Search, X, Star, ShoppingBag, Eye, Heart, SlidersHorizontal, ArrowRight, ChevronDown } from 'lucide-react';
 import { MithilaMotif, SectionEyebrow } from '../MithilaMotif';
@@ -149,12 +150,14 @@ export const ShopGalleryScreen: React.FC<ShopGalleryScreenProps> = ({
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
               placeholder="Search artworks, styles, motifs…"
+              aria-label="Search artworks, styles, motifs"
               className="input input-dark w-full"
               style={{ paddingLeft: '2.75rem', paddingRight: searchQuery ? '2.5rem' : '1rem' }}
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
+                aria-label="Clear search query"
                 className="absolute right-3 top-1/2 -translate-y-1/2"
                 style={{ color: 'rgba(250,246,239,0.4)' }}
               >
@@ -495,10 +498,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
         style={{ aspectRatio: '4/5', background: 'var(--ivory-deep)', cursor: 'pointer' }}
         onClick={() => onSelect(p)}
       >
-        <img
+        <Image
           src={p.image}
           alt={p.title}
-          loading="lazy"
+          priority={index < 4}
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="art-img w-full h-full object-cover"
         />
 
@@ -515,6 +520,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             <button
               onClick={e => onAddToCart(p, e)}
               className="btn btn-primary btn-sm"
+              aria-label={`Add ${p.title} to bag`}
               style={{ gap: '0.35rem' }}
             >
               <ShoppingBag size={12} />

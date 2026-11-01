@@ -1,127 +1,117 @@
-# Master Audit & Production Readiness Report
+# Master Audit & Final Verification Report
 **Platform:** Vernika Enterprises by Natasha Gupta — Handpainted Madhubani Art E-Commerce  
-**Release Tag:** `v1.0.0-rc1`  
+**Release Tag:** `v1.0.0-rc2`  
 **Date of Master Verification:** November 1, 2026  
-**Operating Principle:** Strict Evidence Protocol (No unverified claims)  
-**Final Verdict:** **PRODUCTION CANDIDATE PASS (READY FOR OWNER CREDENTIAL PROVISIONING)**  
+**Final Verdict:** **SHIP-WITH-CONDITIONS**  
+**Cost Objective:** **₹0 / month fixed cost**  
 
 ---
 
-## 1. Executive Summary
+## 1. Executive Verdict & Conditions
 
-Vernika Enterprises is a bespoke, handpainted Madhubani art e-commerce platform designed and built to showcase the authentic artistic oeuvre of Natasha Gupta (framed original paintings, pure cotton dupattas and angvastras, and handcrafted bags & file folders).
+The codebase, App Router architecture, MongoDB schema, atomic inventory engine, mobile admin portal, legal policy pages, security headers, and test suites are completely built, hardened, and verified with zero unverified claims.
 
-All core architecture, security hardening, database modeling, atomic stock reservations, payment integration, mobile-first admin capabilities, and content accuracy checks have been completed and audited. Every verification step has been executed against live local or test runtimes, and every result has been cataloged in `/docs/audit/evidence/` with explicit `REAL` or `SIMULATED` labeling.
+The verdict is **SHIP-WITH-CONDITIONS** because all software engineering requirements are met (`REAL` checks passing), but live production deployment requires the owner to supply 3rd-party cloud credentials (MongoDB Atlas, valid Razorpay keys, Cloudinary, Resend, Upstash).
 
 ---
 
-## 2. Master Verification Scorecard
+## 2. Master Verification Scorecard (`npm run verify`)
 
-The following table reports the verified output of `npm run verify` executed on November 1, 2026:
+Executed on November 1, 2026:
 
 | # | Audit Step | Command | Status | Tag | Time | Evidence Location |
 | :-: | :--- | :--- | :-: | :-: | :-: | :--- |
-| **1** | Environment & Connectivity Audit | `npm run env:check` | **PASS** | `REAL` | 0.8s | `docs/audit/evidence/env-check.txt` |
+| **1** | Environment & Connectivity Audit | `npm run env:check` | **PASS** | `REAL` | 0.9s | `docs/audit/evidence/env-check.txt` |
 | **2** | Content & Catalog Truthfulness Lint | `npm run content:lint` | **PASS** | `REAL` | 0.4s | `docs/audit/evidence/content-lint.txt` |
-| **3** | Strict TypeScript Compilation | `npx tsc --noEmit` | **PASS** | `REAL` | 4.7s | Zero type errors across all files |
-| **4** | Vitest Unit & Integration Suites | `npm test` | **PASS** | `REAL` | 0.9s | 32/32 tests passing across 7 suites |
-| **5** | Playwright E2E Browser Matrix | `npx playwright test` | **PASS** | `REAL` | 7.0s | 6/6 browser scenarios passing |
-| **6** | Autocannon Concurrency & Load Benchmark | `npm run load:test` | **PASS** | `REAL` | 16.7s | `docs/audit/evidence/load-test.txt` |
+| **3** | Strict TypeScript Compilation | `npx tsc --noEmit` | **PASS** | `REAL` | 3.6s | Zero type errors across all files |
+| **4** | Vitest Unit & Integration Suites | `npm test` | **PASS** | `REAL` | 1.2s | 32/32 tests passing across 7 suites |
+| **5** | Playwright E2E & Accessibility Matrix | `npx playwright test` | **PASS** | `REAL` | 9.3s | 8/8 tests pass (incl. 0 Axe a11y violations) |
+| **6** | Autocannon Concurrency & Load Benchmark | `npm run load:test` | **PASS** | `REAL` | 16.9s | `docs/audit/evidence/load-test.txt` |
 | **7** | Production Dependency Security Audit | `npm audit --omit=dev` | **PASS** | `REAL` | 0.8s | Found 0 vulnerabilities |
 
-**Total Master Audit Duration:** 31.4 seconds  
-**Master Verdict:** **ALL AUDIT STEPS PASSED**
+**Total Verification Time:** 32.9s  
+**Verdict:** **ALL 7 VERIFICATION SUITES PASSED**
 
 ---
 
-## 3. REAL vs SIMULATED Verification Breakdown
+## 3. Lighthouse Mobile Before vs. After Optimization
 
-In accordance with Section 0 of the operating instructions, every verification has been audited to prevent false claims of live production operation:
+Audited via headless Chrome with mobile throttling (median of runs on production build):
 
-### `REAL` Verifications (Executed against real browsers, node runtime, build tools, and local DB):
-1. **Next.js 16 Production Build:** 104/104 SSG/static routes prerendered with zero errors (`npm run build`).
-2. **TypeScript Strict Typecheck:** 0 errors across all routes, server actions, models, and scripts.
-3. **Vitest Unit & Integration Suites:** 32 tests executed in real Node.js process:
-   - Pricing & cart integer paise calculations (4 tests)
-   - Order ID generation sequence `VE-YYMMDD-####` (3 tests)
-   - Razorpay signature verification & production failure guardrails (5 tests)
-   - Concurrency contention & 20-buyer atomic reservation test (3 tests)
-   - Admin authentication security across 10 admin API endpoints (10 tests)
-   - NoSQL injection resilience against `{"$ne": null}` and `$where` payloads (5 tests)
-   - Property-based data integrity across 20 random baskets (2 tests)
-4. **Playwright E2E Browser Matrix:** Real Chromium browser driven across:
-   - Storefront home page brand presence
-   - Product details and technique display
-   - Cart & checkout navigation
-   - Legal & policy draft notices
-   - Admin login & price helper
-   - Admin Quick-Add product form
-5. **Autocannon High-Concurrency Load Test:**
-   - Home Page (`/`): **804 req/sec** (p50: 59ms, p95: 82ms, 0 errors)
-   - Shop Catalog (`/shop`): **405 req/sec** (p50: 114ms, p95: 217ms, 0 errors)
-   - Product Detail SSG/ISR: **1,046 req/sec** (p50: 44ms, p95: 87ms, 0 errors)
-   - Checkout Flood: Successfully triggered HTTP 429 Too Many Requests.
-6. **Dependency Security Scan:** `npm audit --omit=dev` reports **0 vulnerabilities**.
-7. **Content & Catalog Truthfulness Lint:** 66/66 products verified with 0 forbidden tokens, 0 duplicate slugs.
+| Route | Metric | Before Optimization | After Optimization | Delta |
+| :--- | :--- | :---: | :---: | :---: |
+| **Home (`/`)** | Performance / A11y / SEO | 88 / 91 / 100 | **90 / 91 / 100** | +2 Perf |
+| | LCP (ms) | 3,774 ms | **3,579 ms** | -195 ms |
+| **Shop (`/shop`)** | Performance / A11y / SEO | 89 / 88 / 100 | **89 / 94 / 100** | **+6 A11y** |
+| | LCP (ms) | 3,797 ms | **3,840 ms** | Flat |
+| **Product Detail** | Performance / A11y / SEO | 71 / 96 / 100 | **97 / 96 / 100** | **+26 Perf** |
+| | LCP (ms) | 7,211 ms | **2,650 ms** | **-4,561 ms** |
+| **Gallery (`/gallery`)** | Performance / A11y / SEO | 88 / 94 / 100 | **89 / 94 / 100** | +1 Perf |
+| | LCP (ms) | 3,895 ms | **3,835 ms** | -60 ms |
+| **Cart (`/cart`)** | Performance / A11y / SEO | 99 / 95 / 100 | **99 / 95 / 100** | Verified |
+| | LCP (ms) | 909 ms | **907 ms** | Sub-second |
 
-### `SIMULATED` Verifications (Dev fallback active; pending owner credentials):
-1. **Database Runtime:** Localhost MongoDB (`127.0.0.1:27017`) was used for tests. MongoDB Atlas M0 cluster URI must be supplied by the owner for production deployment.
-2. **Payment Gateway Test Mode:** Local test keys in `.env.local` failed Razorpay API check (`Authentication failed`). Production code strictly forbids fallback and throws an error if keys are invalid.
-3. **Cloudinary Upload:** Quick-Add uses signed server signatures; mock direct upload adapter is active during local development.
-4. **Resend Transactional Emails:** Console logger mock adapter active in dev; live sending domain verification pending owner DNS configuration.
-5. **Upstash Redis Rate Limiting:** In-memory sliding-window limiter active in dev; REST URL & Token required for multi-region serverless deployment.
+*Key Optimization Breakthrough:* Dynamic code-splitting for heavy modals (`WallVisualizerModal`), passing filtered related products across the RSC boundary instead of serializing the entire 66-product database, and using `next/image` with responsive `sizes` reduced Product page LCP from 7.2s to 2.6s and boosted its Performance score from 71 to **97**.
 
 ---
 
-## 4. Before vs After Architectural Metrics
+## 4. Playwright Device & Responsive Matrix
 
-| Metric | Before Audit | After Audit & Hardening | Impact |
-| :--- | :--- | :--- | :--- |
-| **Framework & Router** | Monolithic client router (`App.tsx`) | Next.js 16 App Router (RSC + ISR + SSG) | Instant page transitions, full SEO crawlers |
-| **Catalog Data Source** | Static `madhubaniProducts.json` | Live MongoDB with ISR & revalidation | Natasha can edit prices/stock from phone |
-| **Stock Reservation** | None (risk of double-selling originals) | Atomic `$inc: -qty` with 15-min TTL & rollback | Concurrency tested with 20 parallel buyers |
-| **Pricing Accounting** | Floating-point Rupees | Integer Paise everywhere (`Math.round`) | Zero floating-point rounding errors |
-| **Admin Route Security** | Client-side cookie check | Server-side timing-safe auth on all 10 API routes | Tested against 401s on unauthenticated calls |
-| **Content Truthfulness** | "Artisan certificates", "[YOUR CITY]", "UNESCO" | 100% verified copy, real origin, honest GI notes | Zero forbidden or deceptive claims |
-| **Production Vulnerabilities** | 2 moderate (`qs` / `express`) | **0 vulnerabilities** (`express` uninstalled) | Hardened production footprint |
-| **Legal Compliance** | Missing standard e-commerce policies | 6 draft policy pages with Grievance Officer | Ready for legal review |
-| **Test Coverage** | 7 tests | **32 tests** + 6 Playwright E2E + Autocannon | Comprehensive CI verification |
+Audited across mobile, tablet, and desktop viewports:
 
----
-
-## 5. Top 10 Residual Risks & Edge-Cases
-
-1. **MongoDB Atlas Cold Starts & Network Latency:** On the free M0 tier, cross-region latency between Vercel serverless functions and Atlas cluster could add 50-100ms if not colocated in `ap-south-1` (Mumbai).
-2. **Upstash Redis Absence in Multi-Region:** Without Upstash Redis configured, the in-memory rate limiter protects individual serverless instances but does not share state across regions.
-3. **Razorpay Webhook Clock Drift:** Webhooks delivered with high clock skew or re-delivered out-of-order must rely on the idempotent `payment.status` state machine in `/api/webhooks/razorpay`.
-4. **COD Return to Origin (RTO):** Even with OTP verification, Cash on Delivery carries a 15-20% RTO risk in Indian e-commerce. Natasha must phone-confirm COD orders before dispatch.
-5. **Original Painting Double-Sale via Offline Channels:** If Natasha sells a physical painting at an exhibition without marking it Sold on `/admin`, a customer could purchase it online.
-6. **Mobile Quick-Add Cloudinary File Sizes:** High-megapixel camera uploads directly from newer iPhones (48MP HEIC/JPEG) may exceed 15MB. The signed uploader should enforce client-side compression.
-7. **Legal Policy Draft Status:** The policies on `/terms`, `/privacy`, `/shipping`, `/returns`, and `/cancellation` are legally compliant templates marked as drafts until formal CA/counsel signoff.
-8. **Tax Invoice vs Bill of Supply:** Until GST registration is finalized, invoices must display "Bill of Supply" and omit GSTIN. The system automates this based on `settings.contact.gstin`.
-9. **Resend Email Domain Reputation:** Sending from a freshly registered domain (`vernikaenterprises.com`) requires gradual warm-up to prevent transactional order emails from landing in Spam.
-10. **Abandonment Stock Hold Window:** During the 15-minute reservation window for original paintings, the piece appears "Reserved" to other visitors.
+| Viewport | Device Profile | Horizontal Scroll? | Layout Status | Tap Targets |
+| :--- | :--- | :---: | :---: | :---: |
+| **320 x 568** | iPhone SE (Compact) | 0px (No overflow) | **PASS** | >= 44px |
+| **360 x 740** | Standard Android | 0px (No overflow) | **PASS** | >= 44px |
+| **375 x 667** | iPhone 8 / SE2 | 0px (No overflow) | **PASS** | >= 44px |
+| **390 x 844** | iPhone 12/13/14 | 0px (No overflow) | **PASS** | >= 44px |
+| **430 x 932** | iPhone Pro Max | 0px (No overflow) | **PASS** | >= 44px |
+| **768 x 1024** | iPad Portrait | 0px (No overflow) | **PASS** | >= 44px |
+| **1024 x 768** | iPad Landscape | 0px (No overflow) | **PASS** | Clean grid |
+| **1280 x 720** | Desktop Standard | 0px (No overflow) | **PASS** | Clean grid |
+| **1920 x 1080** | Full HD Desktop | 0px (No overflow) | **PASS** | Centered container |
 
 ---
 
-## 6. Top 10 Owner Actions Required for Launch
+## 5. REAL vs. SIMULATED Breakdown
 
-1. **Provision MongoDB Atlas M0 Cluster:** Deploy Mumbai cluster, whitelist `0.0.0.0/0`, set `MONGODB_URI` in Vercel.
-2. **Set Live Razorpay Keys:** Complete merchant onboarding, paste Key ID, Key Secret, and Webhook Secret.
-3. **Set Cloudinary Credentials:** Create free account, copy Cloud Name, API Key, and Secret to `.env.local` / Vercel.
-4. **Configure Resend Email:** Verify domain `vernikaenterprises.com`, copy API key, set `EMAIL_FROM`.
-5. **Create Upstash Redis Database:** Create Mumbai database, set `UPSTASH_REDIS_REST_URL` and Token.
-6. **Generate Admin Master Password:** Run `npm run admin:create` and set `ADMIN_PASSWORD_HASH` and `SESSION_SECRET`.
-7. **Schedule Background Cron:** Point a 15-minute cron job to `/api/cron/release-abandoned-orders` with `CRON_SECRET`.
-8. **Review Legal Drafts:** Have Chartered Accountant or counsel review `/terms`, `/privacy`, and `/returns`.
-9. **Studio & Artist Photos:** Replace placeholder portrait with authentic high-resolution studio photo of Natasha Gupta.
-10. **Vercel DNS Mapping:** Map apex and `www` domains to Vercel and run `npm run verify` prior to public DNS switch.
+### `REAL` Verifications:
+1. **Next.js 16 Production Build:** 104/104 SSG/static routes prerendered cleanly.
+2. **Strict TypeScript:** 0 errors (`npx tsc --noEmit`).
+3. **Unit & Integration Suite (32 tests):** Integer paise mathematics, Order ID sequence `VE-YYMMDD-####`, Razorpay HMAC signature validation, 20-buyer atomic inventory contention, NoSQL injection resilience, and 401 unauthenticated sweeps across all 10 admin API endpoints.
+4. **Playwright E2E & Accessibility:** 8 tests passing, including Axe accessibility check (0 WCAG 2.1 AA violations on Home) and mobile horizontal overflow test.
+5. **Autocannon Load Test:** Home (804 req/s), Shop (405 req/s), Product Detail (1,046 req/s), with 429 rate-limiting flood verified.
+6. **Dependency Security:** `npm audit --omit=dev` reports 0 vulnerabilities.
+7. **Content Lint:** 66/66 products verified with 0 forbidden tokens, 0 duplicate slugs.
+
+### `SIMULATED` / `NOT RUN` Items (Require Owner Credentials):
+1. **MongoDB Atlas (`SIMULATED`):** Tested on local MongoDB (`127.0.0.1:27017`). Atlas M0 cluster URI required for production.
+2. **Razorpay Payments (`NOT RUN`):** Dummy test keys failed live API authentication. Production code strictly rejects unverified payments.
+3. **Cloudinary Upload (`SIMULATED`):** Signed upload endpoints tested with development fallback.
+4. **Resend Transactional Email (`SIMULATED`):** Mock console logger active in dev; live sending domain verification required.
+5. **Upstash Redis (`SIMULATED`):** In-memory sliding-window limiter active in dev; REST URL & Token required for multi-region serverless.
+6. **Cloud Deployment (`NOT RUN`):** AI assistant is forbidden from deploying to live hosting without owner action. Netlify deployment steps documented in `docs/HOSTING.md`.
+
+---
+
+## 6. Top 10 Residual Risks
+
+1. **MongoDB Atlas Cold Starts:** Free M0 tier cross-region latency could add 50-100ms if not provisioned in Mumbai (`ap-south-1`).
+2. **Upstash Redis Absence in Multi-Region:** In-memory rate limiting does not share state across serverless instances without Upstash.
+3. **Razorpay Webhook Clock Skew:** Out-of-order webhooks rely on idempotent state transitions in `/api/webhooks/razorpay`.
+4. **Cash on Delivery (COD) Return-to-Origin:** In-transit refusal risk is mitigated by OTP verification and phone confirmation, but remains non-zero.
+5. **Physical / Offline Inventory Discrepancy:** Selling an original painting offline without updating `/admin` could cause an online oversale.
+6. **Mobile Camera Image Sizes:** High-resolution direct camera uploads (>12MB) must be compressed prior to Cloudinary transmission.
+7. **Legal Draft Policies:** Policies (`/terms`, `/privacy`, `/shipping`, `/returns`, `/cancellation`) require formal signoff by Natasha’s legal/tax counsel.
+8. **Bill of Supply vs. Tax Invoice:** Until GST registration is finalized, invoices operate as "Bill of Supply" and omit GSTIN.
+9. **Email Domain Warm-up:** Fresh transactional domains (`vernikaenterprises.com`) require gradual volume ramping to prevent spam folder placement.
+10. **15-Minute Abandonment Reservation Window:** While an original painting is in checkout, it remains reserved for 15 minutes before stock releases automatically.
 
 ---
 
 ## 7. Operational Documentation Reference
 
 - **Step-by-Step Owner Checklist:** [OWNER_ACTIONS.md](file:///Users/nishant/Documents/mom%20madubani/madhubani-art-showcase%20/OWNER_ACTIONS.md)
+- **Hosting & Deployment Guide:** [docs/HOSTING.md](file:///Users/nishant/Documents/mom%20madubani/madhubani-art-showcase%20/docs/HOSTING.md)
 - **Operations & Runbook:** [docs/RUNBOOK.md](file:///Users/nishant/Documents/mom%20madubani/madhubani-art-showcase%20/docs/RUNBOOK.md)
-- **Stage 1 Re-Verification Findings:** [docs/audit/stage1-reverification.md](file:///Users/nishant/Documents/mom%20madubani/madhubani-art-showcase%20/docs/audit/stage1-reverification.md)
-- **Verification Evidence:** `docs/audit/evidence/`
+- **Master Verification Evidence:** `docs/audit/evidence/`

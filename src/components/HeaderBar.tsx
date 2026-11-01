@@ -218,6 +218,7 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
                   value={searchQuery}
                   onChange={e => setSearchQuery(e.target.value)}
                   placeholder="Search artworks, motifs, styles…"
+                  aria-label="Search artworks, motifs, styles"
                   className="input"
                   style={{ paddingLeft: '2.5rem', paddingRight: '8rem' }}
                   autoFocus

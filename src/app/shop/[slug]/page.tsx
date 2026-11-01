@@ -62,7 +62,10 @@ export default async function ProductPage({ params }: PageProps) {
   }
 
   const mappedCurrent = mapCleanProductToMadhubani(product);
-  const mappedAll = allDbProducts.map(mapCleanProductToMadhubani);
+  const relatedProducts = allDbProducts
+    .filter((x) => x.category === product.category && x.slug !== product.slug)
+    .slice(0, 4)
+    .map(mapCleanProductToMadhubani);
 
   // JSON-LD Structured Data Schema for Search Engines
   const jsonLd = {
@@ -104,7 +107,7 @@ export default async function ProductPage({ params }: PageProps) {
       <main className="pt-2">
         <ProductDetailScreen
           product={mappedCurrent}
-          products={mappedAll}
+          products={relatedProducts}
         />
       </main>
     </div>

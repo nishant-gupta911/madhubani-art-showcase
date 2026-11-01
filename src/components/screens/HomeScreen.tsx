@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { MadhubaniProduct, MithilaStyle } from '../../types';
 import { ArrowRight, Star, ShoppingBag, Eye, ArrowUpRight, Quote } from 'lucide-react';
 import { MithilaMotif, SectionEyebrow } from '../MithilaMotif';
@@ -16,11 +17,11 @@ interface HomeScreenProps {
 }
 
 const TRADITIONS: { name: MithilaStyle; tagline: string; desc: string; img: string; count: number }[] = [
-  { name: 'Bharni',  tagline: 'Vibrant Pigment Density',  desc: 'Solid-fill tradition with double-line soot borders. Bold organic ochre, vermilion, and indigo.',         img: '/madu/3.jpeg',  count: 18 },
-  { name: 'Kachni',  tagline: 'Pure Line Precision',       desc: 'Micro-hatching strokes in black soot. Zero solid fills — only rhythmic parallel line frequency.',       img: '/madu/12.jpeg', count: 14 },
-  { name: 'Tantrik', tagline: 'Sacred Cosmic Geometry',    desc: 'Metaphysical yantras, solar alignments, and deity energy matrices in esoteric cosmological form.',       img: '/madu/24.jpeg', count: 12 },
-  { name: 'Godna',   tagline: 'Folk Tattoo Concentrics',   desc: 'Ancient tribal body-ink vocabulary rendered on paper — concentric totems and protective flora.',         img: '/madu/14.jpeg', count: 8  },
-  { name: 'Kohbar',  tagline: 'Nuptial Sanctuary Art',      desc: 'Ceremonial bridal chamber paintings with lotus rosettes, twin carp, bamboo stalks and solar blessings.', img: '/madu/22.jpeg', count: 16 },
+  { name: 'Bharni',  tagline: 'Vibrant Pigment Density',  desc: 'Solid-fill tradition with double-line soot borders. Bold organic ochre, vermilion, and indigo.',         img: '/products/3.webp',  count: 18 },
+  { name: 'Kachni',  tagline: 'Pure Line Precision',       desc: 'Micro-hatching strokes in black soot. Zero solid fills — only rhythmic parallel line frequency.',       img: '/products/12.webp', count: 14 },
+  { name: 'Tantrik', tagline: 'Sacred Cosmic Geometry',    desc: 'Metaphysical yantras, solar alignments, and deity energy matrices in esoteric cosmological form.',       img: '/products/24.webp', count: 12 },
+  { name: 'Godna',   tagline: 'Folk Tattoo Concentrics',   desc: 'Ancient tribal body-ink vocabulary rendered on paper — concentric totems and protective flora.',         img: '/products/14.webp', count: 8  },
+  { name: 'Kohbar',  tagline: 'Nuptial Sanctuary Art',      desc: 'Ceremonial bridal chamber paintings with lotus rosettes, twin carp, bamboo stalks and solar blessings.', img: '/products/22.webp', count: 16 },
 ];
 
 const TRUST_PILLARS = [
@@ -31,9 +32,9 @@ const TRUST_PILLARS = [
 ];
 
 const HERO_ARTWORKS = [
-  { src: '/madu/49.jpeg', title: 'Mahishasura Mardini', style: 'Tantrik' },
-  { src: '/madu/50.jpeg', title: 'Ardhanarishvara',     style: 'Bharni' },
-  { src: '/madu/22.jpeg', title: 'Sacred Kohbar Garden', style: 'Kohbar' },
+  { src: '/products/49.webp', title: 'Mahishasura Mardini', style: 'Tantrik' },
+  { src: '/products/50.webp', title: 'Ardhanarishvara',     style: 'Bharni' },
+  { src: '/products/22.webp', title: 'Sacred Kohbar Garden', style: 'Kohbar' },
 ];
 
 export const HomeScreen: React.FC<HomeScreenProps> = ({
@@ -94,13 +95,15 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         {/* Background artwork — full bleed on mobile, right panel on desktop */}
         <div className="absolute inset-0 lg:left-[44%]">
           {HERO_ARTWORKS.map((hw, i) => (
-            <img
+            <Image
               key={hw.src}
               src={hw.src}
               alt={hw.title}
-              loading={i === 0 ? 'eager' : 'lazy'}
-              className="w-full h-full object-cover object-center transition-opacity duration-1000"
-              style={{ opacity: i === heroIdx ? 1 : 0, position: 'absolute', inset: 0 }}
+              priority={i === 0}
+              fill
+              sizes="(max-width: 1024px) 100vw, 56vw"
+              className="object-cover object-center transition-opacity duration-1000"
+              style={{ opacity: i === heroIdx ? 1 : 0 }}
             />
           ))}
           {/* Gradient: full overlay on mobile, left fade on desktop */}
@@ -289,11 +292,13 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   style={{ aspectRatio: '4/5', background: 'var(--ivory-deep)', cursor: 'pointer' }}
                   onClick={() => selectProduct(p)}
                 >
-                  <img
+                  <Image
                     src={p.image}
                     alt={p.title}
-                    loading="lazy"
-                    className="art-img w-full h-full object-cover"
+                    priority={i < 2}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="art-img object-cover"
                   />
 
                   {/* Hover overlay */}
@@ -461,17 +466,17 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 <div
                   className="row-span-2 overflow-hidden cursor-pointer group relative"
                   style={{ borderRadius: '3px', border: '1px solid rgba(255,255,255,0.08)' }}
-                  onClick={() => selectProduct(products.find(p => p.image === '/madu/49.jpeg') || products[0])}
+                  onClick={() => selectProduct(products.find(p => p.image === '/products/49.webp') || products[0])}
                 >
-                  <img
-                    src="/madu/49.jpeg"
+                  <Image
+                    src="/products/49.webp"
                     alt="Featured Madhubani artwork"
-                    loading="lazy"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    style={{ minHeight: '300px' }}
                   />
                   <div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4"
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4 z-10"
                     style={{ background: 'linear-gradient(to top, rgba(16,11,4,0.7) 0%, transparent 50%)' }}
                   >
                     <span className="text-eyebrow text-white" style={{ fontSize: '0.6rem' }}>View artwork →</span>
@@ -479,17 +484,18 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 </div>
 
                 {/* Smaller images */}
-                {['/madu/22.jpeg', '/madu/14.jpeg'].map((src, i) => (
+                {['/products/22.webp', '/products/14.webp'].map((src, i) => (
                   <div
                     key={i}
                     className="overflow-hidden cursor-pointer group relative"
                     style={{ borderRadius: '3px', border: '1px solid rgba(255,255,255,0.08)', aspectRatio: '1' }}
                     onClick={() => selectProduct(products.find(p => p.image === src) || products[i + 1])}
                   >
-                    <img
+                    <Image
                       src={src}
-                      alt=""
-                      loading="lazy"
+                      alt="Traditional Mithila folk artwork"
+                      fill
+                      sizes="25vw"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                   </div>
@@ -542,10 +548,11 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               >
                 {/* Image */}
                 <div className="relative overflow-hidden" style={{ aspectRatio: '1', background: 'var(--ivory-deep)' }}>
-                  <img
+                  <Image
                     src={d.img}
                     alt={d.name}
-                    loading="lazy"
+                    fill
+                    sizes="(max-width: 768px) 50vw, 20vw"
                     className="art-img w-full h-full object-cover"
                   />
                   <div
@@ -610,7 +617,12 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               </button>
             </div>
 
-            <div className="flex gap-4 overflow-x-auto no-scrollbar pb-2 -mx-4 px-4 sm:mx-0 sm:px-0">
+            <div
+              className="flex gap-4 overflow-x-auto no-scrollbar pb-2 -mx-4 px-4 sm:mx-0 sm:px-0"
+              tabIndex={0}
+              role="region"
+              aria-label="New arrivals carousel"
+            >
               {newArrivals.map(p => (
                 <article
                   key={p.id}
@@ -622,10 +634,11 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                     className="relative overflow-hidden"
                     style={{ aspectRatio: '4/5', background: 'var(--ivory-deep)' }}
                   >
-                    <img
+                    <Image
                       src={p.image}
                       alt={p.title}
-                      loading="lazy"
+                      fill
+                      sizes="220px"
                       className="art-img w-full h-full object-cover"
                     />
                     <span className="badge badge-vermilion absolute top-2.5 left-2.5">New</span>

@@ -1,0 +1,57 @@
+[
+  {
+    "route": "Home",
+    "url": "http://localhost:3000/",
+    "performance": 88,
+    "accessibility": 91,
+    "bestPractices": 96,
+    "seo": 100,
+    "lcpMs": 3823,
+    "cls": 0,
+    "tbtMs": 71
+  },
+  {
+    "route": "Shop",
+    "url": "http://localhost:3000/shop",
+    "performance": 89,
+    "accessibility": 94,
+    "bestPractices": 96,
+    "seo": 100,
+    "lcpMs": 3840,
+    "cls": 0,
+    "tbtMs": 25
+  },
+  {
+    "route": "Product",
+    "url": "http://localhost:3000/shop/mithila-harmony-slim-strip-paintings-set-of-3",
+    "performance": 97,
+    "accessibility": 96,
+    "bestPractices": 96,
+    "seo": 100,
+    "lcpMs": 2650,
+    "cls": 0,
+    "tbtMs": 20
+  },
+  {
+    "route": "Gallery",
+    "url": "http://localhost:3000/gallery",
+    "performance": 89,
+    "accessibility": 94,
+    "bestPractices": 96,
+    "seo": 100,
+    "lcpMs": 3835,
+    "cls": 0.004,
+    "tbtMs": 21
+  },
+  {
+    "route": "Cart",
+    "url": "http://localhost:3000/cart",
+    "performance": 99,
+    "accessibility": 95,
+    "bestPractices": 96,
+    "seo": 100,
+    "lcpMs": 907,
+    "cls": 0.066,
+    "tbtMs": 24
+  }
+]

@@ -1,0 +1,47 @@
+BASELINE LIGHTHOUSE MOBILE AUDIT REPORT
+==================================================
+Home:
+  Performance: 88
+  Accessibility: 91
+  Best Practices: 96
+  SEO: 100
+  LCP: 3823ms
+  CLS: 0
+  TBT: 71ms
+
+Shop:
+  Performance: 89
+  Accessibility: 94
+  Best Practices: 96
+  SEO: 100
+  LCP: 3840ms
+  CLS: 0
+  TBT: 25ms
+
+Product:
+  Performance: 97
+  Accessibility: 96
+  Best Practices: 96
+  SEO: 100
+  LCP: 2650ms
+  CLS: 0
+  TBT: 20ms
+
+Gallery:
+  Performance: 89
+  Accessibility: 94
+  Best Practices: 96
+  SEO: 100
+  LCP: 3835ms
+  CLS: 0.004
+  TBT: 21ms
+
+Cart:
+  Performance: 99
+  Accessibility: 95
+  Best Practices: 96
+  SEO: 100
+  LCP: 907ms
+  CLS: 0.066
+  TBT: 24ms
+

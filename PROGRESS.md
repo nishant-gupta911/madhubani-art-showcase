@@ -1,103 +1,79 @@
-# Vernika Enterprises — Comprehensive Audit & Implementation Progress
-
-This document tracks all tasks, audit criteria, and verification statuses across all stages.
-Status tags: `DONE (REAL)` | `DONE (SIMULATED)` | `DONE (NOT RUN / OWNER ACTION)`
-
----
-
-## 0. Operating Rules & Infrastructure
-- [x] Strict verification with evidence logging in `/docs/audit/evidence/` — `DONE (REAL)`
-- [x] Tag every check as REAL, SIMULATED, or NOT RUN — `DONE (REAL)`
-- [x] Rs. 0/month infrastructure design & integer paise accounting — `DONE (REAL)`
-- [x] Master verify script `npm run verify` combining all test suites — `DONE (REAL)`
-- [x] Dedicated `npm run env:check` and `npm run admin:create` — `DONE (REAL)`
+# Vernika Enterprises — Master Progress Tracking (Orchestrator Run)
+**Reference:** `MASTER_PROMPT_3_ONE_SHOT.md`  
+**Caffeinate Status:** ⚠️ `caffeinate` is NOT running in macOS processes. (Reminder: run `caffeinate -dimsu` in a separate terminal window to prevent Mac from sleeping).  
+**Initial Baseline Lighthouse Scores:**
+- Home: Perf 88 | A11y 91 | Best 96 | SEO 100 | LCP: 3774ms
+- Shop: Perf 89 | A11y 88 | Best 96 | SEO 100 | LCP: 3797ms
+- Product: Perf 76 | A11y 96 | Best 96 | SEO 100 | LCP: 6764ms
+- Gallery: Perf 88 | A11y 94 | Best 96 | SEO 100 | LCP: 3895ms
+- Cart: Perf 99 | A11y 95 | Best 96 | SEO 100 | LCP: 909ms
 
 ---
 
-## 1. Environment Inputs & Connectivity Audit
-- [x] Live connectivity check (`npm run env:check`) — `DONE (REAL)`
-- [x] Check MONGODB_URI (Reported: local `127.0.0.1:27017` active; Atlas required for production) — `DONE (REAL)`
-- [x] Check Razorpay API authentication (Live API test call executed; flagged test keys) — `DONE (REAL)`
-- [x] Check Cloudinary, Resend, Upstash, Cron configuration (Mock adapters active for local dev) — `DONE (REAL)`
-- [x] Generate bcrypt admin password hasher (`scripts/admin_create.ts`) — `DONE (REAL)`
+## Stage 0: Orchestrator Initialization
+- [x] Deleted withdrawn local tag `v1.0.0-rc1`
+- [x] Read `/srs/rules.md` and `/srs/architecture.md`
+- [x] Ran `npm run env:check` (Reported REAL vs SIMULATED capability)
+- [x] Generated `docs/audit/CHECKLIST.md`
+- [x] Generated `docs/REPO_MAP.md` (compact codebase guide)
+- [x] Created `.agents/rules/project.md` and `.agents/rules/ponytail-scope.md`
+- [x] Created `.agents/workflows/finish.md` and `.agents/workflows/audit.md`
+- [x] Created `.antigravityignore` and updated `.gitignore`
+- [x] Captured production baseline Lighthouse mobile metrics (`docs/audit/evidence/baseline-lighthouse.*`)
 
 ---
 
-## 2. Stage 1: Re-Verify Earlier Claims
-- [x] 1.1 Audit `scripts/test_orders.ts` — verified self-signed bypass; replaced with real HTTP integration tests — `DONE (REAL)`
-- [x] 1.2 Database environment audit — verified local MongoDB active (`SIMULATED`), Atlas documented in owner actions — `DONE (REAL)`
-- [x] 1.3 Audit seed script — removed default password, requires `ADMIN_PASSWORD_HASH` / env hash — `DONE (REAL)`
-- [x] 1.4 Audit storefront product source — decoupled `madhubaniProducts.json`, MongoDB is sole runtime source — `DONE (REAL)`
-- [x] 1.5 Audit `page.tsx` architecture — decoupled client SPA router, clean App Router SSR routes with ISR — `DONE (REAL)`
-- [x] 1.6 Audit pricing bands against `/srs/pricing.md` — 66/66 products verified in price band — `DONE (REAL)`
-- [x] 1.7 Audit catalog data integrity — 0 duplicate slugs, dimensions, techniques, prices, lead times — `DONE (REAL)`
-- [x] 1.8 Content audit — removed unverified claims ("UNESCO", "natural colours", "artisans of Mithila", "[YOUR CITY]") — `DONE (REAL)`
-- [x] Output: `/docs/audit/stage1-reverification.md` — `DONE (REAL)`
+## Wave 1: Sub-Agent Missions & Work Allocations
+
+### 1. `storefront` Mission
+- Target: Lighthouse Mobile Perf >= 90 (Home/Product >= 95), A11y >= 95, Best Practices >= 95, SEO 100. LCP < 2.5s.
+- Replace raw `<img>` tags with optimized `next/image` using `sizes`, `priority` on above-the-fold heroes.
+- Fix button aria-labels, touch target sizes (>= 44px), form input sizes (>= 16px).
+- Dynamic code splitting for heavy modals and below-the-fold visualizers.
+- Optimize Gallery and Product detail pages for mobile LCP.
+
+### 2. `commerce` Mission
+- Hardened Razorpay production safeguards: fail loudly if invalid in production; maintain test/dev fallback.
+- Uncached availability endpoint with automatic lazy-release of expired order reservations.
+- Webhook idempotency and handling of `payment.failed` stock restoration.
+- COD email OTP with 5-attempt rate-limiting and temporary lockout.
+- Order tracking rate limits with generic error responses.
+- Resend email templates with fallback.
+
+### 3. `admin` Mission
+- Cloudinary signed upload integration with CSP validation.
+- Quick-add artwork form tested on 375px mobile viewports.
+- Product edit, duplicate, soft-delete, and draft/publish toggle.
+- Order management workflow, tracking number assignment, and CSV export.
+- Server-side authorization verification on all `/api/admin/*` endpoints.
+
+### 4. `qa` Mission
+- Extend `npm run verify` to include:
+  - Axe accessibility test across all key routes.
+  - Multi-viewport responsive tests (320px to 1920px).
+  - Security suite (admin 401/403 sweep, NoSQL injection, timing-safe auth).
+  - Dependency audit (`npm audit --omit=dev`).
+  - Content linting (`npm run content:lint`).
+  - Concurrency & load testing.
+- Requirements traceability matrix (`docs/audit/requirements-traceability.md`).
+
+### 5. `docs` Mission
+- Update `docs/HOSTING.md` with honest analysis of free commercial hosting (Cloudflare Pages, Netlify, Render, Railway vs Vercel terms).
+- Update `OWNER_ACTIONS.md` and `docs/RUNBOOK.md` with verified, step-by-step instructions.
+- Ensure all SRS docs reflect reality.
 
 ---
 
-## 3. Stage 2: Close Every Remaining Gap
-- [x] 3.1 Commerce Correctness:
-  - [x] Uncached `/api/availability` endpoint with lazy expired-hold stock release — `DONE (REAL)`
-  - [x] Concurrency test (20 parallel checkouts on stock=1; exactly 1 succeeds, 19 receive 409) — `DONE (REAL)`
-  - [x] Webhook idempotency & out-of-order handling (`payment.failed` stock restoration) — `DONE (REAL)`
-  - [x] COD email OTP with rate limits & lockout after 5 failures (`src/models/Otp.ts`, `/api/otp/verify`) — `DONE (REAL)`
-  - [x] Settings-driven shipping, COD fees, gift wrapping in DB (`src/lib/settings.ts`, `/api/admin/settings`) — `DONE (REAL)`
-  - [x] Order tracking rate limits & generic error responses (`/api/orders/track`, `/track`) — `DONE (REAL)`
-  - [x] Order invoice/receipt printable page with dynamic GSTIN / Bill of Supply (`/order/[id]`) — `DONE (REAL)`
-  - [x] Customer confirmation & admin alert email templates (`src/lib/email.ts`) — `DONE (SIMULATED)`
-- [x] 3.2 Admin Functionality:
-  - [x] Mobile-optimized Quick-Add with signed Cloudinary upload (`/api/admin/cloudinary-sign`) — `DONE (REAL)`
-  - [x] Server-side session authentication verification on all 10 `/api/admin/*` routes (401 tests) — `DONE (REAL)`
-  - [x] Product edit, duplicate, soft-delete, and draft/publish toggle (`/admin`, `/api/admin/products`) — `DONE (REAL)`
-  - [x] Order status updates, tracking numbers, packing slip print, CSV export (`/api/admin/export`) — `DONE (REAL)`
-  - [x] Settings management (shipping, COD, grievance officer, announcement) (`/api/admin/settings`) — `DONE (REAL)`
-- [x] 3.3 Storefront Completeness:
-  - [x] Routes: `/shop`, `/shop/[slug]`, `/shop/category/[category]`, `/about`, `/contact`, `/cart`, `/track`, `/order/[id]` — `DONE (REAL)`
-  - [x] Server-backed search with instant suggestions & URL-synced filters — `DONE (REAL)`
-  - [x] Product page zoom, motif stories, pincode estimation, WhatsApp order CTA, custom commission form — `DONE (REAL)`
-  - [x] Persistent cart via Zustand (`src/store/cart-store.ts`) — `DONE (REAL)`
-  - [x] SEO: JSON-LD (Product, Organization), dynamic sitemap (`/sitemap.xml`), robots (`/robots.txt`) — `DONE (REAL)`
-- [x] 3.4 Security Hardening:
-  - [x] Strict Content Security Policy (allow Razorpay, Cloudinary uploads, frame-ancestors 'self') — `DONE (REAL)`
-  - [x] Upstash Redis rate limiting for production / memory fallback for dev (`src/lib/ratelimit.ts`) — `DONE (REAL)`
-  - [x] Zod schema validation on all mutation routes (`/api/checkout`, `/api/admin/auth`, `/api/contact`, etc.) — `DONE (REAL)`
-  - [x] NoSQL injection resilience tests (`{"$ne": null}`, `$where`) — `DONE (REAL)`
-  - [x] Dependency security audit (`npm audit --omit=dev`: 0 vulnerabilities) — `DONE (REAL)`
-- [x] 3.5 Legal/Compliance:
-  - [x] Settings-backed legal notices, return/cancellation windows, Grievance Officer details (`/terms`, `/privacy`, `/shipping`, `/returns`, `/cancellation`, `/grievance`) — `DONE (REAL)`
+## Gate A: Integration & Build Verification
+- [ ] TypeScript strict compilation (`npx tsc --noEmit`)
+- [ ] ESLint check
+- [ ] Unit & integration test execution (`npm test`)
+- [ ] Production build (`npm run build`)
 
 ---
 
-## 4. Stage 3: Performance, Smoothness & Responsiveness
-- [x] 4.1 Production build compilation: 104/104 SSG/static routes prerendered cleanly — `DONE (REAL)`
-- [x] 4.2 Optimizations:
-  - [x] Responsive images with WebP/AVIF and correct aspect ratios — `DONE (REAL)`
-  - [x] Dynamic imports and lazy-loaded modals — `DONE (REAL)`
-  - [x] MongoDB query optimization with lean projections and indexed queries — `DONE (REAL)`
-- [x] 4.3 Responsive & Device Matrix:
-  - [x] Playwright multi-step E2E tests: storefront browse, product details, cart, legal pages, admin login, quick-add form — `DONE (REAL)`
-  - [x] Safe-area insets, touch-friendly targets, mobile bottom bar — `DONE (REAL)`
-
----
-
-## 5. Stage 4: Full Audit & Evidence Generation
-- [x] Static quality: strict TypeScript (`npx tsc --noEmit`), 0 errors — `DONE (REAL)`
-- [x] Unit & integration test suites (32 tests across 7 suites, 100% pass) — `DONE (REAL)`
-- [x] Autocannon load testing (Home: 804 req/sec, Shop: 405 req/sec, Product Detail: 1046 req/sec, 0 errors, rate limiter verified) — `DONE (REAL)`
-- [x] Content linting script (`npm run content:lint`: 0 forbidden tokens, 0 duplicate slugs) — `DONE (REAL)`
-- [x] Data integrity property test (20 random baskets, integer paise arithmetic verified) — `DONE (REAL)`
-
----
-
-## 6. Stage 5: Fix Loop
-- [x] Resolved all TypeScript type mismatches in order receipt page and load test declarations — `DONE (REAL)`
-- [x] Executed master verify script `npm run verify` end-to-end — `DONE (REAL)`
-
----
-
-## 7. Stage 6: Final Deliverables
-- [x] `AUDIT_REPORT.md` (Executive summary, scorecard table, before/after metrics) — `DONE (REAL)`
-- [x] `OWNER_ACTIONS.md` (Checklist for domain, live keys, photos, legal review) — `DONE (REAL)`
-- [x] `docs/RUNBOOK.md` (Operations, key rotation, troubleshooting, backups) — `DONE (REAL)`
-- [x] Git release tag `v1.0.0-rc1` — `DONE (REAL)`
+## Wave 2 & Gate B: Verification & Master Audit Report
+- [ ] Post-optimization Lighthouse mobile re-measurement
+- [ ] Comprehensive `npm run verify` execution
+- [ ] Final `AUDIT_REPORT.md` generation with honesty verdict
+- [ ] Tagging `v1.0.0-rc2` (if SHIP-READY or SHIP-WITH-CONDITIONS)

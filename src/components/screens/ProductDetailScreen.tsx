@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import { MadhubaniProduct } from '../../types';
 import {
   ArrowLeft, ShoppingBag, Heart, Share2, ZoomIn, Eye,
@@ -8,8 +10,12 @@ import {
   Sparkles, CheckCircle2, MapPin
 } from 'lucide-react';
 import { MithilaMotif } from '../MithilaMotif';
-import { WallVisualizerModal } from '../WallVisualizerModal';
 import { siteConfig } from '../../config/site';
+
+const WallVisualizerModal = dynamic(
+  () => import('../WallVisualizerModal').then(m => m.WallVisualizerModal),
+  { ssr: false }
+);
 
 interface ProductDetailScreenProps {
   product: MadhubaniProduct;
@@ -138,9 +144,12 @@ export const ProductDetailScreen: React.FC<ProductDetailScreenProps> = ({
               style={{ background: 'var(--ivory-deep)', padding: '20px', borderColor: 'var(--hairline-soft)' }}
             >
               <div className="relative overflow-hidden flex items-center justify-center bg-stone-50" style={{ aspectRatio: '4/5' }}>
-                <img
+                <Image
                   src={activeImage}
                   alt={p.name || p.title}
+                  priority
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                   className="w-full h-full object-contain transition-all duration-300"
                 />
 
@@ -182,13 +191,20 @@ export const ProductDetailScreen: React.FC<ProductDetailScreenProps> = ({
                   <button
                     key={idx}
                     onClick={() => setActiveImage(thumbUrl)}
+                    aria-label={`View image thumbnail ${idx + 1}`}
                     className={`relative w-16 h-20 rounded border overflow-hidden shrink-0 transition-all ${
                       activeImage === thumbUrl
                         ? 'ring-2 ring-vermilion border-vermilion scale-105'
                         : 'border-line opacity-70 hover:opacity-100'
                     }`}
                   >
-                    <img src={thumbUrl} alt={`Thumbnail ${idx + 1}`} className="w-full h-full object-cover" />
+                    <Image
+                      src={thumbUrl}
+                      alt={`Thumbnail ${idx + 1}`}
+                      fill
+                      sizes="64px"
+                      className="object-cover"
+                    />
                   </button>
                 ))}
               </div>
@@ -502,8 +518,14 @@ export const ProductDetailScreen: React.FC<ProductDetailScreenProps> = ({
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
                 >
-                  <div className="aspect-[4/5] overflow-hidden bg-stone-50">
-                    <img src={r.image} alt={r.name || r.title} className="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300" />
+                  <div className="relative aspect-[4/5] overflow-hidden bg-stone-50">
+                    <Image
+                      src={r.image}
+                      alt={r.name || r.title}
+                      fill
+                      sizes="(max-width: 640px) 50vw, 25vw"
+                      className="object-contain p-2 group-hover:scale-105 transition-transform duration-300"
+                    />
                   </div>
                   <div className="p-3 border-t" style={{ borderColor: 'var(--line)' }}>
                     <p className="text-xs uppercase font-medium" style={{ color: 'var(--vermilion)' }}>{r.categoryShort}</p>
