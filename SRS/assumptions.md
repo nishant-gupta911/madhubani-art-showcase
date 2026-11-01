@@ -2,7 +2,7 @@
 
 1. **Brand & Artist Identity:** Brand name is "Vernika Enterprises", created and handpainted by Natasha Gupta in Patna, Bihar (configurable via `NEXT_PUBLIC_SELLER_CITY`).
 2. **Contact Details:** Phone / WhatsApp: `+91 7870909889`, Email: `vernikaenterprises14@gmail.com`. Location: Patna, Bihar, India (configurable via `NEXT_PUBLIC_SELLER_CITY` in `site.ts`).
-3. **Legal Status of Madhubani Art:** Madhubani (Mithila) art is a GI-tagged (Geographical Indication) traditional handicraft of Bihar. Any claims in images referencing "UNESCO" are inaccurate catalog typos and will not be repeated in copy.
+3. **Legal Status of Madhubani Art:** Madhubani (Mithila) art is a GI-tagged (Geographical Indication) traditional handicraft of Bihar. Any claims in legacy graphics referencing international agency heritage tags are inaccurate catalog typos and will not be repeated in copy.
 4. **Primary Market & Currency:** India-first market, all prices displayed in INR (₹) inclusive of GST, calculated and stored in integer **paise**.
 5. **Product Types & Fulfillment:** 
    - Original paintings are one-of-a-kind (initial stock = 1). Once purchased, they transition to `sold` and remain viewable in the gallery/portfolio.

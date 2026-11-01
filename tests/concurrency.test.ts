@@ -68,6 +68,49 @@ describe('Concurrency & Stock Reservation / Release', () => {
     expect(finalProduct?.status).toBe('sold');
   });
 
+  it('concurrency test: 20 parallel buyers for stock=1; exactly 1 succeeds, 19 fail, stock never negative', async () => {
+    await Product.deleteMany({ ref: 'TEST-CONCURRENCY-20' });
+    const product = await Product.create({
+      ref: 'TEST-CONCURRENCY-20',
+      name: 'High Contention Statement Piece',
+      slug: 'high-contention-statement-piece',
+      category: 'paintings',
+      subCategory: 'large_statement_pieces',
+      type: 'original_painting',
+      stock: 1,
+      price: 849900,
+      dimensions: { displayString: '24 x 36 in' },
+      technique: 'Bharni full color',
+      material: 'Handmade paper',
+      description: 'Grand statement original',
+      story: 'Traditional festival harmony',
+      status: 'published',
+    });
+
+    // Launch 20 concurrent atomic reservations
+    const attempts = Array.from({ length: 20 }, () =>
+      Product.findOneAndUpdate(
+        { _id: product._id, stock: { $gte: 1 } },
+        { $inc: { stock: -1 }, $set: { status: 'sold' } },
+        { returnDocument: 'after' }
+      )
+    );
+
+    const results = await Promise.all(attempts);
+
+    const successes = results.filter(Boolean);
+    const failures = results.filter((res) => res === null);
+
+    expect(successes.length).toBe(1);
+    expect(failures.length).toBe(19);
+
+    const finalProduct = await Product.findById(product._id);
+    expect(finalProduct?.stock).toBe(0);
+    expect(finalProduct?.status).toBe('sold');
+
+    await Product.deleteMany({ ref: 'TEST-CONCURRENCY-20' });
+  });
+
   it('stock release test: releases stock for abandoned unpaid orders after 15 minutes', async () => {
     // 1. Create product with stock = 0 (as if claimed by a buyer)
     await Product.deleteMany({ ref: 'TEST-CONCURRENCY-P02' });

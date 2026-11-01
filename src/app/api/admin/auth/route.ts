@@ -1,6 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { z } from 'zod';
 import { authenticateAdmin, createAdminSessionToken, verifyAdminRequest } from '@/lib/auth';
 import { checkRateLimit } from '@/lib/ratelimit';
+
+const AdminLoginSchema = z.object({
+  email: z.string().email('Valid email is required'),
+  password: z.string().min(1, 'Password is required'),
+});
 
 export async function POST(req: NextRequest) {
   try {
@@ -14,12 +20,16 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const body = await req.json();
-    const { email, password } = body;
-
-    if (!email || !password) {
-      return NextResponse.json({ error: 'Email and password are required' }, { status: 400 });
+    const body = await req.json().catch(() => ({}));
+    const validation = AdminLoginSchema.safeParse(body);
+    if (!validation.success) {
+      return NextResponse.json(
+        { error: 'Invalid email or password format', details: validation.error.flatten().fieldErrors },
+        { status: 400 }
+      );
     }
+
+    const { email, password } = validation.data;
 
     const isValid = await authenticateAdmin(email, password);
     if (!isValid) {

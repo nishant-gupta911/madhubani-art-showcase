@@ -9,7 +9,7 @@ const rawState = process.env.NEXT_PUBLIC_SELLER_STATE?.trim() || 'Bihar';
 const rawPincode = process.env.NEXT_PUBLIC_SELLER_PINCODE?.trim() || '800001';
 
 if (process.env.NODE_ENV === 'production') {
-  if (!rawCity || rawCity.includes('[YOUR CITY]')) {
+  if (!rawCity || rawCity.startsWith('[')) {
     throw new Error(
       'FATAL: NEXT_PUBLIC_SELLER_CITY is unset or set to placeholder. Configure a real city in environment variables before building for production.'
     );
@@ -26,10 +26,11 @@ export const siteConfig = {
   tagline: "Madhubani art, handpainted by Natasha Gupta",
   description:
     "Original, handpainted Madhubani (Mithila) art directly from the artist Natasha Gupta. Heritage art on framed canvases, pure cotton dupattas, and handcrafted lifestyle bags.",
+  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://vernikaenterprises.com',
   origin: `${activeCity}, ${activeState}, India`,
   sellerCity: activeCity,
   sellerState: activeState,
-  isSellerCityConfigured: Boolean(rawCity && !rawCity.includes('[YOUR CITY]')),
+  isSellerCityConfigured: Boolean(rawCity && !rawCity.startsWith('[')),
   artHeritage: "Traditional folk art of the Mithila region",
 
   contact: {

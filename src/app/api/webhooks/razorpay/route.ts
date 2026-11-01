@@ -76,6 +76,36 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ status: 'success' }, { status: 200 });
     }
 
+    if (eventType === 'payment.failed') {
+      const payment = event.payload?.payment?.entity;
+      const razorpayOrderId = payment?.order_id;
+      if (razorpayOrderId) {
+        const order = await Order.findOne({ 'payment.razorpayOrderId': razorpayOrderId });
+        if (order && order.status === 'pending' && !order.stockReleased) {
+          order.status = 'cancelled';
+          order.payment.status = 'failed';
+          order.stockReleased = true;
+          order.statusHistory.push({
+            status: 'cancelled',
+            at: new Date(),
+            note: `Payment failed via webhook: ${payment.error_description || 'Declined'}`,
+          });
+          await order.save();
+
+          // Restore stock
+          for (const item of order.items) {
+            if (item.isOriginal) {
+              await Product.updateOne(
+                { _id: item.productId },
+                { $inc: { stock: item.qty }, $set: { status: 'published' } }
+              );
+            }
+          }
+        }
+      }
+      return NextResponse.json({ status: 'failure_recorded' }, { status: 200 });
+    }
+
     return NextResponse.json({ status: 'unhandled_event' }, { status: 200 });
   } catch (err: any) {
     console.error('Razorpay Webhook Error:', err);

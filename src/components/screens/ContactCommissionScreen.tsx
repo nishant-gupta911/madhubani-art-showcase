@@ -1,10 +1,54 @@
+'use client';
+
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Instagram, Facebook, Send, CheckCircle, MessageCircle, Clock, Globe } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle, Clock, Globe, AlertCircle, Loader2 } from 'lucide-react';
 import { MithilaMotif } from '../MithilaMotif';
+import { siteConfig } from '../../config/site';
 
 export const ContactCommissionScreen: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
-  const [subject, setSubject] = useState('commission');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    subject: 'commission',
+    dimensions: '18×24 in (Medium)',
+    budget: '₹5,000 – ₹10,000',
+    message: '',
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      setError('Please provide your name, email address, and a brief message.');
+      return;
+    }
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || 'Failed to submit inquiry');
+      }
+
+      setSubmitted(true);
+    } catch (err: any) {
+      setError(err.message || 'Unable to submit your message right now. Please WhatsApp Natasha directly.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div style={{ background: 'var(--ivory)', minHeight: '100vh' }}>
@@ -14,14 +58,14 @@ export const ContactCommissionScreen: React.FC = () => {
           <div className="flex items-center gap-3">
             <span className="w-6 h-px" style={{ background: 'rgba(250,246,239,0.3)' }} />
             <span className="text-eyebrow" style={{ color: 'rgba(250,246,239,0.5)', letterSpacing: '0.18em' }}>
-              Direct Studio Access
+              Direct Artist Studio Access
             </span>
           </div>
           <h1 className="font-display font-bold text-headline" style={{ color: 'var(--ivory)' }}>
-            Commission &amp; Inquiries
+            Commissions &amp; Studio Inquiries
           </h1>
           <p className="text-body-sm" style={{ color: 'rgba(250,246,239,0.6)', maxWidth: '520px' }}>
-            Commission a bespoke original painting, enquire about custom framing, or ask about authentication provenance. The studio team responds within 24 hours.
+            Commission a bespoke original painting, enquire about custom dimensions, or discuss wedding suites directly with artist Natasha Gupta.
           </p>
         </div>
       </div>
@@ -38,23 +82,45 @@ export const ContactCommissionScreen: React.FC = () => {
               >
                 <MithilaMotif type="four-corners" color="var(--vermilion)" />
                 <CheckCircle className="h-16 w-16 text-leaf mx-auto" style={{ color: 'var(--leaf)' }} />
-                <h2 className="font-display font-bold text-title" style={{ color: 'var(--ink)' }}>Message Sent!</h2>
+                <h2 className="font-display font-bold text-title" style={{ color: 'var(--ink)' }}>Message Sent to Studio!</h2>
                 <p className="text-body-sm max-w-sm mx-auto" style={{ color: 'var(--ink-soft)' }}>
-                  The Mithila Atelier studio has received your message and will reply personally within 24 hours.
+                  Natasha Gupta at Vernika Enterprises has received your commission details and will review and reply within 24 hours.
                 </p>
-                <button onClick={() => setSubmitted(false)} className="btn btn-outline">
+                <button
+                  onClick={() => {
+                    setSubmitted(false);
+                    setFormData({
+                      name: '',
+                      email: '',
+                      phone: '',
+                      subject: 'commission',
+                      dimensions: '18×24 in (Medium)',
+                      budget: '₹5,000 – ₹10,000',
+                      message: '',
+                    });
+                  }}
+                  className="btn btn-outline"
+                >
                   Send Another Message
                 </button>
               </div>
             ) : (
-              <div
+              <form
+                onSubmit={handleSubmit}
                 className="p-6 space-y-6 relative"
                 style={{ background: 'var(--ivory-deep)', border: '1px solid var(--hairline-soft)', borderRadius: '4px' }}
               >
                 <MithilaMotif type="four-corners" color="rgba(176,48,32,0.08)" />
                 <h2 className="font-display font-semibold text-title" style={{ color: 'var(--ink)' }}>
-                  Send a Message
+                  Send a Message to Natasha
                 </h2>
+
+                {error && (
+                  <div className="p-3 bg-red-50 border border-red-200 text-red-800 text-xs rounded flex items-center gap-2">
+                    <AlertCircle size={16} className="shrink-0" />
+                    <span>{error}</span>
+                  </div>
+                )}
 
                 {/* Subject selector */}
                 <div className="space-y-2">
@@ -64,16 +130,17 @@ export const ContactCommissionScreen: React.FC = () => {
                       { id: 'commission', label: 'Commission a Painting' },
                       { id: 'inquiry',    label: 'General Inquiry' },
                       { id: 'framing',    label: 'Framing & Mounting' },
-                      { id: 'wholesale',  label: 'Gallery & Wholesale' },
+                      { id: 'wholesale',  label: 'Corporate & Wedding Gifting' },
                     ].map(s => (
                       <button
+                        type="button"
                         key={s.id}
-                        onClick={() => setSubject(s.id)}
+                        onClick={() => setFormData({ ...formData, subject: s.id })}
                         className="badge transition-colors cursor-pointer"
                         style={{
-                          background: subject === s.id ? 'var(--vermilion)' : 'var(--ivory)',
-                          color: subject === s.id ? 'var(--ivory)' : 'var(--ink-muted)',
-                          border: `1px solid ${subject === s.id ? 'var(--vermilion)' : 'var(--hairline)'}`,
+                          background: formData.subject === s.id ? 'var(--vermilion)' : 'var(--ivory)',
+                          color: formData.subject === s.id ? 'var(--ivory)' : 'var(--ink-muted)',
+                          border: `1px solid ${formData.subject === s.id ? 'var(--vermilion)' : 'var(--hairline)'}`,
                           fontSize: '0.7rem',
                         }}
                       >
@@ -85,33 +152,39 @@ export const ContactCommissionScreen: React.FC = () => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="input-label">Your Name</label>
-                    <input className="input" placeholder="Arjun Sharma" />
+                    <label className="input-label">Your Name *</label>
+                    <input
+                      required
+                      value={formData.name}
+                      onChange={e => setFormData({ ...formData, name: e.target.value })}
+                      className="input"
+                      placeholder="e.g. Radhika Sharma"
+                    />
                   </div>
                   <div>
-                    <label className="input-label">Email Address</label>
-                    <input className="input" type="email" placeholder="arjun@example.com" />
+                    <label className="input-label">Email Address *</label>
+                    <input
+                      required
+                      type="email"
+                      value={formData.email}
+                      onChange={e => setFormData({ ...formData, email: e.target.value })}
+                      className="input"
+                      placeholder="radhika@example.com"
+                    />
                   </div>
-                  <div>
-                    <label className="input-label">Phone (optional)</label>
-                    <input className="input" type="tel" placeholder="+91 9876543210" />
-                  </div>
-                  <div>
-                    <label className="input-label">Country</label>
-                    <select className="input" style={{ appearance: 'none', backgroundImage: 'url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%231A1209\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpolyline points=\'6 9 12 15 18 9\'%3E%3C/polyline%3E%3C/svg%3E")', backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center', backgroundSize: '16px' }}>
-                      <option>India</option>
-                      <option>United States</option>
-                      <option>United Kingdom</option>
-                      <option>Germany</option>
-                      <option>France</option>
-                      <option>Australia</option>
-                      <option>Japan</option>
-                      <option>Other</option>
-                    </select>
+                  <div className="sm:col-span-2">
+                    <label className="input-label">Phone / WhatsApp (optional)</label>
+                    <input
+                      type="tel"
+                      value={formData.phone}
+                      onChange={e => setFormData({ ...formData, phone: e.target.value })}
+                      className="input"
+                      placeholder="+91 9876543210"
+                    />
                   </div>
                 </div>
 
-                {subject === 'commission' && (
+                {formData.subject === 'commission' && (
                   <div
                     className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 relative"
                     style={{
@@ -121,62 +194,60 @@ export const ContactCommissionScreen: React.FC = () => {
                     }}
                   >
                     <div>
-                      <label className="input-label">Preferred Style</label>
-                      <select className="input" style={{ appearance: 'none', backgroundImage: 'url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%231A1209\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpolyline points=\'6 9 12 15 18 9\'%3E%3C/polyline%3E%3C/svg%3E")', backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center', backgroundSize: '16px' }}>
-                        <option>Bharni (Bold solid fills)</option>
-                        <option>Kachni (Fine parallel lines)</option>
-                        <option>Tantrik (Cosmic geometry)</option>
-                        <option>Godna (Folk tattoo motifs)</option>
-                        <option>Kohbar (Sacred nuptial symbols)</option>
-                      </select>
-                    </div>
-                    <div>
                       <label className="input-label">Desired Dimensions</label>
-                      <select className="input" style={{ appearance: 'none', backgroundImage: 'url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%231A1209\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpolyline points=\'6 9 12 15 18 9\'%3E%3C/polyline%3E%3C/svg%3E")', backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center', backgroundSize: '16px' }}>
+                      <select
+                        value={formData.dimensions}
+                        onChange={e => setFormData({ ...formData, dimensions: e.target.value })}
+                        className="input"
+                      >
                         <option>12×16 in (Small)</option>
                         <option>18×24 in (Medium)</option>
                         <option>24×36 in (Large)</option>
-                        <option>Custom Size (Specify below)</option>
+                        <option>Custom Size (Specify in message)</option>
                       </select>
                     </div>
                     <div>
                       <label className="input-label">Budget Range (₹)</label>
-                      <select className="input" style={{ appearance: 'none', backgroundImage: 'url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%231A1209\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpolyline points=\'6 9 12 15 18 9\'%3E%3C/polyline%3E%3C/svg%3E")', backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center', backgroundSize: '16px' }}>
+                      <select
+                        value={formData.budget}
+                        onChange={e => setFormData({ ...formData, budget: e.target.value })}
+                        className="input"
+                      >
                         <option>₹2,000 – ₹5,000</option>
                         <option>₹5,000 – ₹10,000</option>
                         <option>₹10,000 – ₹25,000</option>
                         <option>Above ₹25,000</option>
                       </select>
                     </div>
-                    <div>
-                      <label className="input-label">Delivery Timeline</label>
-                      <select className="input" style={{ appearance: 'none', backgroundImage: 'url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%231A1209\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpolyline points=\'6 9 12 15 18 9\'%3E%3C/polyline%3E%3C/svg%3E")', backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center', backgroundSize: '16px' }}>
-                        <option>Flexible</option>
-                        <option>Within 1 month</option>
-                        <option>Within 2 weeks (Rush)</option>
-                      </select>
-                    </div>
                   </div>
                 )}
 
                 <div>
-                  <label className="input-label">Message</label>
+                  <label className="input-label">Message / Motif Request *</label>
                   <textarea
+                    required
+                    value={formData.message}
+                    onChange={e => setFormData({ ...formData, message: e.target.value })}
                     className="input min-h-[140px] resize-y"
-                    placeholder={subject === 'commission'
-                      ? 'Describe the theme, deities, fish, peacocks, or personal story you want painted…'
-                      : 'Write your inquiry detail here…'
+                    placeholder={formData.subject === 'commission'
+                      ? 'Describe the theme, deities, fish, peacocks, tree of life, or personal story you want painted…'
+                      : 'How can we help you?'
                     }
                   />
                 </div>
 
                 <button
-                  onClick={() => setSubmitted(true)}
-                  className="btn btn-primary btn-lg w-full justify-center"
+                  type="submit"
+                  disabled={loading}
+                  className="btn btn-primary btn-lg w-full justify-center disabled:opacity-50"
                 >
-                  <Send size={14} /> Send Message to Studio
+                  {loading ? (
+                    <><Loader2 size={16} className="animate-spin" /> Sending to Natasha…</>
+                  ) : (
+                    <><Send size={14} /> Send Message to Studio</>
+                  )}
                 </button>
-              </div>
+              </form>
             )}
           </div>
 
@@ -188,81 +259,46 @@ export const ContactCommissionScreen: React.FC = () => {
             >
               <MithilaMotif type="four-corners" color="rgba(176,48,32,0.08)" />
               <h3 className="font-display font-semibold text-title" style={{ color: 'var(--ink)' }}>
-                Studio Contact
+                Studio Contact Details
               </h3>
 
               <div className="space-y-5">
                 {[
-                  { icon: Mail,    label: 'Email',    val: 'studio@mithilaatelier.com' },
-                  { icon: Phone,   label: 'Phone',    val: '+91 92345 67890 (WhatsApp)' },
-                  { icon: MapPin,  label: 'Location', val: 'Jitwarpur Village, Madhubani District, Bihar 847226' },
-                  { icon: Clock,   label: 'Hours',    val: 'Mon–Sat, 9:00 AM – 6:00 PM IST' },
-                  { icon: Globe,   label: 'Ships to', val: 'Worldwide · Archival insured shipping' },
-                ].map(({ icon: Icon, label, val }) => (
-                  <div key={label} className="flex items-start gap-4">
+                  { icon: Mail,    label: 'Email',    val: siteConfig.contact.email, href: `mailto:${siteConfig.contact.email}` },
+                  { icon: Phone,   label: 'Phone / WhatsApp', val: `${siteConfig.contact.displayPhone}`, href: siteConfig.contact.whatsappLink },
+                  { icon: MapPin,  label: 'Studio Location', val: siteConfig.origin },
+                  { icon: Clock,   label: 'Studio Hours',    val: 'Mon–Sat, 10:00 AM – 7:00 PM IST' },
+                  { icon: Globe,   label: 'Shipping', val: 'Pan-India Insured Express Courier' },
+                ].map(item => (
+                  <div key={item.label} className="flex items-start gap-3.5">
                     <div
-                      className="h-9 w-9 shrink-0 flex items-center justify-center rounded-full"
+                      className="p-2 rounded-sm shrink-0 mt-0.5"
                       style={{ background: 'var(--ivory)', border: '1px solid var(--hairline-soft)' }}
                     >
-                      <Icon size={14} style={{ color: 'var(--vermilion)' }} />
+                      <item.icon size={15} style={{ color: 'var(--vermilion)' }} />
                     </div>
                     <div>
-                      <p className="text-caption" style={{ color: 'var(--ink-dim)' }}>{label}</p>
-                      <p className="text-body-sm font-semibold mt-0.5" style={{ color: 'var(--ink-soft)' }}>{val}</p>
+                      <p className="text-eyebrow" style={{ color: 'var(--ink-muted)', letterSpacing: '0.12em' }}>
+                        {item.label}
+                      </p>
+                      {item.href ? (
+                        <a
+                          href={item.href}
+                          target={item.href.startsWith('http') ? '_blank' : undefined}
+                          rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                          className="font-ui text-body-sm hover:underline font-medium"
+                          style={{ color: 'var(--ink)' }}
+                        >
+                          {item.val}
+                        </a>
+                      ) : (
+                        <p className="font-ui text-body-sm font-medium" style={{ color: 'var(--ink)' }}>
+                          {item.val}
+                        </p>
+                      )}
                     </div>
                   </div>
                 ))}
-              </div>
-            </div>
-
-            {/* Map placeholder */}
-            <div
-              className="w-full h-48 flex items-center justify-center relative overflow-hidden"
-              style={{
-                borderRadius: '4px',
-                border: '1px solid var(--hairline-soft)',
-                background: 'var(--ivory-deep)',
-                backgroundImage: 'repeating-linear-gradient(0deg, var(--hairline-soft) 0, var(--hairline-soft) 1px, transparent 1px, transparent 40px), repeating-linear-gradient(90deg, var(--hairline-soft) 0, var(--hairline-soft) 1px, transparent 1px, transparent 40px)',
-              }}
-            >
-              <div className="text-center space-y-2 relative z-10">
-                <MapPin className="h-8 w-8 mx-auto" style={{ color: 'var(--vermilion)' }} />
-                <p className="font-display font-semibold text-body" style={{ color: 'var(--ink)' }}>Jitwarpur, Madhubani</p>
-                <p className="text-caption" style={{ color: 'var(--ink-dim)' }}>Bihar, India · 26.36°N, 86.07°E</p>
-              </div>
-            </div>
-
-            {/* Social Links */}
-            <div
-              className="p-5 space-y-4"
-              style={{ background: 'var(--ivory-deep)', border: '1px solid var(--hairline-soft)', borderRadius: '4px' }}
-            >
-              <p className="text-eyebrow" style={{ color: 'var(--ink-muted)' }}>Follow the Studio</p>
-              <div className="flex gap-2">
-                {[
-                  { icon: Instagram, label: 'Instagram', handle: '@mithilaatelier', link: '#' },
-                  { icon: Facebook,  label: 'Facebook',  handle: 'mithila.atelier', link: '#' },
-                ].map(s => {
-                  const Icon = s.icon;
-                  return (
-                    <a
-                      key={s.label}
-                      href={s.link}
-                      className="flex-1 flex flex-col items-center gap-1.5 py-3 transition-all duration-200"
-                      style={{
-                        background: 'var(--ivory)',
-                        border: '1px solid var(--hairline)',
-                        borderRadius: '3px',
-                      }}
-                      onMouseEnter={e => e.currentTarget.style.borderColor = 'var(--vermilion)'}
-                      onMouseLeave={e => e.currentTarget.style.borderColor = 'var(--hairline)'}
-                    >
-                      <Icon size={16} style={{ color: 'var(--vermilion)' }} />
-                      <span className="text-caption font-semibold" style={{ color: 'var(--ink-soft)' }}>{s.label}</span>
-                      <span className="text-[10px]" style={{ color: 'var(--ink-dim)' }}>{s.handle}</span>
-                    </a>
-                  );
-                })}
               </div>
             </div>
           </aside>

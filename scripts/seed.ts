@@ -125,7 +125,8 @@ async function seed() {
     const adminEmail = process.env.ADMIN_EMAIL || 'vernikaenterprises14@gmail.com';
     const existingAdmin = await User.findOne({ email: adminEmail });
     if (!existingAdmin) {
-      const passwordHash = process.env.ADMIN_PASSWORD_HASH;
+      const passwordHash = process.env.ADMIN_PASSWORD_HASH || 
+        (process.env.ADMIN_INITIAL_PASSWORD ? await bcrypt.hash(process.env.ADMIN_INITIAL_PASSWORD, 12) : null);
       if (passwordHash) {
         await User.create({
           email: adminEmail,
@@ -133,9 +134,9 @@ async function seed() {
           name: 'Natasha Gupta',
           role: 'admin',
         });
-        console.log(` Admin user created: ${adminEmail} (from ADMIN_PASSWORD_HASH env)`);
+        console.log(` Admin user created: ${adminEmail}`);
       } else {
-        console.log(`⚠️ ADMIN_PASSWORD_HASH is unset. Admin account omitted from seed. Run "npm run admin:create" to set credentials.`);
+        console.log(`⚠️ ADMIN_PASSWORD_HASH and ADMIN_INITIAL_PASSWORD are unset. Admin account omitted from seed. Run "npm run admin:create" to set credentials.`);
       }
     }
 

@@ -6,7 +6,7 @@ import { Order } from '@/models/Order';
 import { generateOrderId } from '@/lib/order-id';
 import { getRazorpayClient } from '@/lib/razorpay';
 import { checkRateLimit } from '@/lib/ratelimit';
-import { siteConfig } from '@/config/site';
+import { getSiteSettings } from '@/lib/settings';
 import { releaseExpiredOrdersStock } from '@/lib/stock';
 
 const CheckoutSchema = z.object({
@@ -121,43 +121,55 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    // 3. Compute Shipping, COD, Gift Wrap
-    const freeShippingThreshold = siteConfig.shipping.freeShippingThresholdPaise; // ₹1,499
+    // 3. Compute Shipping, COD, Gift Wrap from Settings DB
+    const dbSettings = await getSiteSettings();
+    const freeShippingThreshold = dbSettings.shipping.freeShippingThresholdPaise; // ₹1,499
     let shippingPaise = 0;
     if (!hasPainting && subtotalPaise < freeShippingThreshold) {
-      shippingPaise = siteConfig.shipping.standardShippingFeePaise; // ₹79
+      shippingPaise = dbSettings.shipping.standardFeePaise; // ₹79
     }
 
     let codFeePaise = 0;
     if (paymentMethod === 'cod') {
-      if (subtotalPaise > siteConfig.shipping.codMaxThresholdPaise) {
+      if (!dbSettings.shipping.codAvailable) {
         return NextResponse.json(
-          { error: 'Cash on Delivery is only available for orders up to ₹3,000. Please choose UPI / Online payment.' },
+          { error: 'Cash on Delivery is currently unavailable. Please pay online.' },
           { status: 400 }
         );
       }
-      codFeePaise = siteConfig.shipping.codConvenienceFeePaise; // ₹49
+      if (subtotalPaise > dbSettings.shipping.codMaxThresholdPaise) {
+        return NextResponse.json(
+          { error: `Cash on Delivery is only available for orders up to ₹${(dbSettings.shipping.codMaxThresholdPaise / 100).toLocaleString('en-IN')}. Please choose UPI / Online payment.` },
+          { status: 400 }
+        );
+      }
+      codFeePaise = dbSettings.shipping.codConvenienceFeePaise; // ₹49
     }
 
-    const giftWrapPaise = giftWrap ? siteConfig.shipping.giftWrappingFeePaise : 0; // ₹99
+    const giftWrapPaise = giftWrap ? dbSettings.shipping.giftWrappingFeePaise : 0; // ₹99
     const totalPaise = subtotalPaise + shippingPaise + codFeePaise + giftWrapPaise;
 
-    // 4. Atomic Stock Reservation
-    // For original paintings, reserve immediately
+    // 4. Atomic Stock Reservation (with rollback on partial contention)
+    const successfullyReserved: { productId: string; qty: number }[] = [];
     for (const item of verifiedItems) {
       if (item.isOriginal) {
         const updateRes = await Product.findOneAndUpdate(
           { _id: item.productId, stock: { $gte: item.qty } },
           { $inc: { stock: -item.qty } },
-          { new: true }
+          { returnDocument: 'after' }
         );
 
         if (!updateRes) {
+          // Rollback any earlier reservations in this order
+          for (const rollback of successfullyReserved) {
+            await Product.updateOne({ _id: rollback.productId }, { $inc: { stock: rollback.qty } });
+          }
           return NextResponse.json(
             { error: `"${item.name}" was just claimed by another collector. Stock exhausted.` },
             { status: 409 }
           );
         }
+        successfullyReserved.push({ productId: item.productId, qty: item.qty });
       }
     }
 

@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useEffect, useRef } from 'react';
 import { MadhubaniProduct, MithilaStyle } from '../../types';
 import { ArrowRight, Star, ShoppingBag, Eye, ArrowUpRight, Quote } from 'lucide-react';
@@ -6,11 +8,11 @@ import { siteConfig } from '../../config/site';
 
 interface HomeScreenProps {
   products: MadhubaniProduct[];
-  onSelectProduct: (p: MadhubaniProduct) => void;
-  onNavigateToShop: (category?: string, style?: MithilaStyle) => void;
-  onNavigateToAbout: () => void;
-  onAddToCart: (p: MadhubaniProduct) => void;
-  onQuickView: (p: MadhubaniProduct) => void;
+  onSelectProduct?: (p: MadhubaniProduct) => void;
+  onNavigateToShop?: (category?: string, style?: MithilaStyle) => void;
+  onNavigateToAbout?: () => void;
+  onAddToCart?: (p: MadhubaniProduct) => void;
+  onQuickView?: (p: MadhubaniProduct) => void;
 }
 
 const TRADITIONS: { name: MithilaStyle; tagline: string; desc: string; img: string; count: number }[] = [
@@ -43,6 +45,28 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
   const [addedId,   setAddedId]   = useState<string | null>(null);
   const heroTimer = useRef<number | null>(null);
 
+  const navigateShop = (category?: string, style?: MithilaStyle) => {
+    if (onNavigateToShop) onNavigateToShop(category, style);
+    else if (typeof window !== 'undefined') {
+      window.location.href = category ? `/shop/category/${category}` : '/shop';
+    }
+  };
+
+  const navigateAbout = () => {
+    if (onNavigateToAbout) onNavigateToAbout();
+    else if (typeof window !== 'undefined') window.location.href = '/about';
+  };
+
+  const selectProduct = (p: MadhubaniProduct) => {
+    if (onSelectProduct) onSelectProduct(p);
+    else if (typeof window !== 'undefined') window.location.href = `/shop/${p.slug || p.id}`;
+  };
+
+  const quickView = (p: MadhubaniProduct) => {
+    if (onQuickView) onQuickView(p);
+    else if (typeof window !== 'undefined') window.location.href = `/shop/${p.slug || p.id}`;
+  };
+
   // Auto-cycle hero artwork
   useEffect(() => {
     heroTimer.current = window.setInterval(() => {
@@ -52,7 +76,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
   }, []);
 
   const handleAddToCart = (p: MadhubaniProduct) => {
-    onAddToCart(p);
+    if (onAddToCart) onAddToCart(p);
+    else if (typeof window !== 'undefined') window.location.href = `/shop/${p.slug || p.id}`;
     setAddedId(p.id);
     setTimeout(() => setAddedId(null), 1800);
   };
@@ -128,14 +153,14 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             {/* CTAs */}
             <div className="flex flex-wrap gap-3">
               <button
-                onClick={() => onNavigateToShop()}
+                onClick={() => navigateShop()}
                 className="btn btn-primary btn-lg"
               >
                 Explore Shop ({products.length} Artworks)
                 <ArrowRight size={16} />
               </button>
               <button
-                onClick={onNavigateToAbout}
+                onClick={navigateAbout}
                 className="btn btn-outline btn-lg"
               >
                 Our Heritage
@@ -244,10 +269,10 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               headline={<>Featured<br className="hidden sm:block" /> Masterpieces</>}
             />
             <button
-              onClick={() => onNavigateToShop()}
+              onClick={() => navigateShop()}
               className="btn btn-outline btn-sm hidden sm:flex shrink-0 items-center gap-2"
             >
-              View all 80 <ArrowRight size={14} />
+              View Collection ({products.length}) <ArrowRight size={14} />
             </button>
           </div>
 
@@ -262,7 +287,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 <div
                   className="relative overflow-hidden"
                   style={{ aspectRatio: '4/5', background: 'var(--ivory-deep)', cursor: 'pointer' }}
-                  onClick={() => onSelectProduct(p)}
+                  onClick={() => selectProduct(p)}
                 >
                   <img
                     src={p.image}
@@ -275,7 +300,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   <div className="card-actions">
                     <div className="flex gap-2">
                       <button
-                        onClick={e => { e.stopPropagation(); onQuickView(p); }}
+                        onClick={e => { e.stopPropagation(); quickView(p); }}
                         className="btn btn-outline btn-sm"
                         style={{ background: 'rgba(250,246,239,0.95)', border: 'none', color: 'var(--ink)' }}
                       >
@@ -316,7 +341,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   <h3
                     className="font-display font-semibold leading-snug line-clamp-2 cursor-pointer"
                     style={{ fontSize: '1rem', color: 'var(--ink)', transition: 'color 0.2s' }}
-                    onClick={() => onSelectProduct(p)}
+                    onClick={() => selectProduct(p)}
                     onMouseEnter={e => (e.currentTarget.style.color = 'var(--vermilion)')}
                     onMouseLeave={e => (e.currentTarget.style.color = 'var(--ink)')}
                   >
@@ -359,8 +384,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
 
           {/* Mobile CTA */}
           <div className="flex sm:hidden justify-center">
-            <button onClick={() => onNavigateToShop()} className="btn btn-outline btn-lg">
-              View all 80 Artworks <ArrowRight size={16} />
+            <button onClick={() => navigateShop()} className="btn btn-outline btn-lg">
+              View Collection ({products.length}) <ArrowRight size={16} />
             </button>
           </div>
         </div>
@@ -422,7 +447,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               </ul>
 
               <button
-                onClick={onNavigateToAbout}
+                onClick={navigateAbout}
                 className="btn btn-ghost-light btn-lg"
               >
                 Read our full heritage story <ArrowRight size={16} />
@@ -436,7 +461,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 <div
                   className="row-span-2 overflow-hidden cursor-pointer group relative"
                   style={{ borderRadius: '3px', border: '1px solid rgba(255,255,255,0.08)' }}
-                  onClick={() => onSelectProduct(products.find(p => p.image === '/madu/49.jpeg') || products[0])}
+                  onClick={() => selectProduct(products.find(p => p.image === '/madu/49.jpeg') || products[0])}
                 >
                   <img
                     src="/madu/49.jpeg"
@@ -459,7 +484,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                     key={i}
                     className="overflow-hidden cursor-pointer group relative"
                     style={{ borderRadius: '3px', border: '1px solid rgba(255,255,255,0.08)', aspectRatio: '1' }}
-                    onClick={() => onSelectProduct(products.find(p => p.image === src) || products[i + 1])}
+                    onClick={() => selectProduct(products.find(p => p.image === src) || products[i + 1])}
                   >
                     <img
                       src={src}
@@ -488,7 +513,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           <SectionEyebrow
             eyebrow="Five Lineage Disciplines"
             headline={<>Mithila's Living<br />Traditions</>}
-            subhead="Each style carries its own symbolic canon, technical vocabulary, and spiritual meaning — passed mother to daughter for 2,500 years."
+            subhead="Each style carries its own symbolic canon, technical vocabulary, and spiritual meaning — passed mother to daughter for centuries."
             align="center"
           />
 
@@ -496,7 +521,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             {TRADITIONS.map((d, i) => (
               <button
                 key={d.name}
-                onClick={() => onNavigateToShop(undefined, d.name)}
+                onClick={() => navigateShop(undefined, d.name)}
                 className="group text-left flex flex-col overflow-hidden"
                 style={{
                   background: 'var(--ivory)',
@@ -578,7 +603,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 headline="New Arrivals"
               />
               <button
-                onClick={() => onNavigateToShop()}
+                onClick={() => navigateShop()}
                 className="btn btn-outline btn-sm hidden sm:flex items-center gap-2 shrink-0"
               >
                 See all <ArrowRight size={13} />
@@ -591,7 +616,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   key={p.id}
                   className="art-card group shrink-0"
                   style={{ width: '220px', borderRadius: '4px', cursor: 'pointer' }}
-                  onClick={() => onSelectProduct(p)}
+                  onClick={() => selectProduct(p)}
                 >
                   <div
                     className="relative overflow-hidden"
@@ -757,11 +782,11 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           </div>
 
           <div className="flex flex-wrap justify-center gap-3">
-            <button onClick={() => onNavigateToShop()} className="btn btn-primary btn-lg">
+            <button onClick={() => navigateShop()} className="btn btn-primary btn-lg">
               Browse All Artworks <ArrowRight size={16} />
             </button>
             <button
-              onClick={() => onNavigateToShop('kohbar_ceremonial', 'Kohbar')}
+              onClick={() => navigateShop('kohbar_ceremonial', 'Kohbar')}
               className="btn btn-outline btn-lg"
             >
               Wedding &amp; Kohbar Art

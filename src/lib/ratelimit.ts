@@ -54,10 +54,16 @@ export async function checkRateLimit(
     try {
       const res = await upstashRatelimit.limit(identifier);
       return { success: res.success, remaining: res.remaining };
-    } catch {
-      // Fallback on network failure
+    } catch (err) {
+      console.error('[SECURITY] Upstash rate limit call failed, falling back to local instance limiter:', err);
       return memoryRateLimit(identifier, limit, windowSeconds);
     }
+  }
+
+  if (process.env.NODE_ENV === 'production') {
+    console.error(
+      '[CRITICAL SECURITY WARNING] Upstash Redis is UNSET in production mode! Distributed rate-limiting is inactive across multi-region serverless instances.'
+    );
   }
 
   return memoryRateLimit(identifier, limit, windowSeconds);

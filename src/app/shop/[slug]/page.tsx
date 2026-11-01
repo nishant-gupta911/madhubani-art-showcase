@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import { getCachedProductBySlug, getCachedProducts, mapCleanProductToMadhubani } from '@/lib/products';
 import { HeaderBar } from '@/components/HeaderBar';
 import { ProductDetailScreen } from '@/components/screens/ProductDetailScreen';
@@ -18,6 +18,9 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
+  if (['paintings', 'dupattas', 'bags_and_files'].includes(slug)) {
+    redirect(`/shop/category/${slug}`);
+  }
   const product = await getCachedProductBySlug(slug);
 
   if (!product) {
@@ -48,6 +51,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ProductPage({ params }: PageProps) {
   const { slug } = await params;
+  if (['paintings', 'dupattas', 'bags_and_files'].includes(slug)) {
+    redirect(`/shop/category/${slug}`);
+  }
   const product = await getCachedProductBySlug(slug);
   const allDbProducts = await getCachedProducts();
 

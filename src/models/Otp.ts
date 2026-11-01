@@ -5,6 +5,7 @@ export interface IOtp extends Document {
   otp: string;
   purpose: 'cod_verification' | 'login';
   verified: boolean;
+  attempts: number;
   expiresAt: Date;
   createdAt: Date;
 }
@@ -19,6 +20,7 @@ const OtpSchema = new Schema<IOtp>(
       default: 'cod_verification',
     },
     verified: { type: Boolean, default: false },
+    attempts: { type: Number, default: 0 },
     expiresAt: {
       type: Date,
       required: true,

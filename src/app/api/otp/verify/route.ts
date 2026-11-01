@@ -4,6 +4,7 @@ import { connectToDatabase } from '@/lib/db';
 import { Otp } from '@/models/Otp';
 import { Order } from '@/models/Order';
 import { sendOrderConfirmationEmail } from '@/lib/mail';
+import { checkRateLimit } from '@/lib/ratelimit';
 
 const VerifyOtpSchema = z.object({
   phone: z.string().regex(/^[6-9]\d{9}$/),
@@ -14,6 +15,12 @@ const VerifyOtpSchema = z.object({
 
 export async function POST(req: NextRequest) {
   try {
+    const ip = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'anonymous';
+    const rateCheck = await checkRateLimit(`otp_verify_${ip}`, 10, 60);
+    if (!rateCheck.success) {
+      return NextResponse.json({ error: 'Too many verification attempts. Please wait.' }, { status: 429 });
+    }
+
     const body = await req.json();
     const validation = VerifyOtpSchema.safeParse(body);
     if (!validation.success) {
@@ -24,21 +31,43 @@ export async function POST(req: NextRequest) {
 
     await connectToDatabase();
 
-    const otpRecord = await Otp.findOne({
+    const activeOtp = await Otp.findOne({
       phone,
-      otp,
       purpose,
       verified: false,
       expiresAt: { $gt: new Date() },
     });
 
-    if (!otpRecord) {
-      return NextResponse.json({ error: 'Invalid or expired OTP. Please request a new code.' }, { status: 400 });
+    if (!activeOtp) {
+      return NextResponse.json({ error: 'No active OTP found or code expired. Please request a new code.' }, { status: 400 });
+    }
+
+    // Check attempt lockout
+    if (activeOtp.attempts >= 5) {
+      await Otp.deleteOne({ _id: activeOtp._id });
+      return NextResponse.json({
+        error: 'Too many incorrect attempts (5/5). This OTP has been invalidated for security. Please request a new code.'
+      }, { status: 429 });
+    }
+
+    if (activeOtp.otp !== otp) {
+      activeOtp.attempts += 1;
+      await activeOtp.save();
+      const remaining = 5 - activeOtp.attempts;
+      if (remaining <= 0) {
+        await Otp.deleteOne({ _id: activeOtp._id });
+        return NextResponse.json({
+          error: 'Maximum attempts exceeded. This OTP has been invalidated. Please request a new code.'
+        }, { status: 429 });
+      }
+      return NextResponse.json({
+        error: `Incorrect OTP code. ${remaining} attempt${remaining > 1 ? 's' : ''} remaining.`
+      }, { status: 400 });
     }
 
     // Mark OTP as verified
-    otpRecord.verified = true;
-    await otpRecord.save();
+    activeOtp.verified = true;
+    await activeOtp.save();
 
     // If this OTP is confirming a COD order:
     if (orderId) {
