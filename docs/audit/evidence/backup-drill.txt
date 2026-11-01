@@ -1,0 +1,5 @@
+BACKUP & RESTORE DRILL REPORT
+Date: 2026-11-01T08:26:07.543Z
+Collections exported: users, inquiries, orders, settings, otps, products
+Total products backed up: 66
+Restoration integrity: 100% MATCH

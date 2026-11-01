@@ -86,7 +86,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
   const hero = HERO_ARTWORKS[heroIdx];
 
   return (
-    <div className="band-ivory">
+    <div className="band-ivory overflow-x-hidden w-full">
 
       {/* ════════════════════════════════════════════════════════════
           HERO — Cinematic split: editorial left + artwork right

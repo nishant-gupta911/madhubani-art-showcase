@@ -23,8 +23,10 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
-      - name: Typecheck
-        run: npm run lint
+      - name: Typecheck & Test
+        run: |
+          npx tsc --noEmit
+          npm test
 
       - name: Build Production Bundle
         run: npm run build

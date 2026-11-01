@@ -4,7 +4,7 @@
     "command": "npm run env:check",
     "status": "PASS",
     "tag": "REAL",
-    "durationMs": 853,
+    "durationMs": 828,
     "details": "| WARN   | SIMULATED | Unset. Development cron fallback open.\n========================================================================\n\nEvidence saved to docs/audit/evidence/env-check.txt"
   },
   {
@@ -12,7 +12,7 @@
     "command": "npm run content:lint",
     "status": "PASS",
     "tag": "REAL",
-    "durationMs": 352,
+    "durationMs": 363,
     "details": ": 0 forbidden tokens, 0 duplicate slugs, 0 missing product attributes.\n\n========================================================================\nEvidence saved to docs/audit/evidence/content-lint.txt"
   },
   {
@@ -20,7 +20,7 @@
     "command": "npx tsc --noEmit",
     "status": "PASS",
     "tag": "REAL",
-    "durationMs": 3559,
+    "durationMs": 2191,
     "details": ""
   },
   {
@@ -28,31 +28,47 @@
     "command": "npm test",
     "status": "PASS",
     "tag": "REAL",
-    "durationMs": 1154,
-    "details": "14ms\n ✓ tests/nosql-injection.test.ts (5 tests) 12ms\n\n Test Files  7 passed (7)\n      Tests  32 passed (32)\n   Start at  13:38:38\n   Duration  523ms (import 55%, transform 33%, tests 9%, worker 3%)"
+    "durationMs": 1023,
+    "details": "12ms\n ✓ tests/nosql-injection.test.ts (5 tests) 13ms\n\n Test Files  9 passed (9)\n      Tests  37 passed (37)\n   Start at  13:55:39\n   Duration  522ms (import 72%, tests 12%, transform 12%, worker 4%)"
   },
   {
     "step": "5. Playwright E2E Browser Matrix",
     "command": "npx playwright test",
     "status": "PASS",
     "tag": "REAL",
-    "durationMs": 9309,
-    "details": "horizontal scroll (618ms)\n  ✓  8 [chromium] › e2e/store.spec.ts:86:3 › Vernika Enterprises E2E Storefront & Admin Tests › 8. Axe accessibility audit on key storefront routes (1.3s)\n\n  8 passed (8.5s)"
+    "durationMs": 8621,
+    "details": "horizontal scroll (588ms)\n  ✓  8 [chromium] › e2e/store.spec.ts:88:3 › Vernika Enterprises E2E Storefront & Admin Tests › 8. Axe accessibility audit on key storefront routes (1.3s)\n\n  8 passed (7.9s)"
   },
   {
     "step": "6. Autocannon Concurrency & Load Benchmark",
     "command": "npm run load:test",
     "status": "PASS",
     "tag": "REAL",
-    "durationMs": 16878,
-    "details": "Detail (SSG/ISR)       | 1834       | 24         | 47         | 0\n================================================================================\n\nEvidence saved to docs/audit/evidence/load-test.txt"
+    "durationMs": 16898,
+    "details": "Detail (SSG/ISR)       | 1889       | 24         | 35         | 0\n================================================================================\n\nEvidence saved to docs/audit/evidence/load-test.txt"
   },
   {
     "step": "7. Production Dependency Security Audit",
     "command": "npm audit --omit=dev",
     "status": "PASS",
     "tag": "REAL",
-    "durationMs": 786,
+    "durationMs": 802,
     "details": "found 0 vulnerabilities"
+  },
+  {
+    "step": "8. Database Backup & Restore Drill",
+    "command": "npx tsx scripts/backup_restore_drill.ts",
+    "status": "PASS",
+    "tag": "REAL",
+    "durationMs": 723,
+    "details": "storation verified: 100% data integrity matches source (66/66)\n✓ Dropped temporary test collection\n\nBackup drill evidence saved to docs/audit/evidence/backup-drill.txt\n✓ BACKUP & RESTORE DRILL PASSED"
+  },
+  {
+    "step": "9. Full Route Link & SEO Schema Crawl",
+    "command": "npx tsx scripts/link_and_seo_crawl.ts",
+    "status": "PASS",
+    "tag": "REAL",
+    "durationMs": 1727,
+    "details": "========\nCRAWL COMPLETED: 19 passed, 0 failed, 1 JSON-LD schemas validated.\n======================================================================\nEvidence saved to docs/audit/evidence/link-crawl.txt"
   }
 ]

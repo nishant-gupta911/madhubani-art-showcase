@@ -71,6 +71,12 @@ async function main() {
   // 7. Security Dependency Audit
   results.push(runStep('7. Production Dependency Security Audit', 'npm audit --omit=dev', 'REAL'));
 
+  // 8. Database Backup & Restoration Drill
+  results.push(runStep('8. Database Backup & Restore Drill', 'npx tsx scripts/backup_restore_drill.ts', 'REAL'));
+
+  // 9. Full Route Link, Image & SEO Schema Crawl
+  results.push(runStep('9. Full Route Link & SEO Schema Crawl', 'npx tsx scripts/link_and_seo_crawl.ts', 'REAL'));
+
   // Print Master Scorecard Table
   console.log('\n' + '='.repeat(85));
   console.log('                     MASTER VERIFICATION SCORECARD                      ');

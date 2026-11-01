@@ -1,0 +1,23 @@
+name: 15-Minute Abandoned Cart Stock Release Cron
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+jobs:
+  release-stock:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call Stock Release Endpoint
+        env:
+          SITE_URL: ${{ secrets.SITE_URL }}
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+        run: |
+          if [ -n "$SITE_URL" ] && [ -n "$CRON_SECRET" ]; then
+            echo "Invoking release-abandoned-orders cron on $SITE_URL..."
+            curl -f -s -X GET "${SITE_URL}/api/cron/release-abandoned-orders" \
+              -H "Authorization: Bearer ${CRON_SECRET}"
+          else
+            echo "CRON_SECRET or SITE_URL not set in GitHub repository secrets. Skipping remote call."
+          fi

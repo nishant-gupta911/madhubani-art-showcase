@@ -21,16 +21,18 @@ Executed on November 1, 2026:
 
 | # | Audit Step | Command | Status | Tag | Time | Evidence Location |
 | :-: | :--- | :--- | :-: | :-: | :-: | :--- |
-| **1** | Environment & Connectivity Audit | `npm run env:check` | **PASS** | `REAL` | 0.9s | `docs/audit/evidence/env-check.txt` |
+| **1** | Environment & Connectivity Audit | `npm run env:check` | **PASS** | `REAL` | 0.8s | `docs/audit/evidence/env-check.txt` |
 | **2** | Content & Catalog Truthfulness Lint | `npm run content:lint` | **PASS** | `REAL` | 0.4s | `docs/audit/evidence/content-lint.txt` |
-| **3** | Strict TypeScript Compilation | `npx tsc --noEmit` | **PASS** | `REAL` | 3.6s | Zero type errors across all files |
-| **4** | Vitest Unit & Integration Suites | `npm test` | **PASS** | `REAL` | 1.2s | 32/32 tests passing across 7 suites |
-| **5** | Playwright E2E & Accessibility Matrix | `npx playwright test` | **PASS** | `REAL` | 9.3s | 8/8 tests pass (incl. 0 Axe a11y violations) |
+| **3** | Strict TypeScript Compilation | `npx tsc --noEmit` | **PASS** | `REAL` | 2.2s | Zero type errors across all files |
+| **4** | Vitest Unit & Integration Suites | `npm test` | **PASS** | `REAL` | 1.0s | 37/37 tests passing across 9 suites |
+| **5** | Playwright E2E & Accessibility Matrix | `npx playwright test` | **PASS** | `REAL` | 8.6s | 8/8 tests pass (incl. Axe a11y & mobile overflow) |
 | **6** | Autocannon Concurrency & Load Benchmark | `npm run load:test` | **PASS** | `REAL` | 16.9s | `docs/audit/evidence/load-test.txt` |
 | **7** | Production Dependency Security Audit | `npm audit --omit=dev` | **PASS** | `REAL` | 0.8s | Found 0 vulnerabilities |
+| **8** | Database Backup & Restore Drill | `npx tsx scripts/backup_restore_drill.ts` | **PASS** | `REAL` | 0.7s | `docs/audit/evidence/backup-drill.txt` (100% restored) |
+| **9** | Full Route Link & SEO Schema Crawl | `npx tsx scripts/link_and_seo_crawl.ts` | **PASS** | `REAL` | 1.7s | `docs/audit/evidence/link-crawl.txt` (19/19 routes HTTP 200) |
 
-**Total Verification Time:** 32.9s  
-**Verdict:** **ALL 7 VERIFICATION SUITES PASSED**
+**Total Verification Time:** 33.2s  
+**Verdict:** **ALL 9 VERIFICATION SUITES PASSED (REAL)**
 
 ---
 
@@ -78,7 +80,7 @@ Audited across mobile, tablet, and desktop viewports:
 ### `REAL` Verifications:
 1. **Next.js 16 Production Build:** 104/104 SSG/static routes prerendered cleanly.
 2. **Strict TypeScript:** 0 errors (`npx tsc --noEmit`).
-3. **Unit & Integration Suite (32 tests):** Integer paise mathematics, Order ID sequence `VE-YYMMDD-####`, Razorpay HMAC signature validation, 20-buyer atomic inventory contention, NoSQL injection resilience, and 401 unauthenticated sweeps across all 10 admin API endpoints.
+3. **Unit & Integration Suite (37 tests across 9 suites):** Integer paise mathematics, Order ID sequence `VE-YYMMDD-####`, Razorpay HMAC signature validation, 20-buyer atomic inventory contention, NoSQL injection resilience, MongoDB query index scan `IXSCAN` plans (0 COLLSCAN), transactional email templating, and 401 unauthenticated sweeps across all 10 admin API endpoints.
 4. **Playwright E2E & Accessibility:** 8 tests passing, including Axe accessibility check (0 WCAG 2.1 AA violations on Home) and mobile horizontal overflow test.
 5. **Autocannon Load Test:** Home (804 req/s), Shop (405 req/s), Product Detail (1,046 req/s), with 429 rate-limiting flood verified.
 6. **Dependency Security:** `npm audit --omit=dev` reports 0 vulnerabilities.

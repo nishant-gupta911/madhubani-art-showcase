@@ -1,0 +1,6 @@
+LINK & SEO CRAWL REPORT
+Date: 2026-11-01T08:26:09.269Z
+Passed: 19
+Failed: 0
+JSON-LD Schemas: 1 valid
+Status: 100% HEALTHY

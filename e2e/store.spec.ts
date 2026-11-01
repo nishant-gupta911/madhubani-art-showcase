@@ -56,12 +56,14 @@ test.describe('Vernika Enterprises E2E Storefront & Admin Tests', () => {
 
   test('6. Admin Quick-Add Product Tab and Form', async ({ page }) => {
     await page.goto('/admin');
+    await page.waitForLoadState('domcontentloaded');
 
-    // Fill credentials if prompted
-    if (await page.locator('input[type="email"]').isVisible()) {
-      await page.fill('input[type="email"]', 'vernikaenterprises14@gmail.com');
+    const emailInput = page.locator('input[type="email"]');
+    if (await emailInput.isVisible({ timeout: 3000 }).catch(() => false)) {
+      await emailInput.fill('vernikaenterprises14@gmail.com');
       await page.fill('input[type="password"]', 'VernikaArt@2026');
       await page.click('button[type="submit"]');
+      await expect(page.locator('button:has-text("Quick-Add Product")')).toBeVisible({ timeout: 8000 });
     }
 
     // Switch to Quick-Add Product tab
@@ -87,6 +89,7 @@ test.describe('Vernika Enterprises E2E Storefront & Admin Tests', () => {
     const { default: AxeBuilder } = await import('@axe-core/playwright');
     
     await page.goto('/');
+    await page.waitForLoadState('domcontentloaded');
     const results = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa'])
       .disableRules(['color-contrast']) // color-contrast audited via design tokens

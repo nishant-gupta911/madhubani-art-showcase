@@ -5,11 +5,11 @@
 Starting Next.js production server on http://localhost:3000...
 ✓ Next.js production server launched successfully
 Testing Home Page (http://localhost:3000/) with 50-100 concurrent workers...
-  -> Completed: 724 req/sec | p50: 64ms | p95: 78ms | errors: 0
+  -> Completed: 711 req/sec | p50: 66ms | p95: 106ms | errors: 0
 Testing Shop Catalog (http://localhost:3000/shop) with 50-100 concurrent workers...
-  -> Completed: 353 req/sec | p50: 125ms | p95: 244ms | errors: 0
+  -> Completed: 345 req/sec | p50: 124ms | p95: 244ms | errors: 0
 Testing Product Detail (SSG/ISR) (http://localhost:3000/shop/mithila-harmony-slim-strip-paintings-set-of-3) with 50-100 concurrent workers...
-  -> Completed: 1834 req/sec | p50: 24ms | p95: 47ms | errors: 0
+  -> Completed: 1889 req/sec | p50: 24ms | p95: 35ms | errors: 0
 
 Testing /api/checkout rate limiting under flood...
 ✓ Rate limiter successfully triggered HTTP 429 on checkout flood
@@ -17,7 +17,7 @@ Testing /api/checkout rate limiting under flood...
 ================================================================================
 ROUTE                          | REQ/SEC    | p50 (ms)   | p95 (ms)   | ERRORS
 --------------------------------------------------------------------------------
-Home Page                      | 724        | 64         | 78         | 0
-Shop Catalog                   | 353        | 125        | 244        | 0
-Product Detail (SSG/ISR)       | 1834       | 24         | 47         | 0
+Home Page                      | 711        | 66         | 106        | 0
+Shop Catalog                   | 345        | 124        | 244        | 0
+Product Detail (SSG/ISR)       | 1889       | 24         | 35         | 0
 ================================================================================
