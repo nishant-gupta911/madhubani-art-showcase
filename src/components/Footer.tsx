@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight, Instagram, Mail, Phone, MapPin } from 'lucide-react';
 import { MithilaMotif } from './MithilaMotif';
 import { siteConfig } from '../config/site';
@@ -30,13 +31,13 @@ export const Footer: React.FC = () => {
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div className="space-y-3">
-              <p className="text-eyebrow" style={{ color: 'var(--vermilion)', letterSpacing: '0.18em' }}>
+              <p className="text-eyebrow font-medium" style={{ color: '#F28B79', letterSpacing: '0.18em' }}>
                 The Collector&apos;s Circle
               </p>
               <h2 className="font-display font-bold text-headline" style={{ color: 'var(--ivory)' }}>
                 Stories from the Mithila Studio
               </h2>
-              <p className="text-body-sm" style={{ color: 'rgba(250,246,239,0.6)', maxWidth: '420px' }}>
+              <p className="text-body-sm" style={{ color: 'rgba(250,246,239,0.85)', maxWidth: '420px' }}>
                 Receive stories behind new original paintings, invitations to studio exhibitions, and private previews before public release.
               </p>
             </div>
@@ -73,7 +74,7 @@ export const Footer: React.FC = () => {
                       Join <ArrowRight size={14} />
                     </button>
                   </div>
-                  <p className="text-caption" style={{ color: 'rgba(250,246,239,0.35)' }}>
+                  <p className="text-caption" style={{ color: 'rgba(250,246,239,0.75)' }}>
                     Occasional emails only. Zero spam. Unsubscribe anytime.
                   </p>
                 </form>
@@ -91,23 +92,23 @@ export const Footer: React.FC = () => {
           <div className="lg:col-span-2 space-y-5">
             <div className="flex items-center gap-3">
               <div className="brand-mark">
-                <img src="/vernika-enterprises.png" alt="" />
+                <Image src="/vernika-enterprises.webp" alt="Vernika Enterprises Logo" width={40} height={40} />
               </div>
               <div>
                 <span className="font-display font-bold text-title tracking-wider" style={{ color: 'var(--ivory)' }}>
                   {siteConfig.name}
                 </span>
-                <p className="text-caption" style={{ color: 'rgba(250,246,239,0.5)' }}>
+                <p className="text-caption" style={{ color: 'rgba(250,246,239,0.75)' }}>
                   By {siteConfig.artist}
                 </p>
               </div>
             </div>
 
-            <p className="text-body-sm leading-relaxed" style={{ color: 'rgba(250,246,239,0.6)', maxWidth: '340px' }}>
+            <p className="text-body-sm leading-relaxed" style={{ color: 'rgba(250,246,239,0.85)', maxWidth: '340px' }}>
               Handpainted Mithila art, preserving ancient village heritage through original framed paintings, tussar dupattas, and handcrafted lifestyle accessories.
             </p>
 
-            <div className="space-y-2 text-body-sm" style={{ color: 'rgba(250,246,239,0.6)' }}>
+            <div className="space-y-2 text-body-sm" style={{ color: 'rgba(250,246,239,0.85)' }}>
               <div className="flex items-center gap-2.5">
                 <MapPin size={13} style={{ color: 'var(--vermilion)' }} />
                 <span>{siteConfig.origin}</span>
@@ -129,10 +130,10 @@ export const Footer: React.FC = () => {
 
           {/* Col 2: The Art */}
           <div className="space-y-4">
-            <p className="text-eyebrow" style={{ color: 'rgba(250,246,239,0.4)', letterSpacing: '0.15em' }}>
+            <p className="text-eyebrow font-medium" style={{ color: 'rgba(250,246,239,0.75)', letterSpacing: '0.15em' }}>
               The Collection
             </p>
-            <ul className="space-y-2.5 text-body-sm" style={{ color: 'rgba(250,246,239,0.65)' }}>
+            <ul className="space-y-2.5 text-body-sm" style={{ color: 'rgba(250,246,239,0.85)' }}>
               <li><Link href="/shop" className="hover:text-ivory transition-colors">All Artworks</Link></li>
               <li><Link href="/shop/category/paintings" className="hover:text-ivory transition-colors">Framed Paintings</Link></li>
               <li><Link href="/shop/category/dupattas" className="hover:text-ivory transition-colors">Dupattas &amp; Angvastras</Link></li>
@@ -143,10 +144,10 @@ export const Footer: React.FC = () => {
 
           {/* Col 3: Heritage */}
           <div className="space-y-4">
-            <p className="text-eyebrow" style={{ color: 'rgba(250,246,239,0.4)', letterSpacing: '0.15em' }}>
+            <p className="text-eyebrow font-medium" style={{ color: 'rgba(250,246,239,0.75)', letterSpacing: '0.15em' }}>
               Heritage &amp; Studio
             </p>
-            <ul className="space-y-2.5 text-body-sm" style={{ color: 'rgba(250,246,239,0.65)' }}>
+            <ul className="space-y-2.5 text-body-sm" style={{ color: 'rgba(250,246,239,0.85)' }}>
               <li><Link href="/about" className="hover:text-ivory transition-colors">About the Art Form</Link></li>
               <li><Link href="/contact" className="hover:text-ivory transition-colors">Custom Commissions</Link></li>
               <li><Link href="/track" className="hover:text-ivory transition-colors">Track Your Order</Link></li>
@@ -156,10 +157,10 @@ export const Footer: React.FC = () => {
 
           {/* Col 4: Trust & Legal */}
           <div className="space-y-4">
-            <p className="text-eyebrow" style={{ color: 'rgba(250,246,239,0.4)', letterSpacing: '0.15em' }}>
+            <p className="text-eyebrow font-medium" style={{ color: 'rgba(250,246,239,0.75)', letterSpacing: '0.15em' }}>
               Trust &amp; Policies
             </p>
-            <ul className="space-y-2.5 text-body-sm" style={{ color: 'rgba(250,246,239,0.65)' }}>
+            <ul className="space-y-2.5 text-body-sm" style={{ color: 'rgba(250,246,239,0.85)' }}>
               <li><Link href="/shipping" className="hover:text-ivory transition-colors">Shipping &amp; Delivery</Link></li>
               <li><Link href="/returns" className="hover:text-ivory transition-colors">Returns &amp; Refunds</Link></li>
               <li><Link href="/cancellation" className="hover:text-ivory transition-colors">Cancellation Policy</Link></li>
@@ -176,7 +177,7 @@ export const Footer: React.FC = () => {
         className="py-6 text-center text-caption"
         style={{
           borderTop: '1px solid var(--hairline-dark)',
-          color: 'rgba(250,246,239,0.35)',
+          color: 'rgba(250,246,239,0.75)',
         }}
       >
         <div className="container flex flex-col sm:flex-row items-center justify-between gap-3">

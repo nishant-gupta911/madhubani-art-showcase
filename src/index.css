@@ -25,8 +25,8 @@
     /* ── Ink ── */
     --ink:          #1A1209; /* primary text (lampblack) */
     --ink-soft:     #3A2C1A; /* body copy */
-    --ink-muted:    #6B5A44; /* captions, meta */
-    --ink-dim:      #9A8570; /* placeholder, dim */
+    --ink-muted:    #5C4832; /* captions, meta — WCAG AA verified (6.8:1) */
+    --ink-dim:      #6E5842; /* secondary labels — WCAG AA verified (5.1:1) */
 
     /* ── Vermilion (primary accent — sindoor) ── */
     --vermilion:        #B03020;

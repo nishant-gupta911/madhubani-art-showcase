@@ -358,10 +358,10 @@ export const ProductDetailScreen: React.FC<ProductDetailScreenProps> = ({
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn w-full justify-center flex items-center gap-2 border text-sm font-medium py-3 rounded"
-                style={{ borderColor: '#25D366', color: '#128C7E', background: '#F0FFF4' }}
+                style={{ borderColor: '#25D366', color: '#075E54', background: '#F0FFF4' }}
               >
-                <MessageCircle size={17} style={{ color: '#25D366' }} />
-                <span>Order directly on WhatsApp (+91 7870909889)</span>
+                <MessageCircle size={17} style={{ color: '#075E54' }} />
+                <span>Order directly on WhatsApp (+91 {siteConfig.contact.phone})</span>
               </a>
             </div>
 

@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { Award, Feather, Leaf, Users, BookOpen, ArrowRight } from 'lucide-react';
 import { MithilaMotif, SectionEyebrow } from '../MithilaMotif';
 
@@ -31,9 +32,12 @@ export const AboutTraditionScreen: React.FC<AboutTraditionScreenProps> = ({ onNa
       {/* ─── Hero Section ───────────────────────────────────────────── */}
       <section className="relative overflow-hidden" style={{ minHeight: 'min(78vh, 700px)' }}>
         <div className="absolute inset-0">
-          <img
-            src="/madu/22.jpeg"
+          <Image
+            src="/products/22.webp"
             alt="Kohbar wedding chamber painting"
+            fill
+            priority
+            sizes="100vw"
             className="w-full h-full object-cover object-center"
           />
           <div
@@ -231,12 +235,15 @@ export const AboutTraditionScreen: React.FC<AboutTraditionScreenProps> = ({ onNa
             style={{ border: '1px solid var(--hairline-soft)', borderRadius: '4px' }}
           >
             <MithilaMotif type="four-corners" color="var(--vermilion)" />
-            <img
-              src="/madu/24.jpeg"
-              alt="Godna technique closeup"
-              className="w-full h-full object-cover"
-              style={{ borderRadius: '2px' }}
-            />
+            <div className="relative aspect-square w-full">
+              <Image
+                src="/products/24.webp"
+                alt="Godna technique closeup"
+                fill
+                sizes="(max-width: 768px) 100vw, 500px"
+                className="w-full h-full object-cover rounded-sm"
+              />
+            </div>
           </div>
 
           <div className="space-y-8">

@@ -326,7 +326,7 @@ export const CartCheckoutScreen: React.FC<CartCheckoutScreenProps> = ({
                   onClick={() => setStep(s.id)}
                   className="flex items-center gap-2 text-ui transition-colors text-left"
                   style={{
-                    color: step === s.id ? 'var(--ivory)' : 'rgba(250,246,239,0.4)',
+                    color: step === s.id ? 'var(--ivory)' : 'rgba(250,246,239,0.75)',
                   }}
                 >
                   <span

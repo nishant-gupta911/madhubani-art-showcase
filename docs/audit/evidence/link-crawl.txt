@@ -1,5 +1,5 @@
 LINK & SEO CRAWL REPORT
-Date: 2026-11-01T08:26:09.269Z
+Date: 2026-11-02T12:56:05.851Z
 Passed: 19
 Failed: 0
 JSON-LD Schemas: 1 valid

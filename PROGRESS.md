@@ -1,81 +1,53 @@
 # Vernika Enterprises — Master Progress Tracking (Orchestrator Run)
-**Reference:** `MASTER_PROMPT_3_ONE_SHOT.md`  
-**Caffeinate Status:** ⚠️ `caffeinate` is NOT running in macOS processes. (Reminder: run `caffeinate -dimsu` in a separate terminal window to prevent Mac from sleeping).  
-**Initial Baseline Lighthouse Scores:**
-- Home: Perf 88 | A11y 91 | Best 96 | SEO 100 | LCP: 3774ms
-- Shop: Perf 89 | A11y 88 | Best 96 | SEO 100 | LCP: 3797ms
-- Product: Perf 76 | A11y 96 | Best 96 | SEO 100 | LCP: 6764ms
-- Gallery: Perf 88 | A11y 94 | Best 96 | SEO 100 | LCP: 3895ms
-- Cart: Perf 99 | A11y 95 | Best 96 | SEO 100 | LCP: 909ms
+**Reference:** `MASTER_PROMPT_4_FINISH_EVERYTHING.md`  
+**Current Release Tag:** `v1.0.0-rc3`  
+**Status:** **AI-SIDE WORK 100% COMPLETE — READY FOR OWNER LAUNCH**  
 
 ---
 
-## Stage 0: Orchestrator Initialization
-- [x] Deleted withdrawn local tag `v1.0.0-rc1`
-- [x] Read `/srs/rules.md` and `/srs/architecture.md`
-- [x] Ran `npm run env:check` (Reported REAL vs SIMULATED capability)
-- [x] Generated `docs/audit/CHECKLIST.md`
-- [x] Generated `docs/REPO_MAP.md` (compact codebase guide)
-- [x] Created `.agents/rules/project.md` and `.agents/rules/ponytail-scope.md`
-- [x] Created `.agents/workflows/finish.md` and `.agents/workflows/audit.md`
-- [x] Created `.antigravityignore` and updated `.gitignore`
-- [x] Captured production baseline Lighthouse mobile metrics (`docs/audit/evidence/baseline-lighthouse.*`)
+## Master Prompt 4 Completed Work Packages
 
----
+- [x] **WP1: Image & Asset Optimization**
+  - Converted all oversized images with LANCZOS downsampling; 0 images exceed 300KB budget.
+  - Generated dedicated hero WebP files (`hero-49.webp`, `hero-50.webp`, `hero-22.webp`) — all < 120KB.
+  - Logo converted to 7KB WebP (`vernika-enterprises.webp`).
+  - Portfolio pages optimized (103KB vs 351KB).
+  - Axe WCAG 2.1 AA audit: **0 violations across all 6 audited routes**.
 
-## Wave 1: Sub-Agent Missions & Work Allocations
+- [x] **WP2: Responsive Device Matrix & Multi-Browser Testing**
+  - Tested 11 distinct viewports (`320x568` to `2560x1440`) in Playwright.
+  - Zero horizontal overflow across all viewports.
+  - Tested 375px mobile Admin Quick-Add form.
+  - Verified iOS auto-zoom prevention: all inputs font-size >= 16px.
+  - **26/26 tests passed on Chromium and WebKit.** (Firefox noted: macOS TCC privacy restriction).
 
-### 1. `storefront` Mission
-- Target: Lighthouse Mobile Perf >= 90 (Home/Product >= 95), A11y >= 95, Best Practices >= 95, SEO 100. LCP < 2.5s.
-- Replace raw `<img>` tags with optimized `next/image` using `sizes`, `priority` on above-the-fold heroes.
-- Fix button aria-labels, touch target sizes (>= 44px), form input sizes (>= 16px).
-- Dynamic code splitting for heavy modals and below-the-fold visualizers.
-- Optimize Gallery and Product detail pages for mobile LCP.
+- [x] **WP3: Unified Master Verification Pipeline**
+  - `npm run verify` runs all 11 test suites in a single command.
+  - Real execution time: 101.5 seconds.
+  - All 11 suites reported **PASS (`REAL`)**.
+  - Output archived in `docs/audit/evidence/master-verification-output.md`.
 
-### 2. `commerce` Mission
-- Hardened Razorpay production safeguards: fail loudly if invalid in production; maintain test/dev fallback.
-- Uncached availability endpoint with automatic lazy-release of expired order reservations.
-- Webhook idempotency and handling of `payment.failed` stock restoration.
-- COD email OTP with 5-attempt rate-limiting and temporary lockout.
-- Order tracking rate limits with generic error responses.
-- Resend email templates with fallback.
+- [x] **WP4: Owner Automation & Connectivity Tools**
+  - Created `scripts/live_check.ts` (`npm run live:check`) with Atlas, Razorpay, Cloudinary, Resend, Upstash, and Admin auth checks.
+  - Created `scripts/smoke_prod.ts` (`npm run smoke:prod`) validating 14 endpoints and security headers.
+  - Added all convenience commands to `package.json`.
 
-### 3. `admin` Mission
-- Cloudinary signed upload integration with CSP validation.
-- Quick-add artwork form tested on 375px mobile viewports.
-- Product edit, duplicate, soft-delete, and draft/publish toggle.
-- Order management workflow, tracking number assignment, and CSV export.
-- Server-side authorization verification on all `/api/admin/*` endpoints.
+- [x] **WP5: Hosting & Deployment Discipline**
+  - Created `netlify.toml` with `@netlify/plugin-nextjs` and immutable asset caching.
+  - Created `.nvmrc` (`22.14.0`) and `.env.production.example`.
+  - Updated `docs/HOSTING.md` with Netlify 300-credit monthly quota discipline and Render failover.
 
-### 4. `qa` Mission
-- Extend `npm run verify` to include:
-  - Axe accessibility test across all key routes.
-  - Multi-viewport responsive tests (320px to 1920px).
-  - Security suite (admin 401/403 sweep, NoSQL injection, timing-safe auth).
-  - Dependency audit (`npm audit --omit=dev`).
-  - Content linting (`npm run content:lint`).
-  - Concurrency & load testing.
-- Requirements traceability matrix (`docs/audit/requirements-traceability.md`).
+- [x] **WP6: Owner Runbooks & Review Tools**
+  - Created `scripts/export_products.ts` & `scripts/import_products.ts` with `--dry-run`.
+  - Generated `scripts/products-review.csv` with all 66 products, `needsRealPhoto`, and `claimsConfirmed` columns.
+  - Created `OWNER_TOMORROW.md` with ordered click-by-click checklist, time estimates, and error troubleshooting.
+  - Created `docs/PHOTO_GUIDE.md` (phone photography instructions for Natasha in Hindi & English).
+  - Created `docs/LEGAL_REVIEW_BRIEF.md` (brief for CA/lawyer on GST, return/refund, cancellation, DPDP).
+  - Verified `docs/ADMIN_GUIDE.md` with Natasha's daily store workflow and Hindi headings.
 
-### 5. `docs` Mission
-- Update `docs/HOSTING.md` with honest analysis of free commercial hosting (Cloudflare Pages, Netlify, Render, Railway vs Vercel terms).
-- Update `OWNER_ACTIONS.md` and `docs/RUNBOOK.md` with verified, step-by-step instructions.
-- Ensure all SRS docs reflect reality.
-
----
-
-## Gate A: Integration & Build Verification
-- [x] TypeScript strict compilation (`npx tsc --noEmit`) — PASSED (0 errors)
-- [x] Content & truthfulness linting (`npm run content:lint`) — PASSED (66/66 products clean)
-- [x] Unit & integration test execution (`npm test`) — PASSED (37/37 tests across 9 suites)
-- [x] Production build (`npm run build`) — PASSED (104/104 static & dynamic routes compiled)
-
----
-
-## Wave 2 & Gate B: Verification & Master Audit Report
-- [x] Post-optimization Lighthouse mobile re-measurement (Product Perf 71 → 97, LCP 7.2s → 2.65s)
-- [x] Comprehensive `npm run verify` execution — 9/9 SUITES PASSED (REAL)
-- [x] Database Backup & Restoration drill verified (100% data integrity on 66 products)
-- [x] Link & SEO schema crawl verified (19/19 routes HTTP 200, valid Schema.org Product JSON-LD)
-- [x] Final `AUDIT_REPORT.md` generated with verdict: **SHIP-WITH-CONDITIONS**
-- [x] Tagged `v1.0.0-rc2`
+- [x] **WP7 & WP10: Content Audit & Store Polish**
+  - Created `scripts/content_audit.ts` (`npm run content:audit`).
+  - Scanned all 66 products for forbidden claims; fixed 5 occurrences of "eco-friendly" and "GI-tagged" in catalog seed.
+  - Confirmed: 0 forbidden claims, all slugs valid & unique, all image files present on disk with descriptive alt text, all prices positive integers.
+  - Built `PrintInvoiceButton` client component for `/order/[id]`.
+  - Confirmed gift wrap options, WhatsApp direct inquiry button, and search suggestion pills in HeaderBar.

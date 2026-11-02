@@ -48,6 +48,7 @@ export const ShopGalleryScreen: React.FC<ShopGalleryScreenProps> = ({
   const [showFilters,    setShowFilters]    = useState(false);
   const [addedIds,       setAddedIds]       = useState<Set<string>>(new Set());
   const [showSortMenu,   setShowSortMenu]   = useState(false);
+  const [visibleCount,   setVisibleCount]   = useState(16);
 
   const handleSelectProduct = (p: MadhubaniProduct) => {
     if (onSelectProduct) onSelectProduct(p);
@@ -429,21 +430,34 @@ export const ShopGalleryScreen: React.FC<ShopGalleryScreenProps> = ({
 
             {/* Product Grid */}
             {filtered.length > 0 ? (
-              <div className="product-grid">
-                {filtered.map((p, i) => (
-                  <ProductCard
-                    key={p.id}
-                    product={p}
-                    isWishlisted={wishlist.includes(p.id)}
-                    addedToCart={addedIds.has(p.id)}
-                    onSelect={handleSelectProduct}
-                    onAddToCart={handleAddToCart}
-                    onQuickView={handleQuickView}
-                    onToggleWishlist={onToggleWishlist || (() => {})}
-                    index={i}
-                  />
-                ))}
-              </div>
+              <>
+                <div className="product-grid">
+                  {filtered.slice(0, visibleCount).map((p, i) => (
+                    <ProductCard
+                      key={p.id}
+                      product={p}
+                      isWishlisted={wishlist.includes(p.id)}
+                      addedToCart={addedIds.has(p.id)}
+                      onSelect={handleSelectProduct}
+                      onAddToCart={handleAddToCart}
+                      onQuickView={handleQuickView}
+                      onToggleWishlist={onToggleWishlist || (() => {})}
+                      index={i}
+                    />
+                  ))}
+                </div>
+                {filtered.length > visibleCount && (
+                  <div className="pt-10 flex justify-center">
+                    <button
+                      onClick={() => setVisibleCount(c => c + 16)}
+                      className="btn btn-outline btn-lg"
+                      style={{ borderColor: 'var(--vermilion)', color: 'var(--vermilion)' }}
+                    >
+                      Load More Artworks ({Math.min(visibleCount, filtered.length)} of {filtered.length})
+                    </button>
+                  </div>
+                )}
+              </>
             ) : (
               /* Empty state */
               <div className="py-20 text-center space-y-5">
@@ -490,7 +504,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
   return (
     <article
       className="art-card group"
-      style={{ borderRadius: '4px', animationDelay: `${Math.min(index, 12) * 0.04}s` }}
+      style={{
+        borderRadius: '4px',
+        animationDelay: `${Math.min(index, 12) * 0.04}s`,
+        contentVisibility: index > 3 ? 'auto' : 'visible',
+        containIntrinsicSize: index > 3 ? '0 420px' : undefined,
+      }}
     >
       {/* Image */}
       <div
@@ -501,7 +520,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         <Image
           src={p.image}
           alt={p.title}
-          priority={index < 4}
+          priority={index === 0}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="art-img w-full h-full object-cover"
@@ -646,14 +665,14 @@ const FilterPill: React.FC<{
     style={{
       background: active ? 'var(--vermilion-tint)' : 'transparent',
       border: `1px solid ${active ? 'var(--vermilion-light)' : 'transparent'}`,
-      color: active ? 'var(--vermilion)' : 'var(--ink-muted)',
+      color: active ? 'var(--vermilion-dark)' : 'var(--ink-muted)',
       fontSize: '0.8125rem',
       fontFamily: "'DM Sans', sans-serif",
     }}
   >
     <span>{children}</span>
     {count !== undefined && (
-      <span className="text-caption" style={{ color: active ? 'var(--vermilion)' : 'var(--ink-dim)', opacity: 0.7 }}>
+      <span className="text-caption font-medium" style={{ color: active ? 'var(--vermilion-dark)' : 'var(--ink-muted)' }}>
         {count}
       </span>
     )}

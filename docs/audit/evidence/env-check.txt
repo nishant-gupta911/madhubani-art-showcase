@@ -11,7 +11,7 @@ NEXT_PUBLIC_SELLER_STATE  | PASS   | REAL      | Bihar
 ADMIN_EMAIL               | PASS   | REAL      | vernikaenterprises14@gmail.com
 ADMIN_PASSWORD_HASH       | WARN   | SIMULATED | Missing bcrypt hash. Run `npm run admin:create` to generate one. Dev fallback active.
 SESSION_SECRET            | PASS   | REAL      | Secret length >= 32 chars
-RAZORPAY_KEYS             | FAIL   | MISSING   | Razorpay rejected credentials: {"error":{"code":"BAD_REQUEST_ERROR","description":"Authentication failed"}}
+RAZORPAY_KEYS             | FAIL   | MISSING   | Razorpay rejected credentials: {"error":{"description":"Authentication failed","code":"BAD_REQUEST_ERROR"}}
 RAZORPAY_WEBHOOK_SECRET   | WARN   | SIMULATED | Unset. Set in Razorpay Dashboard for live webhook signature verification.
 CLOUDINARY                | WARN   | SIMULATED | Unset. Mock direct upload adapter active in development.
 RESEND                    | WARN   | SIMULATED | Unset. Console logger mock email adapter active.

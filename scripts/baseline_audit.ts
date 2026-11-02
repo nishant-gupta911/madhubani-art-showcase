@@ -17,9 +17,11 @@ interface AuditResult {
 const ROUTES = [
   { name: 'Home', path: '/' },
   { name: 'Shop', path: '/shop' },
-  { name: 'Product', path: '/shop/mithila-harmony-slim-strip-paintings-set-of-3' },
+  { name: 'Category', path: '/shop/category/paintings' },
+  { name: 'Product', path: '/shop/surya-deepavali-maiden-3-panel-wall-hanging-organizer' },
   { name: 'Gallery', path: '/gallery' },
   { name: 'Cart', path: '/cart' },
+  { name: 'Checkout', path: '/cart?step=checkout' },
 ];
 
 async function runLighthouse(url: string): Promise<AuditResult> {

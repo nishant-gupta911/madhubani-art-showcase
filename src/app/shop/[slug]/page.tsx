@@ -94,6 +94,8 @@ export default async function ProductPage({ params }: PageProps) {
 
   return (
     <div className="min-h-screen" style={{ background: 'var(--ivory)' }}>
+      {/* Preload Product Hero Image for sub-2s LCP */}
+      <link rel="preload" as="image" href={mappedCurrent.image} fetchPriority="high" />
       {/* Inject Product JSON-LD */}
       <script
         type="application/ld+json"

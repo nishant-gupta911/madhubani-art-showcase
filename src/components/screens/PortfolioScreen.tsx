@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useMemo } from 'react';
+import Image from 'next/image';
 import { Download, ChevronLeft, ChevronRight, Maximize2, Grid, BookOpen, ExternalLink, Sparkles } from 'lucide-react';
 import { SectionEyebrow } from '../MithilaMotif';
 import { MadhubaniProduct } from '../../types';
@@ -152,12 +153,14 @@ export const PortfolioScreen: React.FC<PortfolioScreenProps> = ({ products, onSe
                 className="relative max-h-[75vh] w-full flex items-center justify-center cursor-zoom-in"
                 onClick={() => setLightboxPage(currentPage)}
               >
-                <img
-                  src={currentPageData?.imageUrl}
+                <Image
+                  src={currentPageData?.imageUrl || '/portfolio-pages/page-01.webp'}
                   alt={`Vernika Enterprises Catalog Page ${currentPage}`}
+                  width={700}
+                  height={900}
+                  priority
                   className="max-h-[70vh] w-auto object-contain rounded shadow-md border"
                   style={{ borderColor: 'rgba(42,26,20,0.1)' }}
-                  loading="eager"
                 />
 
                 <button
@@ -185,8 +188,10 @@ export const PortfolioScreen: React.FC<PortfolioScreenProps> = ({ products, onSe
                 </button>
 
                 <div className="flex items-center gap-2">
-                  <span className="text-xs text-ink-soft">Page</span>
+                  <label htmlFor="page-select" className="text-xs text-ink-soft">Page</label>
                   <select
+                    id="page-select"
+                    aria-label="Select catalog page number"
                     value={currentPage}
                     onChange={e => setCurrentPage(parseInt(e.target.value, 10))}
                     className="border rounded px-2 py-1 text-xs font-semibold"
@@ -262,7 +267,7 @@ export const PortfolioScreen: React.FC<PortfolioScreenProps> = ({ products, onSe
                         : 'border-line opacity-65 hover:opacity-100'
                     }`}
                   >
-                    <img src={p.thumbUrl} alt={`Thumbnail ${p.pageNumber}`} className="w-full h-full object-cover" />
+                    <Image src={p.thumbUrl} alt={`Thumbnail ${p.pageNumber}`} width={64} height={88} className="w-full h-full object-cover" />
                     <span className="absolute bottom-0 inset-x-0 bg-black/70 text-white text-[9px] text-center font-mono py-0.5">
                       {p.pageNumber}
                     </span>

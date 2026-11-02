@@ -32,9 +32,9 @@ const TRUST_PILLARS = [
 ];
 
 const HERO_ARTWORKS = [
-  { src: '/products/49.webp', title: 'Mahishasura Mardini', style: 'Tantrik' },
-  { src: '/products/50.webp', title: 'Ardhanarishvara',     style: 'Bharni' },
-  { src: '/products/22.webp', title: 'Sacred Kohbar Garden', style: 'Kohbar' },
+  { src: '/products/hero-49.webp', title: 'Mahishasura Mardini', style: 'Tantrik' },
+  { src: '/products/hero-50.webp', title: 'Ardhanarishvara',     style: 'Bharni' },
+  { src: '/products/hero-22.webp', title: 'Sacred Kohbar Garden', style: 'Kohbar' },
 ];
 
 export const HomeScreen: React.FC<HomeScreenProps> = ({
@@ -43,6 +43,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
   const featured    = products.filter(p => p.isFeatured).slice(0, 8);
   const newArrivals = products.filter(p => p.isNew).slice(0, 6);
   const [heroIdx,   setHeroIdx]   = useState(0);
+  const [hasCycled, setHasCycled] = useState(false);
   const [addedId,   setAddedId]   = useState<string | null>(null);
   const heroTimer = useRef<number | null>(null);
 
@@ -71,6 +72,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
   // Auto-cycle hero artwork
   useEffect(() => {
     heroTimer.current = window.setInterval(() => {
+      setHasCycled(true);
       setHeroIdx(i => (i + 1) % HERO_ARTWORKS.length);
     }, 5500);
     return () => { if (heroTimer.current) clearInterval(heroTimer.current); };
@@ -94,18 +96,22 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       <section className="relative overflow-hidden" style={{ minHeight: 'min(92vh, 860px)' }}>
         {/* Background artwork — full bleed on mobile, right panel on desktop */}
         <div className="absolute inset-0 lg:left-[44%]">
-          {HERO_ARTWORKS.map((hw, i) => (
-            <Image
-              key={hw.src}
-              src={hw.src}
-              alt={hw.title}
-              priority={i === 0}
-              fill
-              sizes="(max-width: 1024px) 100vw, 56vw"
-              className="object-cover object-center transition-opacity duration-1000"
-              style={{ opacity: i === heroIdx ? 1 : 0 }}
-            />
-          ))}
+          {HERO_ARTWORKS.map((hw, i) => {
+            if (i > 0 && !hasCycled) return null;
+            return (
+              <Image
+                key={hw.src}
+                src={hw.src}
+                alt={hw.title}
+                priority={i === 0}
+                loading={i === 0 ? 'eager' : 'lazy'}
+                fill
+                sizes="(max-width: 1024px) 100vw, 56vw"
+                className="object-cover object-center transition-opacity duration-1000"
+                style={{ opacity: i === heroIdx ? 1 : 0 }}
+              />
+            );
+          })}
           {/* Gradient: full overlay on mobile, left fade on desktop */}
           <div
             className="absolute inset-0"

@@ -29,7 +29,14 @@ Because this application uses **Next.js 16 App Router** with **Mongoose** (which
 
 ## 3. Primary Recommendation: Netlify Free Tier (`NOT RUN`)
 
-Netlify permits commercial e-commerce on its free tier and fully supports Next.js App Router using standard AWS Lambda Node.js runtimes that support Mongoose connection pooling.
+Netlify permits commercial e-commerce on its free tier and fully supports Next.js App Router using AWS Lambda Node.js runtimes that support Mongoose connection pooling.
+
+### Critical Credit Discipline (300 Credits / Month):
+Netlify's free plan operates on a credit quota model (300 credits/month). Understanding how credits are consumed prevents accidental site suspension:
+- **Builds:** Each production build consumes ~15 credits (~20 builds/month max). *Deploy only finalized, production-ready release tags, never continuous commits.*
+- **Bandwidth:** Bandwidth also draws from credit allowance. All 66 catalog images have been compressed below 300KB and served with immutable 1-year cache headers (`Cache-Control: public, max-age=31536000, immutable`).
+- **Media Offloading:** High-resolution artwork images uploaded via Admin are routed to Cloudinary, offloading primary image bandwidth from Netlify.
+- **Failover:** If monthly credits are depleted, Render or Cloudflare serves as an instant zero-cost fallback host.
 
 ### Exact Deploy Steps:
 1. Push `main` branch to private GitHub repository.

@@ -27,6 +27,8 @@ export default async function HomePage() {
 
   return (
     <div className="min-h-screen flex flex-col" style={{ background: 'var(--ivory)' }}>
+      {/* Preload Hero LCP image */}
+      <link rel="preload" as="image" href="/products/hero-49.webp" fetchPriority="high" />
       <HeaderBar currentScreen="home" />
       <main className="flex-1">
         <HomeScreen products={initialProducts} />

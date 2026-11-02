@@ -4,8 +4,9 @@ import { connectToDatabase } from '@/lib/db';
 import { Order } from '@/models/Order';
 import { getSiteSettings } from '@/lib/settings';
 import { siteConfig } from '@/config/site';
-import { Printer, ArrowLeft, CheckCircle2, Package, ShieldCheck } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, Package, ShieldCheck } from 'lucide-react';
 import Link from 'next/link';
+import { PrintInvoiceButton } from '@/components/PrintInvoiceButton';
 
 interface OrderPageProps {
   params: Promise<{ id: string }>;
@@ -57,14 +58,7 @@ export default async function OrderInvoicePage({ params }: OrderPageProps) {
           >
             Track Status
           </Link>
-          <button
-            onClick={() => {
-              if (typeof window !== 'undefined') window.print();
-            }}
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-white bg-stone-900 hover:bg-stone-800 rounded px-3.5 py-1.5 shadow-sm transition-colors"
-          >
-            <Printer size={14} /> Print Invoice
-          </button>
+          <PrintInvoiceButton />
         </div>
       </div>
 

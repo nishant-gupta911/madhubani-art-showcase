@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { ScreenType } from '../types';
 import { Search, ShoppingBag, Heart, Menu, X, ChevronDown } from 'lucide-react';
 
@@ -76,7 +77,7 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
               aria-label="Go to homepage"
             >
               <div className="brand-mark">
-                <img src="/vernika-enterprises.png" alt="" />
+                <Image src="/vernika-enterprises.webp" alt="Vernika Enterprises Logo" width={40} height={40} priority />
               </div>
               <div className="hidden sm:block text-left leading-none">
                 <div
@@ -237,6 +238,25 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
                   Search
                 </button>
               </div>
+
+              {/* Suggestions */}
+              <div className="flex items-center gap-2 mt-2.5 flex-wrap text-xs text-stone-500">
+                <span className="font-medium text-stone-400">Popular:</span>
+                {['Radha Krishna', 'Peacock', 'Fish', 'Tree of Life', 'Surya', 'Wall Hanging'].map(tag => (
+                  <button
+                    key={tag}
+                    type="button"
+                    onClick={() => {
+                      setSearchQuery(tag);
+                      navigate('shop');
+                      setSearchOpen(false);
+                    }}
+                    className="px-2 py-0.5 rounded-full border border-stone-200 hover:border-stone-400 hover:text-stone-800 transition-colors bg-white/60"
+                  >
+                    {tag}
+                  </button>
+                ))}
+              </div>
             </div>
           )}
         </div>
@@ -256,7 +276,7 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
                 className="flex items-center gap-3"
               >
                 <div className="brand-mark">
-                  <img src="/vernika-enterprises.png" alt="" />
+                  <Image src="/vernika-enterprises.webp" alt="Vernika Enterprises Logo" width={36} height={36} />
                 </div>
                 <div className="font-display font-semibold" style={{ fontSize: '1.125rem', color: 'var(--ink)' }}>
                   Vernika Enterprises

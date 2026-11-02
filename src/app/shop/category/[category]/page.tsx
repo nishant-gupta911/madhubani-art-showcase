@@ -45,6 +45,9 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
   return (
     <div className="min-h-screen" style={{ background: 'var(--ivory)' }}>
+      {categoryProducts.length > 0 && (
+        <link rel="preload" as="image" href={categoryProducts[0].image} fetchPriority="high" />
+      )}
       <HeaderBar cartCount={0} wishlistCount={0} currentScreen="shop" />
       <main className="pt-2">
         <ShopGalleryScreen

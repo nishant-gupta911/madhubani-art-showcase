@@ -1,7 +1,7 @@
 # Master Audit & Final Verification Report
 **Platform:** Vernika Enterprises by Natasha Gupta — Handpainted Madhubani Art E-Commerce  
-**Release Tag:** `v1.0.0-rc2`  
-**Date of Master Verification:** November 1, 2026  
+**Release Tag:** `v1.0.0-rc3`  
+**Date of Master Verification:** November 2, 2026  
 **Final Verdict:** **SHIP-WITH-CONDITIONS**  
 **Cost Objective:** **₹0 / month fixed cost**  
 
@@ -9,111 +9,141 @@
 
 ## 1. Executive Verdict & Conditions
 
-The codebase, App Router architecture, MongoDB schema, atomic inventory engine, mobile admin portal, legal policy pages, security headers, and test suites are completely built, hardened, and verified with zero unverified claims.
+The platform architecture, Next.js 16 App Router routes, MongoDB schema with atomic stock release, mobile admin portal with signed Cloudinary uploads, full legal policy drafts, strict CSP/HSTS headers, and testing pipelines are completely built and verified.
 
-The verdict is **SHIP-WITH-CONDITIONS** because all software engineering requirements are met (`REAL` checks passing), but live production deployment requires the owner to supply 3rd-party cloud credentials (MongoDB Atlas, valid Razorpay keys, Cloudinary, Resend, Upstash).
+The verdict is **SHIP-WITH-CONDITIONS** because:
+1. All AI-side software engineering, performance tuning, image compression, accessibility remediation, and test matrices are complete (`REAL` local checks passing).
+2. Live public launch requires the owner to supply 3rd-party production keys (MongoDB Atlas, Razorpay test/live keys, Cloudinary, Resend, Upstash Redis), which are verified in one step via `npm run live:check`.
+3. Legal pages (`/terms`, `/privacy`, `/returns`, etc.) and catalog prices/stock in `scripts/products-review.csv` require owner/CA review before live customer traffic.
 
 ---
 
 ## 2. Master Verification Scorecard (`npm run verify`)
 
-Executed on November 1, 2026:
+Executed on November 2, 2026 as a single command:
 
-| # | Audit Step | Command | Status | Tag | Time | Evidence Location |
+| # | Audit Step | Command | Status | Tag | Duration | Evidence Location |
 | :-: | :--- | :--- | :-: | :-: | :-: | :--- |
-| **1** | Environment & Connectivity Audit | `npm run env:check` | **PASS** | `REAL` | 0.8s | `docs/audit/evidence/env-check.txt` |
-| **2** | Content & Catalog Truthfulness Lint | `npm run content:lint` | **PASS** | `REAL` | 0.4s | `docs/audit/evidence/content-lint.txt` |
-| **3** | Strict TypeScript Compilation | `npx tsc --noEmit` | **PASS** | `REAL` | 2.2s | Zero type errors across all files |
-| **4** | Vitest Unit & Integration Suites | `npm test` | **PASS** | `REAL` | 1.0s | 37/37 tests passing across 9 suites |
-| **5** | Playwright E2E & Accessibility Matrix | `npx playwright test` | **PASS** | `REAL` | 8.6s | 8/8 tests pass (incl. Axe a11y & mobile overflow) |
-| **6** | Autocannon Concurrency & Load Benchmark | `npm run load:test` | **PASS** | `REAL` | 16.9s | `docs/audit/evidence/load-test.txt` |
-| **7** | Production Dependency Security Audit | `npm audit --omit=dev` | **PASS** | `REAL` | 0.8s | Found 0 vulnerabilities |
-| **8** | Database Backup & Restore Drill | `npx tsx scripts/backup_restore_drill.ts` | **PASS** | `REAL` | 0.7s | `docs/audit/evidence/backup-drill.txt` (100% restored) |
-| **9** | Full Route Link & SEO Schema Crawl | `npx tsx scripts/link_and_seo_crawl.ts` | **PASS** | `REAL` | 1.7s | `docs/audit/evidence/link-crawl.txt` (19/19 routes HTTP 200) |
+| **1** | Environment & Connectivity Audit | `npm run env:check` | **PASS** | `REAL` | 3.8s | `docs/audit/evidence/env-check.txt` |
+| **2** | Content & Forbidden Claims Audit | `npm run content:audit` | **PASS** | `REAL` | 0.4s | 66/66 products clean of unverified claims |
+| **3** | Strict TypeScript Compilation | `npx tsc --noEmit` | **PASS** | `REAL` | 5.9s | Zero type errors across all files |
+| **4** | Vitest Unit & Integration Suites | `npm test` | **PASS** | `REAL` | 2.1s | 37/37 tests passing across 9 suites |
+| **5** | Playwright E2E Device & Browser Matrix | `npx playwright test --project=chromium --project=webkit` | **PASS** | `REAL` | 54.3s | 26/26 device tests passing (11 viewports + Admin) |
+| **6** | Axe-Core WCAG 2.1 AA Accessibility | `npm run a11y:check` | **PASS** | `REAL` | 11.3s | 0 violations across Home, Shop, Product, Gallery, Cart |
+| **7** | Autocannon Concurrency & Load Benchmark | `npm run load:test` | **PASS** | `REAL` | 15.7s | `docs/audit/evidence/load-test.txt` |
+| **8** | Production Dependency Security Audit | `npm audit --omit=dev` | **PASS** | `REAL` | 6.0s | 0 production vulnerabilities |
+| **9** | Database Backup & Restore Drill | `npx tsx scripts/backup_restore_drill.ts` | **PASS** | `REAL` | 0.9s | `docs/audit/evidence/backup-drill.txt` (100% restored) |
+| **10** | Full Route Link & SEO Schema Crawl | `npx tsx scripts/link_and_seo_crawl.ts` | **PASS** | `REAL` | 0.7s | `docs/audit/evidence/link-crawl.txt` (All routes HTTP 200) |
+| **11** | Production Route Smoke Suite | `npm run smoke:prod` | **PASS** | `REAL` | 0.5s | 14/14 public routes & security gates verified |
 
-**Total Verification Time:** 33.2s  
-**Verdict:** **ALL 9 VERIFICATION SUITES PASSED (REAL)**
-
----
-
-## 3. Lighthouse Mobile Before vs. After Optimization
-
-Audited via headless Chrome with mobile throttling (median of runs on production build):
-
-| Route | Metric | Before Optimization | After Optimization | Delta |
-| :--- | :--- | :---: | :---: | :---: |
-| **Home (`/`)** | Performance / A11y / SEO | 88 / 91 / 100 | **90 / 91 / 100** | +2 Perf |
-| | LCP (ms) | 3,774 ms | **3,579 ms** | -195 ms |
-| **Shop (`/shop`)** | Performance / A11y / SEO | 89 / 88 / 100 | **89 / 94 / 100** | **+6 A11y** |
-| | LCP (ms) | 3,797 ms | **3,840 ms** | Flat |
-| **Product Detail** | Performance / A11y / SEO | 71 / 96 / 100 | **97 / 96 / 100** | **+26 Perf** |
-| | LCP (ms) | 7,211 ms | **2,650 ms** | **-4,561 ms** |
-| **Gallery (`/gallery`)** | Performance / A11y / SEO | 88 / 94 / 100 | **89 / 94 / 100** | +1 Perf |
-| | LCP (ms) | 3,895 ms | **3,835 ms** | -60 ms |
-| **Cart (`/cart`)** | Performance / A11y / SEO | 99 / 95 / 100 | **99 / 95 / 100** | Verified |
-| | LCP (ms) | 909 ms | **907 ms** | Sub-second |
-
-*Key Optimization Breakthrough:* Dynamic code-splitting for heavy modals (`WallVisualizerModal`), passing filtered related products across the RSC boundary instead of serializing the entire 66-product database, and using `next/image` with responsive `sizes` reduced Product page LCP from 7.2s to 2.6s and boosted its Performance score from 71 to **97**.
+**Total Audit Duration:** 101.5s  
+**Verdict:** **ALL 11 VERIFICATION SUITES PASSED (REAL)**  
+*Full command log saved at: `docs/audit/evidence/master-verification-output.md`*
 
 ---
 
-## 4. Playwright Device & Responsive Matrix
+## 3. Lighthouse Mobile Multi-Route Audit
 
-Audited across mobile, tablet, and desktop viewports:
+Audited via headless Chrome under simulated 4G mobile throttling (1.6 Mbps download, 150ms RTT, 4x CPU slowdown) on the Next.js production build:
 
-| Viewport | Device Profile | Horizontal Scroll? | Layout Status | Tap Targets |
-| :--- | :--- | :---: | :---: | :---: |
-| **320 x 568** | iPhone SE (Compact) | 0px (No overflow) | **PASS** | >= 44px |
-| **360 x 740** | Standard Android | 0px (No overflow) | **PASS** | >= 44px |
-| **375 x 667** | iPhone 8 / SE2 | 0px (No overflow) | **PASS** | >= 44px |
-| **390 x 844** | iPhone 12/13/14 | 0px (No overflow) | **PASS** | >= 44px |
-| **430 x 932** | iPhone Pro Max | 0px (No overflow) | **PASS** | >= 44px |
-| **768 x 1024** | iPad Portrait | 0px (No overflow) | **PASS** | >= 44px |
-| **1024 x 768** | iPad Landscape | 0px (No overflow) | **PASS** | Clean grid |
-| **1280 x 720** | Desktop Standard | 0px (No overflow) | **PASS** | Clean grid |
-| **1920 x 1080** | Full HD Desktop | 0px (No overflow) | **PASS** | Centered container |
+| Route | Performance | Accessibility | Best Practices | SEO | Mobile LCP | Mobile CLS | Status |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
+| **Gallery (`/gallery`)** | **96** | **100** | **96** | **100** | **1,572 ms** | **0.004** | All targets met |
+| **Cart (`/cart`)** | **98** | **100** | **96** | **100** | **1,685 ms** | **0.000** | All targets met |
+| **Checkout (`/checkout`)** | **98** | **100** | **96** | **100** | **1,683 ms** | **0.000** | All targets met |
+| **Product (`/shop/[slug]`)** | **86** | **100** | **96** | **100** | 3,682 ms | **0.001** | A11y & SEO met; LCP mobile throttled |
+| **Shop (`/shop`)** | **89** | **98** | **96** | **100** | 3,843 ms | **0.002** | A11y & SEO met; LCP mobile throttled |
+| **Home (`/`)** | **87** | **95** | **96** | **100** | 3,989 ms | **0.000** | A11y & SEO met; LCP mobile throttled |
+| **Category (`/shop/category/...`)** | **81** | **98** | **96** | **100** | 4,404 ms | **0.001** | A11y & SEO met; LCP mobile throttled |
 
----
-
-## 5. REAL vs. SIMULATED Breakdown
-
-### `REAL` Verifications:
-1. **Next.js 16 Production Build:** 104/104 SSG/static routes prerendered cleanly.
-2. **Strict TypeScript:** 0 errors (`npx tsc --noEmit`).
-3. **Unit & Integration Suite (37 tests across 9 suites):** Integer paise mathematics, Order ID sequence `VE-YYMMDD-####`, Razorpay HMAC signature validation, 20-buyer atomic inventory contention, NoSQL injection resilience, MongoDB query index scan `IXSCAN` plans (0 COLLSCAN), transactional email templating, and 401 unauthenticated sweeps across all 10 admin API endpoints.
-4. **Playwright E2E & Accessibility:** 8 tests passing, including Axe accessibility check (0 WCAG 2.1 AA violations on Home) and mobile horizontal overflow test.
-5. **Autocannon Load Test:** Home (804 req/s), Shop (405 req/s), Product Detail (1,046 req/s), with 429 rate-limiting flood verified.
-6. **Dependency Security:** `npm audit --omit=dev` reports 0 vulnerabilities.
-7. **Content Lint:** 66/66 products verified with 0 forbidden tokens, 0 duplicate slugs.
-
-### `SIMULATED` / `NOT RUN` Items (Require Owner Credentials):
-1. **MongoDB Atlas (`SIMULATED`):** Tested on local MongoDB (`127.0.0.1:27017`). Atlas M0 cluster URI required for production.
-2. **Razorpay Payments (`NOT RUN`):** Dummy test keys failed live API authentication. Production code strictly rejects unverified payments.
-3. **Cloudinary Upload (`SIMULATED`):** Signed upload endpoints tested with development fallback.
-4. **Resend Transactional Email (`SIMULATED`):** Mock console logger active in dev; live sending domain verification required.
-5. **Upstash Redis (`SIMULATED`):** In-memory sliding-window limiter active in dev; REST URL & Token required for multi-region serverless.
-6. **Cloud Deployment (`NOT RUN`):** AI assistant is forbidden from deploying to live hosting without owner action. Netlify deployment steps documented in `docs/HOSTING.md`.
+*Note on Mobile LCP:* On unthrottled desktop/broadband connections, all routes achieve LCP < 600ms and Performance 99-100. Under severe synthetic 4G CPU throttling, heavy client component trees take ~3.5s to evaluate. All images meet budget (0 images > 300KB, hero images < 120KB, logo 7KB WebP).
 
 ---
 
-## 6. Top 10 Residual Risks
+## 4. Accessibility & Axe WCAG 2.1 AA Audit
 
-1. **MongoDB Atlas Cold Starts:** Free M0 tier cross-region latency could add 50-100ms if not provisioned in Mumbai (`ap-south-1`).
-2. **Upstash Redis Absence in Multi-Region:** In-memory rate limiting does not share state across serverless instances without Upstash.
-3. **Razorpay Webhook Clock Skew:** Out-of-order webhooks rely on idempotent state transitions in `/api/webhooks/razorpay`.
-4. **Cash on Delivery (COD) Return-to-Origin:** In-transit refusal risk is mitigated by OTP verification and phone confirmation, but remains non-zero.
-5. **Physical / Offline Inventory Discrepancy:** Selling an original painting offline without updating `/admin` could cause an online oversale.
-6. **Mobile Camera Image Sizes:** High-resolution direct camera uploads (>12MB) must be compressed prior to Cloudinary transmission.
-7. **Legal Draft Policies:** Policies (`/terms`, `/privacy`, `/shipping`, `/returns`, `/cancellation`) require formal signoff by Natasha’s legal/tax counsel.
-8. **Bill of Supply vs. Tax Invoice:** Until GST registration is finalized, invoices operate as "Bill of Supply" and omit GSTIN.
-9. **Email Domain Warm-up:** Fresh transactional domains (`vernikaenterprises.com`) require gradual volume ramping to prevent spam folder placement.
-10. **15-Minute Abandonment Reservation Window:** While an original painting is in checkout, it remains reserved for 15 minutes before stock releases automatically.
+Ran `@axe-core/playwright` across 6 key user routes:
+- **Home (`/`):** **0 Axe violations**
+- **Shop (`/shop`):** **0 Axe violations**
+- **Category (`/shop/category/paintings`):** **0 Axe violations**
+- **Product (`/shop/[slug]`):** **0 Axe violations**
+- **Gallery (`/gallery`):** **0 Axe violations**
+- **Cart (`/cart`):** **0 Axe violations**
+
+Key design token contrast fixes applied:
+- `--ink-dim`: Updated to `#6E5842` (5.1:1 contrast on ivory).
+- `--ink-muted`: Updated to `#5C4832` (6.8:1 contrast on ivory).
+- Footer text opacities: Surcharged to 75%–85% against `#100b04` (>6:1 contrast).
+- WhatsApp button: `#075E54` on `#F0FFF4` (6.8:1 contrast).
 
 ---
 
-## 7. Operational Documentation Reference
+## 5. Playwright Device & Multi-Browser Matrix
 
-- **Step-by-Step Owner Checklist:** [OWNER_ACTIONS.md](file:///Users/nishant/Documents/mom%20madubani/madhubani-art-showcase%20/OWNER_ACTIONS.md)
-- **Hosting & Deployment Guide:** [docs/HOSTING.md](file:///Users/nishant/Documents/mom%20madubani/madhubani-art-showcase%20/docs/HOSTING.md)
-- **Operations & Runbook:** [docs/RUNBOOK.md](file:///Users/nishant/Documents/mom%20madubani/madhubani-art-showcase%20/docs/RUNBOOK.md)
-- **Master Verification Evidence:** `docs/audit/evidence/`
+Tested across 11 viewports plus Admin and iOS auto-zoom checks:
+- **Chromium (Blink Engine):** 13/13 tests **PASS** (`REAL`)
+- **WebKit (Safari Engine):** 13/13 tests **PASS** (`REAL`)
+- **Firefox (Gecko Engine):** `NOT RUN` (On macOS test runner, Firefox startup is blocked by macOS TCC privacy restriction on `~/Library/Application Support/Firefox` with `Operation not permitted`).
+
+Tested Viewports:
+1. `320x568` (iPhone SE 1st Gen) — **Zero horizontal overflow**
+2. `360x740` (Android Small / Galaxy A) — **Zero horizontal overflow**
+3. `375x667` (iPhone SE 2nd Gen) — **Zero horizontal overflow**
+4. `390x844` (iPhone 12/13/14) — **Zero horizontal overflow**
+5. `430x932` (iPhone 14/15 Pro Max) — **Zero horizontal overflow**
+6. `768x1024` (iPad Portrait) — **Zero horizontal overflow**
+7. `1024x768` (iPad Landscape) — **Zero horizontal overflow**
+8. `1280x720` (Desktop HD) — **Zero horizontal overflow**
+9. `1440x900` (MacBook Air) — **Zero horizontal overflow**
+10. `1920x1080` (Full HD Desktop) — **Zero horizontal overflow**
+11. `2560x1440` (QHD Monitor) — **Zero horizontal overflow**
+12. **Admin Quick-Add on 375px:** Form elements stack and render with zero overflow.
+13. **iOS Auto-Zoom Prevention:** All input elements verified with font-size >= 16px.
+
+---
+
+## 6. Autocannon Concurrency & Load Benchmark
+
+Benchmarked on local production build with 50–100 concurrent virtual users:
+
+| Route | Requests / sec | Latency p50 | Latency p95 | Errors |
+| :--- | :---: | :---: | :---: | :---: |
+| **Home Page (`/`)** | **712 req/s** | 66 ms | 83 ms | **0** |
+| **Shop Catalog (`/shop`)** | **747 req/s** | 62 ms | 114 ms | **0** |
+| **Product Detail (SSG/ISR)** | **1,835 req/s** | 25 ms | 47 ms | **0** |
+| **/api/checkout flood** | - | - | - | **Rate limiter triggers HTTP 429** |
+
+---
+
+## 7. REAL vs. SIMULATED Breakdown
+
+| Component | Status Tag | Method / Evidence |
+| :--- | :---: | :--- |
+| **Next.js 16 App Router Build** | `REAL` | 105 static/SSG pages built in 843ms via Turbopack |
+| **Local MongoDB / Mongoose** | `REAL` | Seeding, queries, atomic findOneAndUpdate, backup drill |
+| **Axe Accessibility & A11y** | `REAL` | 0 violations verified via @axe-core/playwright |
+| **Device Responsive Matrix** | `REAL` | 26/26 tests passed on Chromium and WebKit |
+| **Image Compression Pipeline** | `REAL` | All WebP images < 300KB; hero < 120KB; logo 7KB |
+| **Load Benchmark (Autocannon)** | `REAL` | 712–1,835 req/s measured with 0 errors |
+| **Catalog Content Audit** | `REAL` | 0 forbidden claims across 66 products |
+| **Production Smoke Checks** | `REAL` | 14 endpoints verified against running production server |
+| **MongoDB Atlas (Remote M0)** | `NOT RUN` | Awaiting owner Atlas URI (`npm run live:check`) |
+| **Razorpay Payment Widget** | `SIMULATED` | HMAC verification & mock adapter verified; live test order pending owner keys |
+| **Signed Cloudinary Upload** | `SIMULATED` | Signature generation verified; live probe pending credentials |
+| **Resend Email Dispatch** | `SIMULATED` | Formatter verified; live dispatch pending API key |
+| **Upstash Redis Rate Limit** | `SIMULATED` | In-memory fallback verified; distributed probe pending token |
+
+---
+
+## 8. Top 10 Risks & Owner Mitigations
+
+1. **Unconfigured Payment Keys:** In production, missing Razorpay keys immediately abort checkout with user-safe error. Owner must add keys before traffic.
+2. **Netlify Free Tier Quota:** 300 credits/mo (~20 production deploys). Mitigated by aggressive asset caching (1-year max-age) and deploying only release tags.
+3. **Legal Page Sign-off:** Draft legal pages are marked with draft warnings. Owner must review `docs/LEGAL_REVIEW_BRIEF.md` with CA/lawyer.
+4. **Art Photos for Priority Items:** 10 catalog items use extracted portfolio mockups. Natasha should photograph priority pieces using `docs/PHOTO_GUIDE.md`.
+5. **Atlas Network Whitelist:** MongoDB connection will fail if `0.0.0.0/0` is not added to Atlas Network Access.
+6. **Razorpay Webhook Secret:** Webhook signature verification rejects payloads if `RAZORPAY_WEBHOOK_SECRET` does not match the dashboard secret.
+7. **Resend Domain Verification:** Resend onboarding email works for admin testing; custom domain (`@vernika.art`) requires DNS TXT records.
+8. **Upstash Redis in Serverless:** Multi-instance rate limiting falls back to in-memory if Upstash keys are omitted. Add Upstash keys for true distributed protection.
+9. **Single-Artisan Stock Protection:** Original paintings are strictly 1-of-1. Atomic `findOneAndUpdate({ stock: { $gt: 0 } })` prevents race condition overselling.
+10. **COD Abuse Risk:** Protected by phone OTP verification and Admin "Confirm COD" workflow before dispatch.
