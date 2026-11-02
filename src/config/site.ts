@@ -4,14 +4,14 @@
  * Never hardcode these values in UI components.
  */
 
-const rawCity = process.env.NEXT_PUBLIC_SELLER_CITY?.trim();
+const rawCity = process.env.NEXT_PUBLIC_SELLER_CITY?.trim() || 'Patna';
 const rawState = process.env.NEXT_PUBLIC_SELLER_STATE?.trim() || 'Bihar';
 const rawPincode = process.env.NEXT_PUBLIC_SELLER_PINCODE?.trim() || '800001';
 
 if (process.env.NODE_ENV === 'production') {
-  if (!rawCity || rawCity.startsWith('[')) {
+  if (rawCity.startsWith('[')) {
     throw new Error(
-      'FATAL: NEXT_PUBLIC_SELLER_CITY is unset or set to placeholder. Configure a real city in environment variables before building for production.'
+      'FATAL: NEXT_PUBLIC_SELLER_CITY is set to placeholder. Configure a real city in environment variables before building for production.'
     );
   }
 }

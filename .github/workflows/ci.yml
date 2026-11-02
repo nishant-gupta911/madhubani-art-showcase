@@ -15,11 +15,19 @@ jobs:
         image: mongo:6.0
         ports:
           - 27017:27017
+        options: >-
+          --health-cmd "mongosh --eval 'db.adminCommand({ping:1})'"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 5
 
     env:
       MONGODB_URI: mongodb://127.0.0.1:27017/vernika_ci_test
       NODE_ENV: test
       NEXT_PUBLIC_SITE_URL: http://localhost:3000
+      NEXT_PUBLIC_SELLER_CITY: Patna
+      NEXT_PUBLIC_SELLER_STATE: Bihar
+      NEXT_PUBLIC_SELLER_PINCODE: "800001"
       JWT_SECRET: ci-test-jwt-secret-at-least-32-chars-long
       CRON_SECRET: ci-test-cron-secret-super-secure
 
@@ -37,7 +45,7 @@ jobs:
         run: npm ci
 
       - name: Seed Database for CI Tests
-        run: npx tsx scripts/seed_catalog.ts
+        run: npx tsx scripts/seed.ts
         env:
           MONGODB_URI: mongodb://127.0.0.1:27017/vernika_ci_test
 
@@ -55,3 +63,6 @@ jobs:
         env:
           MONGODB_URI: mongodb://127.0.0.1:27017/vernika_ci_test
           NEXT_PUBLIC_SITE_URL: http://localhost:3000
+          NEXT_PUBLIC_SELLER_CITY: Patna
+          NEXT_PUBLIC_SELLER_STATE: Bihar
+          NEXT_PUBLIC_SELLER_PINCODE: "800001"
