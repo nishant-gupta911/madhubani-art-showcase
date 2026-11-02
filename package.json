@@ -16,6 +16,7 @@
     "admin:create": "tsx scripts/admin_create.ts",
     "content:lint": "tsx scripts/content_lint.ts",
     "content:audit": "tsx scripts/content_audit.ts",
+    "design:lint": "tsx scripts/design_lint.ts",
     "a11y:check": "tsx scripts/check_a11y.ts",
     "live:check": "tsx scripts/live_check.ts",
     "smoke:prod": "tsx scripts/smoke_prod.ts",

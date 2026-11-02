@@ -62,6 +62,9 @@
 - `src/config/site.ts` — Brand configuration, seller city validation, contacts
 - `src/config/catalog.ts` — Catalog categories and Mithila style definitions
 - `src/store/cart-store.ts` — Zustand persistent shopping cart store
+- `src/store/wishlist-store.ts` — Zustand persistent wishlist store
+- `src/components/PrintInvoiceButton.tsx` — Client-side print invoice button
+- `src/app/api/health/route.ts` — Service health check endpoint
 
 ## 5. UI Components (`src/components/`)
 - `src/components/HeaderBar.tsx` — Global navigation header with search and cart badge
@@ -75,6 +78,11 @@
 
 ## 6. Scripts & Verification Tools (`scripts/`)
 - `scripts/verify.ts` — Master test runner (`npm run verify`)
+- `scripts/live_check.ts` — Comprehensive live credential probe (`npm run live:check`)
+- `scripts/smoke_prod.ts` — Production smoke test suite (`npm run smoke:prod`)
+- `scripts/content_audit.ts` — Catalog claims & media audit (`npm run content:audit`)
+- `scripts/check_a11y.ts` — Axe-Core WCAG 2.1 AA audit (`npm run a11y:check`)
+- `scripts/export_products.ts` & `import_products.ts` — Product CSV review sync
 - `scripts/env_check.ts` — Environment and live connectivity verification (`npm run env:check`)
 - `scripts/content_lint.ts` — Zero forbidden tokens & catalog integrity validator (`npm run content:lint`)
 - `scripts/load_test.ts` — Autocannon high-concurrency load testing (`npm run load:test`)

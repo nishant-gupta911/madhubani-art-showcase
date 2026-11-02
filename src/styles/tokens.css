@@ -1,0 +1,50 @@
+/* ==============================================================================
+   VERNIKA ENTERPRISES — SCREEN-PRINTED GALLERY POSTER THEME TOKENS
+   Strict 3-ink color system + letterpress misregistration
+   ============================================================================== */
+
+:root {
+  /* ── 1. The Three-Ink Color System ── */
+  --paper: #FBF3E2;                 /* Primary page background: unbleached archival paper */
+  --paper-2: #F3E7D1;               /* Card mounts, alternating sections, subtle fill */
+  --paper-trans: rgba(251, 243, 226, 0.92);
+  --ink: #1E130E;                   /* Warm lampblack ink: text, dark bands, line drawings */
+  --ink-soft: #38281F;              /* Secondary body text (WCAG AA > 7:1) */
+  --ink-muted: #5C4832;             /* Micro-type captions, labels (WCAG AA > 5:1) */
+  --accent: #B8321F;                /* Mineral vermilion (sindoor): sun disc, primary CTAs */
+  --accent-hover: #8E1F14;          /* Deep madder red on hover */
+  --accent-tint: #FAECE9;           /* Pale vermilion paper tint */
+  --turmeric: #E0A21B;              /* Haldi gold: highlights on ink bands */
+  --indigo: #24527A;                /* Neel mineral blue: links, information badges */
+  --leaf: #4C7A4F;                  /* Forest green: availability, verified authentic */
+  --line: rgba(30, 19, 14, 0.18);    /* Crisp 1px structural framing, registration crosses */
+  --line-strong: rgba(30, 19, 14, 0.4);
+
+  /* ── 2. Misregistration Offset Shadows ── */
+  --offset-shadow: 2px 2px 0 var(--accent);
+  --offset-shadow-hover: 3px 3px 0 var(--accent-hover);
+  --offset-shadow-ink: 2px 2px 0 var(--ink);
+  --offset-shadow-lg: 4px 4px 0 var(--accent);
+
+  /* ── 3. Typography Stacks ── */
+  --font-display: var(--font-bebas, 'Bebas Neue', 'Impact', sans-serif);
+  --font-body: var(--font-dmsans, 'DM Sans', -apple-system, sans-serif);
+  --font-mono: var(--font-jetbrains, 'JetBrains Mono', 'Courier New', monospace);
+
+  /* ── 4. Transitions ── */
+  --ease-print: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Dark / Ink inverse section utility */
+.theme-ink {
+  background-color: var(--ink);
+  color: var(--paper);
+}
+
+.theme-ink .text-muted {
+  color: rgba(251, 243, 226, 0.65);
+}
+
+.theme-ink .text-highlight {
+  color: var(--turmeric);
+}

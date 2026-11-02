@@ -1,64 +1,56 @@
 @import "tailwindcss";
+@import "./styles/tokens.css";
+
+@theme {
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-muted: var(--ink-muted);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-turmeric: var(--turmeric);
+  --color-indigo: var(--indigo);
+  --color-leaf: var(--leaf);
+  --color-line: var(--line);
+  --font-display: var(--font-display);
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-mono);
+}
 
 /* ================================================================
-   MITHILA ATELIER — DESIGN SYSTEM
-   Madhubani / Mithila Art Brand — Premium Editorial Commerce
+   VERNIKA ENTERPRISES — SCREEN-PRINTED GALLERY POSTER THEME
+   Madhubani / Mithila Art Brand — Archival Gallery System
    ================================================================ */
-
-/* ─── GOOGLE FONTS ─────────────────────────────────────────────── */
-/* Cormorant Garamond: display / headlines */
-/* DM Sans: UI / body */
 
 @layer base {
   :root {
-    /* ── Canvas ── */
-    --ivory:        #FAF6EF; /* handmade paper — primary bg */
-    --ivory-deep:   #F2EBE0; /* card backgrounds */
-    --ivory-warm:   #EDE0CA; /* section accent bg */
-    --ivory-dimmed: #E5D9C8; /* borders, subtle fills */
+    /* Compatibility alias with tokens.css */
+    --ivory:        var(--paper);
+    --ivory-deep:   var(--paper-2);
+    --ivory-warm:   #EDE0CA;
+    --ivory-dimmed: #E5D9C8;
 
-    /* ── Night (for dark sections) ── */
-    --night:        #100B04; /* deep lampblack dark */
-    --night-soft:   #1C1208; /* slightly lighter dark */
-    --night-raised: #251806; /* raised dark panels */
+    /* Dark sections */
+    --night:        var(--ink);
+    --night-soft:   #251810;
+    --night-raised: #302016;
 
-    /* ── Ink ── */
-    --ink:          #1A1209; /* primary text (lampblack) */
-    --ink-soft:     #3A2C1A; /* body copy */
-    --ink-muted:    #5C4832; /* captions, meta — WCAG AA verified (6.8:1) */
-    --ink-dim:      #6E5842; /* secondary labels — WCAG AA verified (5.1:1) */
-
-    /* ── Vermilion (primary accent — sindoor) ── */
-    --vermilion:        #B03020;
-    --vermilion-dark:   #8C2418;
-    --vermilion-hover:  #C03828;
+    /* Vermilion */
+    --vermilion:        var(--accent);
+    --vermilion-dark:   var(--accent-hover);
+    --vermilion-hover:  var(--accent-hover);
     --vermilion-light:  #F5D0C8;
     --vermilion-tint:   #FBF0EE;
 
-    /* ── Turmeric (secondary — gold/highlight) ── */
-    --turmeric:       #B87A0A;
-    --turmeric-light: #F5E6C0;
-    --turmeric-tint:  #FBF5E6;
+    /* Hairlines */
+    --hairline:      var(--line);
+    --hairline-soft: rgba(30, 19, 14, 0.1);
+    --hairline-dark: rgba(251, 243, 226, 0.2);
 
-    /* ── Indigo (tertiary accent) ── */
-    --indigo:       #2C3E7A;
-    --indigo-light: #C4CCE8;
-
-    /* ── Leaf (success/nature) ── */
-    --leaf:       #3A6B3A;
-    --leaf-light: #C8E0C8;
-
-    /* ── Terracotta ── */
-    --terracotta: #A0522D;
-
-    /* ── Borders ── */
-    --hairline:      #E0D0BC; /* warm borders */
-    --hairline-soft: #EDE4D6; /* subtle dividers */
-    --hairline-dark: #30200A; /* borders on dark sections */
-
-    /* ── Semantic ── */
-    --success: #3A6B3A;
-    --overlay: rgba(16, 11, 4, 0.55);
+    /* Semantic */
+    --success: var(--leaf);
+    --overlay: rgba(30, 19, 14, 0.65);
   }
 
   *, *::before, *::after { box-sizing: border-box; }
@@ -88,66 +80,96 @@
 }
 
 /* ================================================================
-   TYPOGRAPHY
+   TYPOGRAPHY (Screen-Printed Gallery System)
    ================================================================ */
 
-/* Display — Cormorant Garamond, expressive editorial */
-.font-display { font-family: 'Cormorant Garamond', Georgia, serif; }
-.font-sc      { font-family: 'Cormorant SC', Georgia, serif; }
-.font-sans    { font-family: 'DM Sans', system-ui, sans-serif; }
+.font-display { font-family: var(--font-display); }
+.font-sans    { font-family: var(--font-body); }
+.font-mono    { font-family: var(--font-mono); }
 
 .text-display {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(3rem, 7vw, 6.5rem);
-  font-weight: 700;
-  line-height: 1.0;
-  letter-spacing: -0.02em;
-}
-.text-headline {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(2rem, 4vw, 3.75rem);
-  font-weight: 600;
-  line-height: 1.08;
-  letter-spacing: -0.015em;
-}
-.text-title {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
-  font-weight: 600;
-  line-height: 1.2;
+  font-family: var(--font-display);
+  font-size: clamp(3.25rem, 8vw, 7rem);
+  font-weight: 400;
+  line-height: 0.92;
   letter-spacing: -0.01em;
-}
-.text-subhead {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(1.125rem, 1.8vw, 1.5rem);
-  font-weight: 500;
-  font-style: italic;
-  line-height: 1.35;
-}
-.text-eyebrow {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.6875rem;
-  font-weight: 500;
-  letter-spacing: 0.18em;
   text-transform: uppercase;
 }
+.text-headline {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 5vw, 4rem);
+  font-weight: 400;
+  line-height: 0.96;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+.text-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.5rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+}
+.text-subhead {
+  font-family: var(--font-body);
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.text-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
 .text-body-lg {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-body);
   font-size: 1.0625rem;
   font-weight: 400;
   line-height: 1.7;
 }
 .text-body {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-body);
   font-size: 0.9375rem;
   font-weight: 400;
   line-height: 1.65;
 }
 .text-body-sm {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-body);
   font-size: 0.8125rem;
   font-weight: 400;
   line-height: 1.6;
+}
+
+/* ─── TACTILE PRINT UTILITIES ─────────────────────────────────── */
+.paper-grain-bg {
+  background-color: var(--paper);
+  background-image: url('/textures/paper-grain.png');
+  background-repeat: repeat;
+}
+
+.misregister-shadow {
+  box-shadow: 2px 2px 0 var(--accent);
+}
+
+.misregister-shadow-hover {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.misregister-shadow-hover:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--accent-hover);
+}
+
+.misregister-shadow-ink {
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.border-line {
+  border-color: var(--line);
 }
 .text-caption {
   font-family: 'DM Sans', sans-serif;
