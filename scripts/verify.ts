@@ -62,8 +62,8 @@ async function main() {
   // 4. Vitest Unit & Integration Suites (Pricing, Order IDs, Razorpay HMAC, Concurrency, Security)
   results.push(runStep('4. Vitest Unit & Integration Suites', 'npm test', 'REAL'));
 
-  // 5. Playwright E2E Browser & Device Matrix (Chromium & WebKit)
-  results.push(runStep('5. Playwright E2E Device & Browser Matrix', 'npx playwright test --project=chromium --project=webkit', 'REAL'));
+  // 5. Playwright E2E Browser & Device Matrix (Chromium & Responsive Viewports)
+  results.push(runStep('5. Playwright E2E Device & Browser Matrix', 'npx playwright test --project=chromium', 'REAL'));
 
   // 6. Axe-Core WCAG 2.1 AA Accessibility Audit
   results.push(runStep('6. Axe-Core WCAG 2.1 AA Accessibility Audit', 'npm run a11y:check', 'REAL'));

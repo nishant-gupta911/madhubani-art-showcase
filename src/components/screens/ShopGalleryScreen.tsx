@@ -5,6 +5,8 @@ import Image from 'next/image';
 import { MadhubaniProduct, MithilaStyle } from '../../types';
 import { Search, X, Star, ShoppingBag, Eye, Heart, SlidersHorizontal, ArrowRight, ChevronDown } from 'lucide-react';
 import { MithilaMotif, SectionEyebrow } from '../MithilaMotif';
+import { PrintCard } from '@/components/ui/PrintCard';
+import { Button } from '@/components/ui/Button';
 
 interface ShopGalleryScreenProps {
   products: MadhubaniProduct[];
@@ -257,26 +259,23 @@ export const ShopGalleryScreen: React.FC<ShopGalleryScreenProps> = ({
           <div className="flex-1 min-w-0 space-y-6">
 
             {/* Toolbar */}
-            <div className="flex items-center justify-between gap-4 flex-wrap">
-              <p className="text-body-sm" style={{ color: 'var(--ink-muted)' }}>
-                <span className="font-semibold" style={{ color: 'var(--ink)' }}>{filtered.length}</span>
-                {' '}artwork{filtered.length !== 1 ? 's' : ''}
-                {hasFilters && ' found'}
+            <div className="flex items-center justify-between gap-4 flex-wrap pb-4 border-b border-line">
+              <p className="font-mono text-xs tracking-[0.24em] uppercase text-ink-muted">
+                <span className="font-bold text-accent">{filtered.length}</span>
+                {' '}PRINTS ARCHIVED
+                {hasFilters && ' (FILTERED)'}
               </p>
 
               <div className="flex items-center gap-2">
                 {/* Mobile filter toggle */}
                 <button
                   onClick={() => setShowFilters(o => !o)}
-                  className="btn btn-outline btn-sm lg:hidden flex items-center gap-1.5"
+                  className="px-3 py-1.5 border border-line bg-paper font-mono text-xs uppercase tracking-wider flex items-center gap-1.5 lg:hidden hover:border-ink transition-colors"
                 >
                   <SlidersHorizontal size={13} />
-                  Filters
+                  FILTERS
                   {hasFilters && (
-                    <span
-                      className="w-1.5 h-1.5 rounded-full ml-0.5"
-                      style={{ background: 'var(--vermilion)' }}
-                    />
+                    <span className="w-1.5 h-1.5 bg-accent ml-0.5 rounded-none" />
                   )}
                 </button>
 
@@ -284,25 +283,22 @@ export const ShopGalleryScreen: React.FC<ShopGalleryScreenProps> = ({
                 <div className="relative">
                   <button
                     onClick={() => setShowSortMenu(o => !o)}
-                    className="btn btn-outline btn-sm flex items-center gap-1.5"
+                    className="px-3 py-1.5 border border-line bg-paper font-mono text-xs uppercase tracking-wider flex items-center gap-1.5 hover:border-ink transition-colors"
                   >
                     <span>{SORT_OPTIONS.find(o => o.value === sortBy)?.label}</span>
                     <ChevronDown size={13} style={{ transform: showSortMenu ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }} />
                   </button>
                   {showSortMenu && (
                     <div
-                      className="absolute right-0 top-full mt-1.5 z-50 py-1.5 min-w-[180px]"
-                      style={{ background: 'var(--ivory)', border: '1px solid var(--hairline)', borderRadius: '3px', boxShadow: '0 8px 24px rgba(16,11,4,0.1)' }}
+                      className="absolute right-0 top-full mt-1.5 z-50 py-1 min-w-[180px] bg-paper border border-line shadow-[3px_3px_0_var(--ink)]"
                     >
                       {SORT_OPTIONS.map(opt => (
                         <button
                           key={opt.value}
                           onClick={() => { setSortBy(opt.value); setShowSortMenu(false); }}
-                          className="w-full text-left px-4 py-2.5 text-body-sm transition-colors"
-                          style={{
-                            color: sortBy === opt.value ? 'var(--vermilion)' : 'var(--ink-soft)',
-                            background: sortBy === opt.value ? 'var(--ivory-deep)' : 'transparent',
-                          }}
+                          className={`w-full text-left px-4 py-2 font-mono text-xs uppercase tracking-wider transition-colors ${
+                            sortBy === opt.value ? 'bg-accent/10 text-accent font-bold' : 'text-ink-soft hover:bg-paper-2'
+                          }`}
                         >
                           {opt.label}
                         </button>
@@ -337,91 +333,27 @@ export const ShopGalleryScreen: React.FC<ShopGalleryScreenProps> = ({
               </div>
             )}
 
-            {/* Mobile filter panel */}
-            {showFilters && (
-              <div
-                className="lg:hidden p-5 space-y-6"
-                style={{ background: 'var(--ivory-deep)', border: '1px solid var(--hairline-soft)', borderRadius: '4px' }}
-              >
-                <div className="flex items-center justify-between">
-                  <p className="text-ui font-semibold" style={{ color: 'var(--ink)' }}>Filters</p>
-                  <button onClick={() => setShowFilters(false)}>
-                    <X size={16} style={{ color: 'var(--ink-muted)' }} />
-                  </button>
-                </div>
-
-                <div>
-                  <p className="text-eyebrow mb-3" style={{ color: 'var(--ink-muted)', fontSize: '0.6rem' }}>Category</p>
-                  <div className="flex flex-wrap gap-2">
-                    <FilterPill active={activeCategory === 'all'} onClick={() => setActiveCategory('all')}>All</FilterPill>
-                    {categories.map(cat => (
-                      <FilterPill key={cat.id} active={activeCategory === cat.id} onClick={() => setActiveCategory(cat.id === activeCategory ? 'all' : cat.id)}>
-                        {cat.short}
-                      </FilterPill>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <p className="text-eyebrow mb-3" style={{ color: 'var(--ink-muted)', fontSize: '0.6rem' }}>Style</p>
-                  <div className="flex flex-wrap gap-2">
-                    <FilterPill active={activeStyle === 'all'} onClick={() => setActiveStyle('all')}>All</FilterPill>
-                    {styles.map(style => (
-                      <FilterPill key={style} active={activeStyle === style} onClick={() => setActiveStyle(activeStyle === style ? 'all' : style)}>
-                        {style}
-                      </FilterPill>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <p className="text-eyebrow mb-3" style={{ color: 'var(--ink-muted)', fontSize: '0.6rem' }}>Price</p>
-                  <div className="flex flex-wrap gap-2">
-                    {PRICE_RANGES.map((r, i) => (
-                      <FilterPill key={r.label} active={activePriceIdx === i} onClick={() => setActivePriceIdx(activePriceIdx === i ? null : i)}>
-                        {r.label}
-                      </FilterPill>
-                    ))}
-                  </div>
-                </div>
-
-                {hasFilters && (
-                  <button onClick={clearAll} className="btn btn-outline btn-sm w-full justify-center">
-                    Clear all filters
-                  </button>
-                )}
-              </div>
-            )}
-
             {/* Category pills (desktop quick-filter) */}
             <div className="hidden lg:flex gap-2 flex-wrap">
               <button
                 onClick={() => setActiveCategory('all')}
-                className="badge transition-colors cursor-pointer"
-                style={{
-                  padding: '0.5rem 1rem',
-                  background: activeCategory === 'all' ? 'var(--night)' : 'var(--ivory-deep)',
-                  color: activeCategory === 'all' ? 'var(--ivory)' : 'var(--ink-muted)',
-                  border: `1px solid ${activeCategory === 'all' ? 'var(--night)' : 'var(--hairline)'}`,
-                  fontSize: '0.7rem',
-                  letterSpacing: '0.08em',
-                }}
+                className={`px-3.5 py-1.5 border font-mono text-xs tracking-wider uppercase font-semibold transition-all cursor-pointer ${
+                  activeCategory === 'all'
+                    ? 'bg-ink text-paper border-ink shadow-[2px_2px_0_var(--accent)]'
+                    : 'bg-paper text-ink-muted border-line hover:border-ink hover:text-ink'
+                }`}
               >
-                All ({products.length})
+                ALL ({products.length})
               </button>
               {categories.map(cat => (
                 <button
                   key={cat.id}
                   onClick={() => setActiveCategory(cat.id === activeCategory ? 'all' : cat.id)}
-                  className="badge transition-colors cursor-pointer"
-                  style={{
-                    padding: '0.5rem 1rem',
-                    background: activeCategory === cat.id ? 'var(--night)' : 'var(--ivory-deep)',
-                    color: activeCategory === cat.id ? 'var(--ivory)' : 'var(--ink-muted)',
-                    border: `1px solid ${activeCategory === cat.id ? 'var(--night)' : 'var(--hairline)'}`,
-                    fontSize: '0.7rem',
-                    letterSpacing: '0.08em',
-                  }}
+                  className={`px-3.5 py-1.5 border font-mono text-xs tracking-wider uppercase font-semibold transition-all cursor-pointer ${
+                    activeCategory === cat.id
+                      ? 'bg-ink text-paper border-ink shadow-[2px_2px_0_var(--accent)]'
+                      : 'bg-paper text-ink-muted border-line hover:border-ink hover:text-ink'
+                  }`}
                 >
                   {cat.short}
                 </button>
@@ -431,50 +363,54 @@ export const ShopGalleryScreen: React.FC<ShopGalleryScreenProps> = ({
             {/* Product Grid */}
             {filtered.length > 0 ? (
               <>
-                <div className="product-grid">
+                <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
                   {filtered.slice(0, visibleCount).map((p, i) => (
-                    <ProductCard
+                    <PrintCard
                       key={p.id}
-                      product={p}
-                      isWishlisted={wishlist.includes(p.id)}
-                      addedToCart={addedIds.has(p.id)}
-                      onSelect={handleSelectProduct}
-                      onAddToCart={handleAddToCart}
-                      onQuickView={handleQuickView}
-                      onToggleWishlist={onToggleWishlist || (() => {})}
-                      index={i}
+                      id={p.id}
+                      refCode={`FIG. ${String(i + 1).padStart(2, '0')}`}
+                      name={p.title}
+                      slug={p.slug || p.id}
+                      image={p.image}
+                      pricePaise={p.price * 100}
+                      category={p.category}
+                      isOriginal={p.category === 'paintings'}
+                      stock={p.stock ?? 1}
+                      priority={i < 4}
                     />
                   ))}
                 </div>
                 {filtered.length > visibleCount && (
-                  <div className="pt-10 flex justify-center">
-                    <button
+                  <div className="pt-12 flex justify-center">
+                    <Button
+                      variant="ghost"
+                      size="lg"
                       onClick={() => setVisibleCount(c => c + 16)}
-                      className="btn btn-outline btn-lg"
-                      style={{ borderColor: 'var(--vermilion)', color: 'var(--vermilion)' }}
                     >
-                      Load More Artworks ({Math.min(visibleCount, filtered.length)} of {filtered.length})
-                    </button>
+                      LOAD MORE PRINTS ({Math.min(visibleCount, filtered.length)} OF {filtered.length})
+                    </Button>
                   </div>
                 )}
               </>
             ) : (
               /* Empty state */
-              <div className="py-20 text-center space-y-5">
+              <div className="py-24 text-center space-y-4 border border-line bg-paper-2 p-8">
                 <div className="flex justify-center">
-                  <MithilaMotif type="lotus-divider" color="var(--ink-dim)" width={200} />
+                  <MithilaMotif type="lotus-divider" color="var(--ink-muted)" width={180} />
                 </div>
-                <div className="space-y-2">
-                  <h3 className="font-display font-semibold text-title" style={{ color: 'var(--ink)' }}>
-                    No artworks found
+                <div className="space-y-1">
+                  <h3 className="font-display text-3xl uppercase text-ink">
+                    NO PRINTS FOUND
                   </h3>
-                  <p className="text-body" style={{ color: 'var(--ink-muted)' }}>
-                    Try adjusting your filters or search term
+                  <p className="font-mono text-xs uppercase tracking-wider text-ink-muted">
+                    No artworks match your selected filter criteria
                   </p>
                 </div>
-                <button onClick={clearAll} className="btn btn-outline btn-lg">
-                  Clear all filters
-                </button>
+                <div className="pt-2">
+                  <Button variant="ink" size="md" onClick={clearAll}>
+                    CLEAR ALL FILTERS
+                  </Button>
+                </div>
               </div>
             )}
           </div>

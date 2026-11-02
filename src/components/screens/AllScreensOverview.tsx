@@ -99,26 +99,26 @@ export const AllScreensOverview: React.FC<AllScreensOverviewProps> = ({
   ];
 
   return (
-    <div className="min-h-full w-full p-4 sm:p-6 lg:p-8 space-y-10 bg-[#181818] text-[#ffffff] text-left pb-20">
+    <div className="min-h-full w-full p-4 sm:p-6 lg:p-8 space-y-10 bg-paper text-ink text-left pb-20">
       {/* 1. Top Architecture Banner */}
-      <div className="max-w-7xl mx-auto bg-[#212121] border border-[#303030] p-8 space-y-4">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[#303030] pb-6">
+      <div className="max-w-7xl mx-auto bg-paper-2 border border-line p-8 space-y-4">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-line pb-6">
           <div className="space-y-1">
-            <span className="text-caption-uppercase text-[#da291c] block">
-              EXPERIENCE ARCHITECTURE • 7 TELEMETRY SCREENS
+            <span className="font-mono text-xs uppercase tracking-[0.22em] text-accent block">
+              EXPERIENCE ARCHITECTURE • 7 ATELIER SCREENS
             </span>
-            <h1 className="text-display-lg text-white">
+            <h1 className="font-display text-3xl sm:text-4xl text-ink uppercase tracking-tight">
               COMPLETE ATELIER INTERFACE ATLAS
             </h1>
           </div>
           <div className="flex items-center gap-3">
-            <span className="badge-pill-red">80 PRODUCTS ACTIVE</span>
-            <span className="badge-pill-dark">ZERO EXTERNAL ASSETS</span>
+            <span className="font-mono text-xs border border-accent bg-accent/10 text-accent px-2.5 py-1">80 PRODUCTS ACTIVE</span>
+            <span className="font-mono text-xs border border-line bg-paper text-ink px-2.5 py-1">ZERO EXTERNAL ASSETS</span>
           </div>
         </div>
 
-        <p className="text-sm text-[#969696] max-w-3xl leading-relaxed">
-          Navigate across The Art of Mithila collection: photography-first surfaces, quiet utility controls, and a single Action Blue interaction language.
+        <p className="font-mono text-xs text-ink/70 max-w-3xl leading-relaxed">
+          Navigate across the Vernika Enterprises Mithila collection: photography-first surfaces, paper textures, and honest artisan craftsmanship.
         </p>
       </div>
 
@@ -129,11 +129,11 @@ export const AllScreensOverview: React.FC<AllScreensOverviewProps> = ({
           return (
             <div
               key={screen.id}
-              className="bg-[#212121] border border-[#303030] overflow-hidden group flex flex-col justify-between hover:border-[#da291c] transition-all"
+              className="bg-paper-2 border border-line overflow-hidden group flex flex-col justify-between hover:border-ink hover:shadow-[3px_3px_0_var(--accent)] transition-all"
             >
               <div>
                 <div 
-                  className="relative aspect-16/10 overflow-hidden bg-[#181818] border-b border-[#303030] cursor-pointer"
+                  className="relative aspect-16/10 overflow-hidden bg-paper border-b border-line cursor-pointer"
                   onClick={() => onSelectScreen(screen.id)}
                 >
                   <img
@@ -141,32 +141,32 @@ export const AllScreensOverview: React.FC<AllScreensOverviewProps> = ({
                     alt={screen.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#181818] via-transparent to-transparent" />
-                  <span className="absolute top-3 left-3 bg-[#da291c] text-white text-[10px] uppercase font-bold tracking-[1.2px] px-2.5 py-0.5">
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink/30 via-transparent to-transparent" />
+                  <span className="absolute top-3 left-3 bg-accent text-paper text-[10px] uppercase font-mono tracking-widest px-2.5 py-0.5">
                     {screen.tag}
                   </span>
                 </div>
 
                 <div className="p-6 space-y-3">
                   <div className="flex items-center gap-2">
-                    <Icon className="w-4 h-4 text-[#da291c]" />
-                    <h3 className="text-lg font-bold text-white uppercase tracking-wide">
+                    <Icon className="w-4 h-4 text-accent" />
+                    <h3 className="font-display text-lg text-ink uppercase tracking-wide">
                       {screen.title}
                     </h3>
                   </div>
 
-                  <p className="text-xs text-[#969696] leading-relaxed">
+                  <p className="text-xs text-ink/70 leading-relaxed">
                     {screen.description}
                   </p>
 
                   <div className="pt-2 space-y-1.5">
-                    <span className="text-[10px] text-[#666666] uppercase font-bold tracking-wider block">
+                    <span className="font-mono text-[10px] text-ink/60 uppercase tracking-wider block">
                       Core Features:
                     </span>
-                    <ul className="text-xs text-[#8f8f8f] space-y-1">
+                    <ul className="text-xs text-ink/80 space-y-1 font-mono">
                       {screen.features.map((f, i) => (
                         <li key={i} className="flex items-center gap-1.5">
-                          <span className="w-1 h-1 bg-[#da291c]" />
+                          <span className="w-1.5 h-1.5 bg-accent" />
                           <span>{f}</span>
                         </li>
                       ))}
@@ -178,10 +178,9 @@ export const AllScreensOverview: React.FC<AllScreensOverviewProps> = ({
               <div className="p-6 pt-0">
                 <button
                   onClick={() => onSelectScreen(screen.id)}
-                  className="btn-ferrari-primary w-full py-3 text-xs font-bold"
+                  className="w-full py-2.5 font-mono text-xs uppercase tracking-widest border border-ink bg-ink text-paper hover:bg-paper hover:text-ink transition-colors cursor-pointer"
                 >
                   <span>LAUNCH SCREEN</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>
             </div>

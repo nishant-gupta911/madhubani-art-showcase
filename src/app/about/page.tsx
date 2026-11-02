@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { AboutTraditionScreen } from '@/components/screens/AboutTraditionScreen';
 import { HeaderBar } from '@/components/HeaderBar';
+import { Footer } from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'About the Art & Heritage — Madhubani Tradition | Vernika Enterprises',
@@ -10,15 +11,16 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen" style={{ background: 'var(--ivory)' }}>
+    <div className="min-h-screen flex flex-col bg-paper text-ink">
       <HeaderBar
         cartCount={0}
         wishlistCount={0}
         currentScreen="about"
       />
-      <main className="pt-2">
+      <main className="flex-1 pt-2">
         <AboutTraditionScreen />
       </main>
+      <Footer variant="poster" />
     </div>
   );
 }

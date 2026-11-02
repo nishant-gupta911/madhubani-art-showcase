@@ -319,7 +319,7 @@ export function AdminDashboard() {
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen flex items-center justify-center p-4" style={{ background: 'var(--ivory)' }}>
-        <div className="w-full max-w-md p-8 rounded-lg shadow-sm border border-ivory-dimmed" style={{ background: '#FAF6EF' }}>
+        <div className="w-full max-w-md p-8 border-2 border-ink shadow-[4px_4px_0_var(--ink)] bg-paper text-ink">
           <div className="text-center mb-8">
             <div className="w-12 h-12 rounded-full mx-auto flex items-center justify-center mb-3" style={{ background: 'var(--vermilion-tint)', color: 'var(--vermilion)' }}>
               <Lock size={22} />
@@ -394,7 +394,7 @@ export function AdminDashboard() {
 
   // 3. Full Studio Admin Interface
   return (
-    <div className="min-h-screen flex flex-col" style={{ background: '#F8F5EE' }}>
+    <div className="min-h-screen flex flex-col bg-paper text-ink">
       {/* Top Navbar */}
       <header className="sticky top-0 z-30 border-b border-ivory-dimmed px-4 lg:px-8 py-3.5 flex items-center justify-between shadow-sm" style={{ background: 'var(--night)', color: 'var(--ivory)' }}>
         <div className="flex items-center gap-3">

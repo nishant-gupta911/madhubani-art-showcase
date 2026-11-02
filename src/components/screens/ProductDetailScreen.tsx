@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { MadhubaniProduct } from '../../types';
 import {
@@ -11,6 +12,8 @@ import {
 } from 'lucide-react';
 import { MithilaMotif } from '../MithilaMotif';
 import { siteConfig } from '../../config/site';
+import { Button } from '@/components/ui/Button';
+import { PrintCard } from '@/components/ui/PrintCard';
 
 const WallVisualizerModal = dynamic(
   () => import('../WallVisualizerModal').then(m => m.WallVisualizerModal),
@@ -218,85 +221,76 @@ export const ProductDetailScreen: React.FC<ProductDetailScreenProps> = ({
           </div>
 
           {/* ═══ RIGHT — Product details ══════════════════════════════ */}
-          <div className="lg:col-span-6 space-y-7">
+          <div className="lg:col-span-6 space-y-6">
 
             {/* Category + Ref */}
-            <div className="flex items-center gap-2.5">
-              <span className="text-eyebrow font-semibold" style={{ color: 'var(--vermilion)', letterSpacing: '0.14em' }}>
-                {p.categoryName}
-              </span>
+            <div className="flex items-center gap-2 font-mono text-xs tracking-[0.24em] text-accent uppercase font-bold">
+              <span>{p.categoryName}</span>
               {p.ref && (
                 <>
-                  <span style={{ color: 'var(--hairline)' }}>·</span>
-                  <span className="text-caption font-mono" style={{ color: 'var(--ink-muted)' }}>
-                    Ref: {p.ref}
-                  </span>
+                  <span className="text-ink-muted">·</span>
+                  <span className="text-ink-muted">REF: {p.ref}</span>
                 </>
               )}
             </div>
 
-            {/* Title */}
-            <h1
-              className="font-display font-bold"
-              style={{ fontSize: 'clamp(1.75rem, 3vw, 2.75rem)', letterSpacing: '-0.02em', color: 'var(--ink)', lineHeight: '1.15' }}
-            >
+            {/* Title in condensed display font */}
+            <h1 className="font-display text-4xl sm:text-6xl text-ink uppercase tracking-tight leading-[0.92]">
               {p.name || p.title}
             </h1>
 
-            {/* Dimensions & Material preview */}
-            <div className="flex flex-wrap items-center gap-3 text-xs" style={{ color: 'var(--ink-soft)' }}>
-              <span className="font-medium bg-stone-100 px-2.5 py-1 rounded">Size: {p.dimensions}</span>
-              <span className="font-medium bg-stone-100 px-2.5 py-1 rounded">Artisan: Natasha Gupta</span>
-              <span className="font-medium bg-stone-100 px-2.5 py-1 rounded">{p.technique || 'Handpainted Freehand'}</span>
+            {/* Monospace Quick Specs Badges */}
+            <div className="flex flex-wrap items-center gap-2 font-mono text-[11px] tracking-wider uppercase text-ink-soft">
+              <span className="border border-line bg-paper px-2.5 py-1">SIZE: {p.dimensions}</span>
+              <span className="border border-line bg-paper px-2.5 py-1">ARTIST: NATASHA GUPTA</span>
+              <span className="border border-line bg-paper px-2.5 py-1 text-accent font-semibold">{p.technique || 'HANDPAINTED'}</span>
             </div>
 
             {/* Price Box */}
-            <div
-              className="py-5"
-              style={{ borderTop: '1px solid var(--hairline-soft)', borderBottom: '1px solid var(--hairline-soft)' }}
-            >
+            <div className="py-4 border-y border-line">
               <div className="flex items-baseline gap-3">
-                <span
-                  className="font-display font-bold"
-                  style={{ fontSize: 'clamp(2rem, 3vw, 2.5rem)', color: 'var(--ink)', letterSpacing: '-0.02em' }}
-                >
+                <span className="font-display text-4xl sm:text-5xl text-ink leading-none">
                   ₹{totalPrice.toLocaleString('en-IN')}
                 </span>
                 {p.compareAtPrice && p.compareAtPrice > totalPrice && (
-                  <span className="text-body line-through" style={{ color: 'var(--ink-dim)' }}>
+                  <span className="font-mono text-sm line-through text-ink-muted">
                     ₹{p.compareAtPrice.toLocaleString('en-IN')}
                   </span>
                 )}
-                <span className="text-xs text-leaf font-medium">All taxes (GST) included</span>
+                <span className="font-mono text-xs text-leaf font-bold uppercase tracking-wider">
+                  ALL TAXES (GST) INCLUDED
+                </span>
               </div>
-              <p className="text-caption mt-1.5" style={{ color: 'var(--ink-muted)' }}>
+              <p className="font-mono text-xs text-ink-muted mt-2 tracking-wide uppercase">
                 {p.type === 'original_painting'
-                  ? 'Quantity: 1 (One-of-a-kind original painting)'
-                  : `Made to Order (${p.leadTimeDays || 7} to 10 days handpainting lead time)`}
+                  ? 'QUANTITY: 1 OF 1 (ORIGINAL WORK)'
+                  : `MADE TO ORDER (${p.leadTimeDays || 7} DAYS LEAD TIME)`}
               </p>
             </div>
 
             {/* Frame Option (if painting) */}
             {p.category === 'paintings' && (
-              <div className="space-y-3">
-                <p className="text-ui font-medium" style={{ color: 'var(--ink)' }}>
-                  Framing Option
+              <div className="space-y-2">
+                <p className="font-mono text-xs tracking-widest text-ink font-semibold uppercase">
+                  FRAMING SELECTION
                 </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {FRAME_OPTIONS.map(f => (
                     <button
                       key={f.id}
                       onClick={() => setSelectedFrame(f.id)}
-                      className="p-3 text-left rounded border transition-all text-sm"
-                      style={{
-                        borderColor: selectedFrame === f.id ? 'var(--vermilion)' : 'var(--hairline)',
-                        background: selectedFrame === f.id ? 'var(--vermilion-tint)' : 'var(--ivory)',
-                      }}
+                      className={`p-3 text-left border transition-all cursor-pointer ${
+                        selectedFrame === f.id
+                          ? 'border-ink bg-paper shadow-[2px_2px_0_var(--accent)]'
+                          : 'border-line bg-paper-2 hover:border-ink'
+                      }`}
                     >
-                      <p className="font-semibold" style={{ color: selectedFrame === f.id ? 'var(--vermilion)' : 'var(--ink)' }}>
+                      <p className={`font-mono text-xs uppercase font-bold ${
+                        selectedFrame === f.id ? 'text-accent' : 'text-ink'
+                      }`}>
                         {f.label}
                       </p>
-                      <p className="text-xs mt-0.5" style={{ color: 'var(--ink-dim)' }}>
+                      <p className="font-mono text-[10px] text-ink-muted mt-1 uppercase">
                         {f.note}
                       </p>
                     </button>
@@ -308,32 +302,32 @@ export const ProductDetailScreen: React.FC<ProductDetailScreenProps> = ({
             {/* CTAs: Add to Cart + WhatsApp Order */}
             <div className="space-y-3 pt-2">
               <div className="flex gap-3">
-                <button
+                <Button
+                  variant="primary"
+                  size="lg"
                   onClick={handleAddToCart}
                   disabled={addedToBag || (p.stock === 0 && p.type === 'original_painting')}
-                  className="btn btn-primary btn-lg flex-1 justify-center disabled:opacity-50"
-                  style={{ background: 'var(--vermilion)', color: '#fff' }}
+                  className="flex-1"
                 >
                   {addedToBag ? (
-                    <><CheckCircle2 size={18} /> Added to Cart</>
+                    <span className="flex items-center gap-2"><CheckCircle2 size={16} /> ADDED TO CART</span>
                   ) : p.stock === 0 && p.type === 'original_painting' ? (
-                    <span>Sold (View in Portfolio)</span>
+                    <span>SOLD OUT (ORIGINAL 1 OF 1)</span>
                   ) : (
-                    <><ShoppingBag size={18} /> Add to Cart</>
+                    <span className="flex items-center gap-2"><ShoppingBag size={16} /> ADD TO CART</span>
                   )}
-                </button>
+                </Button>
 
                 <button
                   onClick={handleToggleWishlist}
-                  className="btn btn-icon border"
-                  style={{ width: '52px', height: '52px', borderRadius: '4px', borderColor: 'var(--line)' }}
+                  className="w-14 border border-line bg-paper flex items-center justify-center text-ink hover:border-ink transition-colors cursor-pointer"
                   aria-label="Wishlist"
                 >
                   <Heart
-                    size={20}
+                    size={18}
                     style={{
-                      color: isWishlisted ? 'var(--vermilion)' : 'var(--ink-muted)',
-                      fill: isWishlisted ? 'var(--vermilion)' : 'none',
+                      color: isWishlisted ? 'var(--accent)' : 'var(--ink-muted)',
+                      fill: isWishlisted ? 'var(--accent)' : 'none',
                     }}
                   />
                 </button>
@@ -344,11 +338,10 @@ export const ProductDetailScreen: React.FC<ProductDetailScreenProps> = ({
                       navigator.share({ title: p.name, text: p.shortDescription, url: window.location.href }).catch(() => {});
                     }
                   }}
-                  className="btn btn-icon border"
-                  style={{ width: '52px', height: '52px', borderRadius: '4px', borderColor: 'var(--line)' }}
+                  className="w-14 border border-line bg-paper flex items-center justify-center text-ink hover:border-ink transition-colors cursor-pointer"
                   aria-label="Share"
                 >
-                  <Share2 size={18} style={{ color: 'var(--ink-muted)' }} />
+                  <Share2 size={18} />
                 </button>
               </div>
 
@@ -357,11 +350,10 @@ export const ProductDetailScreen: React.FC<ProductDetailScreenProps> = ({
                 href={`https://wa.me/${siteConfig.contact.whatsapp}?text=${whatsappMessage}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn w-full justify-center flex items-center gap-2 border text-sm font-medium py-3 rounded"
-                style={{ borderColor: '#25D366', color: '#075E54', background: '#F0FFF4' }}
+                className="w-full justify-center flex items-center gap-2 border border-[#25D366] text-[#075E54] bg-[#F0FFF4] py-3 text-xs font-mono tracking-widest uppercase font-bold hover:brightness-95 transition-all"
               >
-                <MessageCircle size={17} style={{ color: '#075E54' }} />
-                <span>Order directly on WhatsApp (+91 {siteConfig.contact.phone})</span>
+                <MessageCircle size={16} />
+                <span>ORDER DIRECTLY ON WHATSAPP (+91 {siteConfig.contact.phone})</span>
               </a>
             </div>
 
@@ -496,43 +488,31 @@ export const ProductDetailScreen: React.FC<ProductDetailScreenProps> = ({
 
       {/* ─── Related Products ─────────────────────────────────────── */}
       {related.length > 0 && (
-        <section className="py-16 border-t" style={{ background: 'var(--ivory-deep)', borderColor: 'var(--line)' }}>
+        <section className="py-16 border-t border-line bg-paper-2">
           <div className="container space-y-8">
-            <div>
-              <p className="text-eyebrow mb-1" style={{ color: 'var(--vermilion)', letterSpacing: '0.14em' }}>
-                Explore More Works
-              </p>
-              <h2 className="font-display font-semibold text-2xl" style={{ color: 'var(--ink)' }}>
-                Related Artworks
+            <div className="border-b border-line pb-4">
+              <span className="font-mono text-xs tracking-[0.24em] text-accent uppercase font-bold">
+                CURATED COMPANIONS
+              </span>
+              <h2 className="font-display text-4xl uppercase text-ink mt-1">
+                RELATED GALLERY PRINTS
               </h2>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              {related.map(r => (
-                <article
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
+              {related.map((r, idx) => (
+                <PrintCard
                   key={r.id}
-                  className="art-card group cursor-pointer bg-white rounded-lg border overflow-hidden shadow-sm hover:shadow-md transition-all"
-                  style={{ borderColor: 'var(--line)' }}
-                  onClick={() => {
-                    handleSelectProduct(r);
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
-                >
-                  <div className="relative aspect-[4/5] overflow-hidden bg-stone-50">
-                    <Image
-                      src={r.image}
-                      alt={r.name || r.title}
-                      fill
-                      sizes="(max-width: 640px) 50vw, 25vw"
-                      className="object-contain p-2 group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                  <div className="p-3 border-t" style={{ borderColor: 'var(--line)' }}>
-                    <p className="text-xs uppercase font-medium" style={{ color: 'var(--vermilion)' }}>{r.categoryShort}</p>
-                    <h3 className="font-semibold text-sm line-clamp-1" style={{ color: 'var(--ink)' }}>{r.name || r.title}</h3>
-                    <p className="text-xs font-bold mt-1" style={{ color: 'var(--ink)' }}>₹{r.price.toLocaleString('en-IN')}</p>
-                  </div>
-                </article>
+                  id={r.id}
+                  refCode={`PLATE ${String(idx + 1).padStart(2, '0')}`}
+                  name={r.name || r.title}
+                  slug={r.slug || r.id}
+                  image={r.image}
+                  pricePaise={r.price * 100}
+                  category={r.category}
+                  isOriginal={r.category === 'paintings'}
+                  stock={r.stock ?? 1}
+                />
               ))}
             </div>
           </div>

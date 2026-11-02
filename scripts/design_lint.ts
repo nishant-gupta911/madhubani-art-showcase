@@ -23,6 +23,9 @@ const ALLOWED_HEX = new Set([
   '#000',
   '#fff',
   '#100b04', // Footer base
+  '#FBF3E2', // Tokens: --paper
+  '#B8321F', // Tokens: --accent
+  '#B03020', // Tokens: legacy accent
 ]);
 
 function scanFile(filePath: string, findings: LintFinding[]) {

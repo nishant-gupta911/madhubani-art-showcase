@@ -2,8 +2,10 @@
 
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Award, Feather, Leaf, Users, BookOpen, ArrowRight } from 'lucide-react';
 import { MithilaMotif, SectionEyebrow } from '../MithilaMotif';
+import { Button } from '@/components/ui/Button';
 
 interface AboutTraditionScreenProps {
   onNavigateToShop?: () => void;
@@ -27,65 +29,30 @@ const TECHNIQUES = [
 
 export const AboutTraditionScreen: React.FC<AboutTraditionScreenProps> = ({ onNavigateToShop }) => {
   return (
-    <div style={{ background: 'var(--ivory)', color: 'var(--ink)' }}>
+    <div className="bg-paper text-ink selection:bg-accent selection:text-paper min-h-screen">
 
       {/* ─── Hero Section ───────────────────────────────────────────── */}
-      <section className="relative overflow-hidden" style={{ minHeight: 'min(78vh, 700px)' }}>
-        <div className="absolute inset-0">
-          <Image
-            src="/products/22.webp"
-            alt="Kohbar wedding chamber painting"
-            fill
-            priority
-            sizes="100vw"
-            className="w-full h-full object-cover object-center"
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background: 'linear-gradient(to right, var(--ivory) 0%, rgba(250,246,239,0.95) 45%, rgba(250,246,239,0.3) 80%, transparent 100%)',
-            }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background: 'linear-gradient(to top, var(--ivory) 0%, transparent 60%)',
-            }}
-          />
-        </div>
-
-        <div
-          className="relative z-10 container flex flex-col justify-center py-20"
-          style={{ minHeight: 'inherit' }}
-        >
-          <div className="max-w-xl space-y-6 animate-fade-up">
-            <div className="flex items-center gap-3">
-              <span className="w-8 h-px" style={{ background: 'var(--vermilion)' }} />
-              <span className="text-eyebrow" style={{ color: 'var(--vermilion)', letterSpacing: '0.18em' }}>
-                A Living Cultural Lineage
-              </span>
-            </div>
-
-            <h1
-              className="font-display font-bold leading-none"
-              style={{ fontSize: 'clamp(2.5rem, 5vw, 4.25rem)', letterSpacing: '-0.02em', color: 'var(--ink)' }}
-            >
-              The Sacred Heritage of<br />
-              <span style={{ fontStyle: 'italic', fontWeight: 600, color: 'var(--vermilion)' }}>Mithila Art</span>
-            </h1>
-
-            <p className="text-body-lg" style={{ color: 'var(--ink-soft)' }}>
-              Born from a royal commission and preserved through unbroken matriarchal inheritance in Bihar, Madhubani painting stands as one of humanity's most resilient living folk traditions.
-            </p>
-
+      <section className="relative overflow-hidden border-b border-line pt-16 pb-20 bg-paper">
+        <div className="container max-w-4xl text-center space-y-4">
+          <div className="font-mono text-xs tracking-[0.28em] uppercase text-accent font-semibold">
+            HERITAGE MONOGRAPH · MITHILA TRADITION
+          </div>
+          <h1 className="font-display text-5xl sm:text-7xl md:text-8xl text-ink uppercase tracking-tight leading-[0.9]">
+            THE LIVING SACRED LINES OF MITHILA
+          </h1>
+          <p className="font-mono text-xs sm:text-sm tracking-wider uppercase text-ink-muted max-w-2xl mx-auto leading-relaxed">
+            A three-millennium lineage of domestic ritual art practiced by the women of Bihar, carried forward by Natasha Gupta.
+          </p>
+          <div className="pt-4">
             <button
-            onClick={() => {
-              if (onNavigateToShop) onNavigateToShop();
-              else if (typeof window !== 'undefined') window.location.href = '/shop';
-            }}
-            className="btn btn-primary btn-lg"
-          >
-              Explore the Archive <ArrowRight size={16} />
+              onClick={() => {
+                if (onNavigateToShop) onNavigateToShop();
+                else if (typeof window !== 'undefined') window.location.href = '/shop';
+              }}
+              className="px-6 py-3 font-mono text-xs uppercase tracking-widest bg-ink text-paper border border-ink shadow-[2px_2px_0_var(--accent)] hover:bg-paper hover:text-ink cursor-pointer transition-all inline-flex items-center gap-2"
+            >
+              <span>EXPLORE THE ARCHIVE</span>
+              <ArrowRight size={14} />
             </button>
           </div>
         </div>

@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { notFound, redirect } from 'next/navigation';
 import { getCachedProductBySlug, getCachedProducts, mapCleanProductToMadhubani } from '@/lib/products';
 import { HeaderBar } from '@/components/HeaderBar';
+import { Footer } from '@/components/Footer';
 import { ProductDetailScreen } from '@/components/screens/ProductDetailScreen';
 import { siteConfig } from '@/config/site';
 
@@ -93,7 +94,7 @@ export default async function ProductPage({ params }: PageProps) {
   };
 
   return (
-    <div className="min-h-screen" style={{ background: 'var(--ivory)' }}>
+    <div className="min-h-screen flex flex-col bg-paper text-ink">
       {/* Preload Product Hero Image for sub-2s LCP */}
       <link rel="preload" as="image" href={mappedCurrent.image} fetchPriority="high" />
       {/* Inject Product JSON-LD */}
@@ -106,12 +107,13 @@ export default async function ProductPage({ params }: PageProps) {
         wishlistCount={0}
         currentScreen="shop"
       />
-      <main className="pt-2">
+      <main className="flex-1 pt-2">
         <ProductDetailScreen
           product={mappedCurrent}
           products={relatedProducts}
         />
       </main>
+      <Footer variant="poster" />
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { getCachedProducts, mapCleanProductToMadhubani } from '@/lib/products';
 import { ShopGalleryScreen } from '@/components/screens/ShopGalleryScreen';
 import { HeaderBar } from '@/components/HeaderBar';
+import { Footer } from '@/components/Footer';
 import { CATALOG_CATEGORIES, CATALOG_STYLES } from '@/config/catalog';
 import { siteConfig } from '@/config/site';
 
@@ -44,12 +45,12 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     .map(mapCleanProductToMadhubani);
 
   return (
-    <div className="min-h-screen" style={{ background: 'var(--ivory)' }}>
+    <div className="min-h-screen flex flex-col bg-paper text-ink">
       {categoryProducts.length > 0 && (
         <link rel="preload" as="image" href={categoryProducts[0].image} fetchPriority="high" />
       )}
       <HeaderBar cartCount={0} wishlistCount={0} currentScreen="shop" />
-      <main className="pt-2">
+      <main className="flex-1 pt-2">
         <ShopGalleryScreen
           products={categoryProducts}
           categories={CATALOG_CATEGORIES}
@@ -57,6 +58,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           initialCategory={category}
         />
       </main>
+      <Footer variant="poster" />
     </div>
   );
 }

@@ -33,7 +33,7 @@ const checks: SmokeCheck[] = [
   {
     name: 'Gallery Route (/gallery)',
     url: '/gallery',
-    validate: (res, text) => res.status === 200 && text.includes('Gallery'),
+    validate: (res, text) => res.status === 200 && (text.includes('Gallery') || text.includes('GALLERY') || text.includes('Portfolio')),
     expected: 'Status 200, contains gallery content'
   },
   {

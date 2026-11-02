@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { ScreenType } from '../types';
 import { Search, ShoppingBag, Heart, Menu, X, ChevronDown } from 'lucide-react';
+import { siteConfig } from '@/config/site';
 
 interface HeaderBarProps {
   currentScreen?: ScreenType;
@@ -58,91 +59,64 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
 
   return (
     <>
-      <header className={`site-header ${scrolled ? 'scrolled' : ''}`}>
-        {/* ─── Announcement Bar ─────────────────────────────────── */}
-        <div style={{ background: 'var(--vermilion)', color: 'var(--ivory)' }} className="py-2 text-center">
-          <p className="text-caption tracking-widest uppercase font-medium" style={{ letterSpacing: '0.14em', fontSize: '0.68rem' }}>
-            Free shipping across India on orders above ₹1,499 · All framed paintings ship free · Handpainted by Natasha Gupta
+      <header className="sticky top-0 z-50 bg-paper/95 backdrop-blur-sm border-b border-line selection:bg-accent selection:text-paper">
+        {/* ─── Announcement Bar (Ink background with mono micro-type) ─── */}
+        <div className="bg-ink text-paper py-2 text-center border-b border-line">
+          <p className="font-mono text-[10px] sm:text-[11px] tracking-[0.24em] uppercase font-medium px-4">
+            FREE SHIPPING ACROSS INDIA OVER ₹1,499 · FRAMED PAINTINGS SHIP FREE · HANDPAINTED BY NATASHA GUPTA
           </p>
         </div>
 
-        {/* ─── Main Nav ─────────────────────────────────────────── */}
+        {/* ─── Main Nav Bar ─── */}
         <div className="container">
-          <div className="flex items-center justify-between" style={{ height: '68px' }}>
+          <div className="flex items-center justify-between h-16 sm:h-[68px]">
 
-            {/* Logo */}
+            {/* Logo: Screen-Printed Poster Wordmark */}
             <button
               onClick={() => navigate('home')}
-              className="flex items-center gap-3 shrink-0"
-              aria-label="Go to homepage"
+              className="flex items-center gap-3 shrink-0 text-left cursor-pointer group"
+              aria-label="Vernika Enterprises Homepage"
             >
-              <div className="brand-mark">
-                <Image src="/vernika-enterprises.webp" alt="Vernika Enterprises Logo" width={40} height={40} priority />
+              <div className="w-9 h-9 border border-line bg-paper p-0.5 flex items-center justify-center shrink-0 group-hover:shadow-[2px_2px_0_var(--accent)] transition-all">
+                <Image src="/vernika-enterprises.webp" alt="Vernika Logo" width={32} height={32} priority />
               </div>
-              <div className="hidden sm:block text-left leading-none">
-                <div
-                  className="font-display font-semibold tracking-tight"
-                  style={{ fontSize: '1.15rem', color: 'var(--ink)', letterSpacing: '-0.01em' }}
-                >
-                  Vernika Enterprises
+              <div className="leading-none">
+                <div className="font-display text-xl sm:text-2xl tracking-tight text-ink uppercase group-hover:text-accent transition-colors">
+                  VERNIKA
                 </div>
-                <div className="text-eyebrow" style={{ fontSize: '0.58rem', color: 'var(--vermilion)', letterSpacing: '0.12em' }}>
-                  Handpainted by Natasha Gupta
+                <div className="font-mono text-[9px] tracking-[0.26em] text-accent uppercase font-medium mt-0.5">
+                  MITHILA ART GALLERY
                 </div>
               </div>
             </button>
 
-            {/* Desktop Nav */}
-            <nav className="hidden md:flex items-center gap-1">
+            {/* Desktop Nav in Monospace */}
+            <nav className="hidden md:flex items-center gap-6">
               {NAV_LINKS.map(link => (
                 <button
                   key={link.id}
                   onClick={() => navigate(link.id)}
-                  className={`relative px-4 py-2 text-ui transition-colors duration-200 ${
+                  className={`relative py-1 font-mono text-xs tracking-[0.2em] uppercase font-semibold transition-colors cursor-pointer ${
                     isActive(link.id)
-                      ? 'text-vermilion'
-                      : 'text-ink-soft hover:text-ink'
+                      ? 'text-accent'
+                      : 'text-ink-muted hover:text-ink'
                   }`}
-                  style={{ letterSpacing: '0.03em' }}
                 >
                   {link.label}
                   {isActive(link.id) && (
-                    <span
-                      className="absolute bottom-0 left-4 right-4 h-px"
-                      style={{ background: 'var(--vermilion)' }}
-                    />
+                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent" />
                   )}
                 </button>
               ))}
             </nav>
 
             {/* Right Actions */}
-            <div className="flex items-center gap-2">
-              {/* Login / Sign Up */}
-              {user ? (
-                <button
-                  onClick={() => navigate('profile')}
-                  className="hidden md:block text-ui font-semibold hover:text-[var(--vermilion)] transition-colors cursor-pointer mr-1"
-                  style={{ color: 'var(--ink-soft)' }}
-                >
-                  {user.name}
-                </button>
-              ) : (
-                <button
-                  onClick={onOpenAuth}
-                  className="hidden md:block text-ui font-semibold hover:text-[var(--vermilion)] transition-colors cursor-pointer mr-1"
-                  style={{ color: 'var(--ink-soft)' }}
-                >
-                  Sign In
-                </button>
-              )}
-
-              {/* Search */}
+            <div className="flex items-center gap-2 sm:gap-3">
+              {/* Search Toggle */}
               <button
                 onClick={() => setSearchOpen(o => !o)}
-                className="btn btn-icon"
-                aria-label="Search"
-                style={{ width: '2.25rem', height: '2.25rem' }}
+                className="w-9 h-9 border border-line flex items-center justify-center text-ink hover:text-accent hover:border-ink transition-colors cursor-pointer"
+                aria-label="Search Catalog"
               >
                 <Search size={15} />
               </button>
@@ -150,52 +124,36 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
               {/* Wishlist */}
               <button
                 onClick={() => navigate('profile')}
-                className="btn btn-icon relative"
+                className="w-9 h-9 border border-line flex items-center justify-center text-ink hover:text-accent hover:border-ink transition-colors relative cursor-pointer"
                 aria-label={`Wishlist (${wishlistCount} items)`}
-                style={{ width: '2.25rem', height: '2.25rem' }}
               >
                 <Heart size={15} />
                 {wishlistCount > 0 && (
-                  <span
-                    className="absolute -top-0.5 -right-0.5 w-4 h-4 rounded-full text-white flex items-center justify-center"
-                    style={{ background: 'var(--vermilion)', fontSize: '0.55rem', fontWeight: '600' }}
-                  >
+                  <span className="absolute -top-1 -right-1 w-4 h-4 bg-accent text-paper font-mono text-[9px] font-bold flex items-center justify-center rounded-none border border-ink">
                     {wishlistCount > 9 ? '9+' : wishlistCount}
                   </span>
                 )}
               </button>
 
-              {/* Cart */}
+              {/* Cart: CART [ 2 ] */}
               <button
                 onClick={() => navigate('cart')}
-                className="flex items-center gap-2 relative"
-                style={{
-                  background: cartCount > 0 ? 'var(--vermilion)' : 'transparent',
-                  color: cartCount > 0 ? 'var(--ivory)' : 'var(--ink)',
-                  border: `1px solid ${cartCount > 0 ? 'var(--vermilion)' : 'var(--hairline)'}`,
-                  borderRadius: '3px',
-                  padding: '0.45rem 0.85rem',
-                  transition: 'all 0.2s ease',
-                  fontSize: '0.75rem',
-                  letterSpacing: '0.08em',
-                  fontWeight: '500',
-                  textTransform: 'uppercase',
-                  fontFamily: "'DM Sans', sans-serif",
-                }}
+                className={`flex items-center gap-2 px-3 py-1.5 border font-mono text-xs tracking-[0.16em] uppercase font-bold transition-all cursor-pointer ${
+                  cartCount > 0
+                    ? 'bg-accent text-paper border-accent shadow-[2px_2px_0_var(--ink)] hover:bg-accent-hover'
+                    : 'bg-paper text-ink border-ink hover:shadow-[2px_2px_0_var(--accent)] hover:-translate-x-[1px] hover:-translate-y-[1px]'
+                }`}
                 aria-label={`Cart (${cartCount} items)`}
               >
                 <ShoppingBag size={14} />
-                <span className="hidden sm:inline">
-                  {cartCount > 0 ? `${cartCount} item${cartCount > 1 ? 's' : ''}` : 'Cart'}
-                </span>
+                <span>CART [ {cartCount} ]</span>
               </button>
 
               {/* Mobile Menu Toggle */}
               <button
                 onClick={() => setMobileOpen(o => !o)}
-                className="btn btn-icon md:hidden ml-1"
+                className="w-9 h-9 border border-line flex md:hidden items-center justify-center text-ink hover:border-ink transition-colors cursor-pointer ml-1"
                 aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
-                style={{ width: '2.25rem', height: '2.25rem' }}
               >
                 {mobileOpen ? <X size={16} /> : <Menu size={16} />}
               </button>
@@ -262,94 +220,78 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
         </div>
       </header>
 
-      {/* ─── Mobile Menu Overlay ────────────────────────────────── */}
+      {/* ─── Mobile Menu Drawer ────────────────────────────────── */}
       {mobileOpen && (
-        <div
-          className="fixed inset-0 z-[200]"
-          style={{ background: 'var(--ivory)' }}
-        >
-          <div className="container py-6 flex flex-col h-full">
-            {/* Header */}
-            <div className="flex items-center justify-between mb-10">
+        <div className="fixed inset-0 z-[200] bg-paper paper-grain-bg text-ink flex flex-col justify-between p-6">
+          {/* Drawer Header */}
+          <div>
+            <div className="flex items-center justify-between pb-6 border-b border-line">
               <button
                 onClick={() => { navigate('home'); setMobileOpen(false); }}
-                className="flex items-center gap-3"
+                className="flex items-center gap-3 text-left"
               >
-                <div className="brand-mark">
-                  <Image src="/vernika-enterprises.webp" alt="Vernika Enterprises Logo" width={36} height={36} />
+                <div className="w-8 h-8 border border-line bg-paper p-0.5 flex items-center justify-center">
+                  <Image src="/vernika-enterprises.webp" alt="Vernika Logo" width={28} height={28} />
                 </div>
-                <div className="font-display font-semibold" style={{ fontSize: '1.125rem', color: 'var(--ink)' }}>
-                  Vernika Enterprises
+                <div>
+                  <div className="font-display text-2xl uppercase tracking-tight text-ink leading-none">
+                    VERNIKA
+                  </div>
+                  <div className="font-mono text-[9px] tracking-widest text-accent uppercase font-medium mt-0.5">
+                    MITHILA ART GALLERY
+                  </div>
                 </div>
               </button>
+
               <button
                 onClick={() => setMobileOpen(false)}
-                className="btn btn-icon"
+                className="w-10 h-10 border border-line flex items-center justify-center text-ink hover:text-accent cursor-pointer"
+                aria-label="Close menu"
               >
                 <X size={18} />
               </button>
             </div>
 
-            {/* Nav Links */}
-            <nav className="flex flex-col gap-1">
+            {/* Nav Links in Monospace */}
+            <nav className="flex flex-col mt-6 divide-y divide-line">
               <button
-                onClick={() => navigate('home')}
-                className="text-left py-4 font-display text-2xl font-semibold tracking-tight"
-                style={{
-                  color: isActive('home') ? 'var(--vermilion)' : 'var(--ink)',
-                  borderBottom: '1px solid var(--hairline-soft)',
-                }}
+                onClick={() => { navigate('home'); setMobileOpen(false); }}
+                className={`py-4 text-left font-mono text-sm tracking-[0.24em] uppercase font-bold flex items-center justify-between ${
+                  isActive('home') ? 'text-accent' : 'text-ink'
+                }`}
               >
-                Home
+                <span>01 / HOME EXHIBITION</span>
+                <span className="text-accent font-normal">→</span>
               </button>
-              {NAV_LINKS.map(link => (
+
+              {NAV_LINKS.map((link, idx) => (
                 <button
                   key={link.id}
-                  onClick={() => navigate(link.id)}
-                  className="text-left py-4 font-display text-2xl font-semibold tracking-tight"
-                  style={{
-                    color: isActive(link.id) ? 'var(--vermilion)' : 'var(--ink)',
-                    borderBottom: '1px solid var(--hairline-soft)',
-                  }}
+                  onClick={() => { navigate(link.id); setMobileOpen(false); }}
+                  className={`py-4 text-left font-mono text-sm tracking-[0.24em] uppercase font-bold flex items-center justify-between ${
+                    isActive(link.id) ? 'text-accent' : 'text-ink'
+                  }`}
                 >
-                  {link.label}
+                  <span>{`0${idx + 2} / ${link.label}`}</span>
+                  <span className="text-accent font-normal">→</span>
                 </button>
               ))}
-            </nav>
 
-            {/* Bottom actions */}
-            <div className="mt-auto space-y-3">
               <button
                 onClick={() => { navigate('cart'); setMobileOpen(false); }}
-                className="btn btn-primary w-full btn-lg justify-center"
+                className="py-4 text-left font-mono text-sm tracking-[0.24em] uppercase font-bold flex items-center justify-between text-accent"
               >
+                <span>06 / CART [ {cartCount} ]</span>
                 <ShoppingBag size={16} />
-                View Cart {cartCount > 0 && `(${cartCount})`}
               </button>
-              <button
-                onClick={() => { navigate('profile'); setMobileOpen(false); }}
-                className="btn btn-outline w-full btn-lg justify-center"
-              >
-                <Heart size={16} />
-                My Wishlist {wishlistCount > 0 && `(${wishlistCount})`}
-              </button>
-              {user ? (
-                <button
-                  onClick={() => { onLogout(); setMobileOpen(false); }}
-                  className="btn btn-outline w-full btn-lg justify-center text-vermilion"
-                  style={{ color: 'var(--vermilion)', borderColor: 'var(--vermilion-light)' }}
-                >
-                  Sign Out
-                </button>
-              ) : (
-                <button
-                  onClick={() => { onOpenAuth(); setMobileOpen(false); }}
-                  className="btn btn-outline w-full btn-lg justify-center"
-                >
-                  Sign In / Sign Up
-                </button>
-              )}
-            </div>
+            </nav>
+          </div>
+
+          {/* Drawer Footer */}
+          <div className="pt-6 border-t border-line font-mono text-xs tracking-wider text-ink-muted">
+            <p className="uppercase text-ink font-semibold">Natasha Gupta Studio</p>
+            <p className="mt-1">Faridabad, Haryana · Ships Across India</p>
+            <p className="mt-2 text-accent">WhatsApp: +{siteConfig.contact.phone}</p>
           </div>
         </div>
       )}

@@ -8,7 +8,7 @@ import React from 'react';
  *
  * Usage:
  *   <MithilaMotif type="divider" />
- *   <MithilaMotif type="lotus-divider" color="#C0392B" />
+ *   <MithilaMotif type="lotus-divider" color="var(--accent)" />
  *   <MithilaMotif type="fish-pair" width={80} />
  */
 

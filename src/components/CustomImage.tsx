@@ -23,11 +23,11 @@ export const CustomImage: React.FC<CustomImageProps> = ({
 
   return (
     <div 
-      className={`relative overflow-hidden bg-[#212121] ${aspectRatio} ${className}`}
+      className={`relative overflow-hidden bg-paper-2 ${aspectRatio} ${className}`}
       onClick={onClick}
     >
       {!loaded && !error && (
-        <div className="absolute inset-0 animate-pulse bg-[#2a2a2a]" />
+        <div className="absolute inset-0 animate-pulse bg-line/20" />
       )}
       <img
         src={imageSource}

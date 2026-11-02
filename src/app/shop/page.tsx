@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { getCachedProducts, mapCleanProductToMadhubani } from '@/lib/products';
 import { ShopGalleryScreen } from '@/components/screens/ShopGalleryScreen';
 import { HeaderBar } from '@/components/HeaderBar';
+import { Footer } from '@/components/Footer';
 import { CATALOG_CATEGORIES, CATALOG_STYLES } from '@/config/catalog';
 
 export const revalidate = 60;
@@ -22,19 +23,20 @@ export default async function ShopPage() {
   const products = dbProducts.map(mapCleanProductToMadhubani);
 
   return (
-    <div className="min-h-screen" style={{ background: 'var(--ivory)' }}>
+    <div className="min-h-screen flex flex-col bg-paper text-ink">
       <HeaderBar
         cartCount={0}
         wishlistCount={0}
         currentScreen="shop"
       />
-      <main className="pt-2">
+      <main className="flex-1 pt-2">
         <ShopGalleryScreen
           products={products}
           categories={CATALOG_CATEGORIES}
           styles={CATALOG_STYLES as any}
         />
       </main>
+      <Footer variant="poster" />
     </div>
   );
 }

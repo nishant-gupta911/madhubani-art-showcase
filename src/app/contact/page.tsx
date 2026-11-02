@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { ContactCommissionScreen } from '@/components/screens/ContactCommissionScreen';
 import { HeaderBar } from '@/components/HeaderBar';
+import { Footer } from '@/components/Footer';
 import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
@@ -15,11 +16,12 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen" style={{ background: 'var(--ivory)' }}>
+    <div className="min-h-screen flex flex-col bg-paper text-ink">
       <HeaderBar currentScreen="contact" cartCount={0} wishlistCount={0} />
-      <main className="pt-2">
+      <main className="flex-1">
         <ContactCommissionScreen />
       </main>
+      <Footer variant="compact" />
     </div>
   );
 }

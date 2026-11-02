@@ -36,7 +36,7 @@ export const InteractiveLoupe: React.FC<InteractiveLoupeProps> = ({
       onMouseLeave={() => setIsHovered(false)}
       onMouseMove={handleMouseMove}
       onClick={onClick}
-      className={`relative overflow-hidden bg-[#181818] cursor-crosshair group select-none ${aspectRatio} ${className}`}
+      className={`relative overflow-hidden bg-paper-2 cursor-crosshair group select-none ${aspectRatio} ${className}`}
     >
       {/* Standard Image */}
       <img
@@ -63,20 +63,20 @@ export const InteractiveLoupe: React.FC<InteractiveLoupeProps> = ({
       {/* Inspection Crosshair Reticle */}
       {isHovered && (
         <div 
-          className="absolute pointer-events-none border border-[#da291c]/70 w-24 h-24 -translate-x-1/2 -translate-y-1/2 shadow-2xl"
+          className="absolute pointer-events-none border border-accent/70 w-24 h-24 -translate-x-1/2 -translate-y-1/2 shadow-2xl"
           style={{
             left: `${mousePosition.x}%`,
             top: `${mousePosition.y}%`,
           }}
         >
-          <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-[#da291c]" />
-          <div className="absolute top-0 right-0 w-2 h-2 border-t-2 border-r-2 border-[#da291c]" />
-          <div className="absolute bottom-0 left-0 w-2 h-2 border-b-2 border-l-2 border-[#da291c]" />
-          <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-[#da291c]" />
+          <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-accent" />
+          <div className="absolute top-0 right-0 w-2 h-2 border-t-2 border-r-2 border-accent" />
+          <div className="absolute bottom-0 left-0 w-2 h-2 border-b-2 border-l-2 border-accent" />
+          <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-accent" />
           <div className="absolute inset-0 flex items-center justify-center">
-            <span className="w-1.5 h-1.5 bg-[#da291c] rounded-full animate-ping" />
+            <span className="w-1.5 h-1.5 bg-accent rounded-full animate-ping" />
           </div>
-          <span className="absolute -bottom-5 left-1/2 -translate-x-1/2 bg-[#181818]/90 text-white text-[9px] font-mono px-1.5 py-0.5 border border-[#303030] whitespace-nowrap">
+          <span className="absolute -bottom-5 left-1/2 -translate-x-1/2 bg-ink/90 text-paper text-[9px] font-mono px-1.5 py-0.5 border border-line whitespace-nowrap">
             2.4X MACRO LOUPE
           </span>
         </div>
@@ -84,8 +84,8 @@ export const InteractiveLoupe: React.FC<InteractiveLoupeProps> = ({
 
       {/* Default Hint Badge */}
       {!isHovered && (
-        <div className="absolute bottom-3 right-3 bg-[#181818]/85 text-[#ffffff] text-[10px] uppercase font-bold tracking-[1.2px] px-2.5 py-1 border border-[#303030] pointer-events-none flex items-center gap-1.5">
-          <span className="w-1.5 h-1.5 bg-[#da291c] rounded-full" />
+        <div className="absolute bottom-3 right-3 bg-ink/85 text-paper text-[10px] uppercase font-mono tracking-[1.2px] px-2.5 py-1 border border-line pointer-events-none flex items-center gap-1.5">
+          <span className="w-1.5 h-1.5 bg-accent rounded-full" />
           <span>HOVER FOR MACRO FIBER ZOOM</span>
         </div>
       )}

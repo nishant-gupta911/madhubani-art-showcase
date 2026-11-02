@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { HeaderBar } from '@/components/HeaderBar';
+import { Footer } from '@/components/Footer';
 import { CartCheckoutScreen } from '@/components/screens/CartCheckoutScreen';
 import { OrderSuccessModal } from '@/components/OrderSuccessModal';
 import { useCartStore } from '@/store/cart-store';
@@ -49,14 +50,14 @@ export default function CartPage() {
   };
 
   return (
-    <div className="min-h-screen" style={{ background: 'var(--ivory)' }}>
+    <div className="min-h-screen flex flex-col bg-paper text-ink">
       <HeaderBar
         cartCount={items.reduce((s, i) => s + i.qty, 0)}
         wishlistCount={0}
         currentScreen="cart"
       />
 
-      <main className="pt-2">
+      <main className="flex-1 pt-2">
         <CartCheckoutScreen
           cart={mappedCart}
           orders={[]}
@@ -71,6 +72,8 @@ export default function CartPage() {
           }}
         />
       </main>
+
+      <Footer variant="compact" />
 
       {orderSuccess && (
         <OrderSuccessModal

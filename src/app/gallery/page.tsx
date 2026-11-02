@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { getCachedProducts, mapCleanProductToMadhubani } from '@/lib/products';
 import { PortfolioScreen } from '@/components/screens/PortfolioScreen';
 import { HeaderBar } from '@/components/HeaderBar';
+import { Footer } from '@/components/Footer';
 
 export const revalidate = 60;
 
@@ -16,15 +17,16 @@ export default async function GalleryPage() {
   const products = dbProducts.map(mapCleanProductToMadhubani);
 
   return (
-    <div className="min-h-screen" style={{ background: 'var(--ivory)' }}>
+    <div className="min-h-screen flex flex-col bg-paper text-ink">
       <HeaderBar
         cartCount={0}
         wishlistCount={0}
         currentScreen="portfolio"
       />
-      <main className="pt-2">
+      <main className="flex-1 pt-2">
         <PortfolioScreen products={products} />
       </main>
+      <Footer variant="poster" />
     </div>
   );
 }

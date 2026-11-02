@@ -304,48 +304,36 @@ export const CartCheckoutScreen: React.FC<CartCheckoutScreenProps> = ({
   };
 
   return (
-    <div style={{ background: 'var(--ivory)', minHeight: '100vh' }}>
-      {/* Page Header */}
-      <div style={{ background: 'var(--night)', color: 'var(--ivory)', borderBottom: '1px solid var(--hairline-dark)' }} className="py-10">
-        <div className="container space-y-4">
-          <div className="flex items-center gap-3">
-            <span className="w-6 h-px" style={{ background: 'rgba(250,246,239,0.3)' }} />
-            <span className="text-eyebrow" style={{ color: 'rgba(250,246,239,0.5)', letterSpacing: '0.18em' }}>
-              Vernika Enterprises Checkout
-            </span>
+    <div className="bg-paper paper-grain-bg text-ink min-h-screen selection:bg-accent selection:text-paper">
+      {/* Page Header (Screen-Printed Poster Architecture) */}
+      <div className="bg-ink text-paper py-8 border-b border-line">
+        <div className="container space-y-3">
+          <div className="font-mono text-xs tracking-[0.24em] text-accent uppercase font-bold">
+            01 / ACQUISITION DESK
           </div>
-          <h1 className="font-display font-bold text-headline" style={{ color: 'var(--ivory)' }}>
-            Your Curated Collection
+          <h1 className="font-display text-4xl sm:text-6xl text-paper uppercase tracking-tight leading-none">
+            CURATED ORDER BAG
           </h1>
 
-          {/* Step Indicator */}
-          <div className="flex items-center gap-4 pt-2">
+          {/* Step Indicator in Monospace */}
+          <div className="flex items-center gap-2 sm:gap-6 pt-3 flex-wrap font-mono text-xs tracking-widest uppercase">
             {STEPS.map((s, i) => (
               <React.Fragment key={s.id}>
                 <button
                   onClick={() => setStep(s.id)}
-                  className="flex items-center gap-2 text-ui transition-colors text-left"
-                  style={{
-                    color: step === s.id ? 'var(--ivory)' : 'rgba(250,246,239,0.75)',
-                  }}
+                  className={`flex items-center gap-2 font-semibold transition-colors cursor-pointer ${
+                    step === s.id ? 'text-accent' : 'text-paper/60 hover:text-paper'
+                  }`}
                 >
-                  <span
-                    className="h-5 w-5 rounded-full flex items-center justify-center text-[9px] font-bold transition-all"
-                    style={{
-                      background: step === s.id ? 'var(--vermilion)' :
-                        STEPS.indexOf(STEPS.find(x => x.id === step)!) > i ? 'var(--leaf)' : 'rgba(250,246,239,0.1)',
-                      color: 'var(--ivory)',
-                    }}
-                  >
-                    {STEPS.indexOf(STEPS.find(x => x.id === step)!) > i ? <Check size={10} /> : i + 1}
+                  <span className={`w-5 h-5 border flex items-center justify-center text-[10px] ${
+                    step === s.id ? 'border-accent bg-accent text-paper' : 'border-paper/40 text-paper/70'
+                  }`}>
+                    {STEPS.indexOf(STEPS.find(x => x.id === step)!) > i ? <Check size={11} /> : i + 1}
                   </span>
                   <span>{s.label}</span>
                 </button>
                 {i < STEPS.length - 1 && (
-                  <span
-                    className="flex-1 h-px max-w-[3rem]"
-                    style={{ background: 'rgba(250,246,239,0.15)' }}
-                  />
+                  <span className="text-paper/30">───</span>
                 )}
               </React.Fragment>
             ))}

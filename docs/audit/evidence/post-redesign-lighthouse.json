@@ -1,0 +1,79 @@
+[
+  {
+    "route": "Home",
+    "url": "http://localhost:3000/",
+    "performance": 86,
+    "accessibility": 94,
+    "bestPractices": 96,
+    "seo": 100,
+    "lcpMs": 4256,
+    "cls": 0,
+    "tbtMs": 59
+  },
+  {
+    "route": "Shop",
+    "url": "http://localhost:3000/shop",
+    "performance": 92,
+    "accessibility": 95,
+    "bestPractices": 96,
+    "seo": 100,
+    "lcpMs": 3392,
+    "cls": 0,
+    "tbtMs": 31
+  },
+  {
+    "route": "Category",
+    "url": "http://localhost:3000/shop/category/paintings",
+    "performance": 78,
+    "accessibility": 95,
+    "bestPractices": 96,
+    "seo": 100,
+    "lcpMs": 6234,
+    "cls": 0,
+    "tbtMs": 50
+  },
+  {
+    "route": "Product",
+    "url": "http://localhost:3000/shop/surya-deepavali-maiden-3-panel-wall-hanging-organizer",
+    "performance": 80,
+    "accessibility": 96,
+    "bestPractices": 96,
+    "seo": 100,
+    "lcpMs": 5484,
+    "cls": 0,
+    "tbtMs": 31
+  },
+  {
+    "route": "Gallery",
+    "url": "http://localhost:3000/gallery",
+    "performance": 90,
+    "accessibility": 92,
+    "bestPractices": 96,
+    "seo": 100,
+    "lcpMs": 3616,
+    "cls": 0,
+    "tbtMs": 47
+  },
+  {
+    "route": "Cart",
+    "url": "http://localhost:3000/cart",
+    "performance": 93,
+    "accessibility": 96,
+    "bestPractices": 96,
+    "seo": 100,
+    "lcpMs": 3160,
+    "cls": 0,
+    "tbtMs": 83
+  },
+  {
+    "route": "Checkout",
+    "url": "http://localhost:3000/cart?step=checkout",
+    "performance": 94,
+    "accessibility": 96,
+    "bestPractices": 96,
+    "seo": 100,
+    "lcpMs": 3046,
+    "cls": 0,
+    "tbtMs": 31
+  }
+]

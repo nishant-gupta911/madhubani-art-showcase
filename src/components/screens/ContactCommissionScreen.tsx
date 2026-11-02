@@ -2,8 +2,9 @@
 
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, CheckCircle, Clock, Globe, AlertCircle, Loader2 } from 'lucide-react';
-import { MithilaMotif } from '../MithilaMotif';
 import { siteConfig } from '../../config/site';
+import { Button } from '../ui/Button';
+import { Input } from '../ui/Input';
 
 export const ContactCommissionScreen: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -51,42 +52,36 @@ export const ContactCommissionScreen: React.FC = () => {
   };
 
   return (
-    <div style={{ background: 'var(--ivory)', minHeight: '100vh' }}>
+    <div className="bg-paper text-ink min-h-screen">
       {/* Page Header */}
-      <div style={{ background: 'var(--night)', color: 'var(--ivory)', borderBottom: '1px solid var(--hairline-dark)' }} className="py-12">
-        <div className="container space-y-3">
-          <div className="flex items-center gap-3">
-            <span className="w-6 h-px" style={{ background: 'rgba(250,246,239,0.3)' }} />
-            <span className="text-eyebrow" style={{ color: 'rgba(250,246,239,0.5)', letterSpacing: '0.18em' }}>
-              Direct Artist Studio Access
-            </span>
-          </div>
-          <h1 className="font-display font-bold text-headline" style={{ color: 'var(--ivory)' }}>
-            Commissions &amp; Studio Inquiries
+      <div className="bg-ink text-paper border-b border-line py-12">
+        <div className="container space-y-2">
+          <span className="font-mono text-xs uppercase tracking-[0.24em] text-accent block font-semibold">
+            [ 06 / DIRECT STUDIO ACCESS ]
+          </span>
+          <h1 className="font-display font-bold text-3xl sm:text-5xl text-paper uppercase tracking-tight">
+            COMMISSIONS &amp; STUDIO INQUIRIES
           </h1>
-          <p className="text-body-sm" style={{ color: 'rgba(250,246,239,0.6)', maxWidth: '520px' }}>
-            Commission a bespoke original painting, enquire about custom dimensions, or discuss wedding suites directly with artist Natasha Gupta.
+          <p className="font-mono text-xs text-paper/70 max-w-xl uppercase tracking-wider">
+            Commission a bespoke original Mithila painting, discuss custom dimensions, or order bridal trousseau dupattas directly with artist Natasha Gupta.
           </p>
         </div>
       </div>
 
       <div className="container py-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-
-          {/* ─── Form ───────────────────────────────────────────────── */}
+          {/* Form */}
           <div className="lg:col-span-7">
             {submitted ? (
-              <div
-                className="p-10 text-center space-y-6 relative"
-                style={{ background: 'var(--ivory-deep)', border: '1px solid var(--hairline-soft)', borderRadius: '4px' }}
-              >
-                <MithilaMotif type="four-corners" color="var(--vermilion)" />
-                <CheckCircle className="h-16 w-16 text-leaf mx-auto" style={{ color: 'var(--leaf)' }} />
-                <h2 className="font-display font-bold text-title" style={{ color: 'var(--ink)' }}>Message Sent to Studio!</h2>
-                <p className="text-body-sm max-w-sm mx-auto" style={{ color: 'var(--ink-soft)' }}>
-                  Natasha Gupta at Vernika Enterprises has received your commission details and will review and reply within 24 hours.
+              <div className="p-8 sm:p-12 text-center space-y-6 bg-paper-2 border-2 border-ink shadow-[4px_4px_0_var(--ink)]">
+                <CheckCircle className="h-14 w-14 text-leaf mx-auto" />
+                <h2 className="font-display font-bold text-3xl text-ink uppercase tracking-tight">
+                  MESSAGE SENT TO STUDIO
+                </h2>
+                <p className="font-mono text-xs text-ink/70 max-w-sm mx-auto uppercase tracking-wider leading-relaxed">
+                  Natasha Gupta has received your commission details and will review and reply within 24 hours.
                 </p>
-                <button
+                <Button
                   onClick={() => {
                     setSubmitted(false);
                     setFormData({
@@ -99,106 +94,97 @@ export const ContactCommissionScreen: React.FC = () => {
                       message: '',
                     });
                   }}
-                  className="btn btn-outline"
+                  variant="ink"
+                  size="md"
                 >
-                  Send Another Message
-                </button>
+                  SEND ANOTHER MESSAGE
+                </Button>
               </div>
             ) : (
               <form
                 onSubmit={handleSubmit}
-                className="p-6 space-y-6 relative"
-                style={{ background: 'var(--ivory-deep)', border: '1px solid var(--hairline-soft)', borderRadius: '4px' }}
+                className="p-6 sm:p-8 space-y-6 bg-paper-2 border-2 border-ink shadow-[4px_4px_0_var(--ink)]"
               >
-                <MithilaMotif type="four-corners" color="rgba(176,48,32,0.08)" />
-                <h2 className="font-display font-semibold text-title" style={{ color: 'var(--ink)' }}>
-                  Send a Message to Natasha
-                </h2>
+                <div>
+                  <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent font-semibold block mb-1">
+                    BESPOKE INQUIRY
+                  </span>
+                  <h2 className="font-display font-bold text-2xl sm:text-3xl text-ink uppercase tracking-tight">
+                    SEND A MESSAGE TO NATASHA
+                  </h2>
+                </div>
 
                 {error && (
-                  <div className="p-3 bg-red-50 border border-red-200 text-red-800 text-xs rounded flex items-center gap-2">
-                    <AlertCircle size={16} className="shrink-0" />
+                  <div className="p-3 border border-accent bg-paper text-accent font-mono text-xs flex items-center gap-2">
+                    <AlertCircle size={15} />
                     <span>{error}</span>
                   </div>
                 )}
 
                 {/* Subject selector */}
                 <div className="space-y-2">
-                  <label className="input-label">Subject</label>
+                  <label className="font-mono text-[11px] uppercase tracking-wider text-ink font-semibold block">
+                    Subject
+                  </label>
                   <div className="flex flex-wrap gap-2">
                     {[
                       { id: 'commission', label: 'Commission a Painting' },
-                      { id: 'inquiry',    label: 'General Inquiry' },
-                      { id: 'framing',    label: 'Framing & Mounting' },
-                      { id: 'wholesale',  label: 'Corporate & Wedding Gifting' },
-                    ].map(s => (
+                      { id: 'apparel', label: 'Custom Dupatta / Apparel' },
+                      { id: 'bulk', label: 'Corporate / Bulk Gifting' },
+                      { id: 'general', label: 'General Question' },
+                    ].map(tab => (
                       <button
+                        key={tab.id}
                         type="button"
-                        key={s.id}
-                        onClick={() => setFormData({ ...formData, subject: s.id })}
-                        className="badge transition-colors cursor-pointer"
-                        style={{
-                          background: formData.subject === s.id ? 'var(--vermilion)' : 'var(--ivory)',
-                          color: formData.subject === s.id ? 'var(--ivory)' : 'var(--ink-muted)',
-                          border: `1px solid ${formData.subject === s.id ? 'var(--vermilion)' : 'var(--hairline)'}`,
-                          fontSize: '0.7rem',
-                        }}
+                        onClick={() => setFormData({ ...formData, subject: tab.id })}
+                        className={`px-3 py-1.5 font-mono text-xs uppercase border cursor-pointer transition-all ${
+                          formData.subject === tab.id
+                            ? 'bg-ink text-paper border-ink shadow-[2px_2px_0_var(--accent)] font-semibold'
+                            : 'bg-paper text-ink border-line hover:border-ink'
+                        }`}
                       >
-                        {s.label}
+                        {tab.label}
                       </button>
                     ))}
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="input-label">Your Name *</label>
-                    <input
-                      required
-                      value={formData.name}
-                      onChange={e => setFormData({ ...formData, name: e.target.value })}
-                      className="input"
-                      placeholder="e.g. Radhika Sharma"
-                    />
-                  </div>
-                  <div>
-                    <label className="input-label">Email Address *</label>
-                    <input
-                      required
-                      type="email"
-                      value={formData.email}
-                      onChange={e => setFormData({ ...formData, email: e.target.value })}
-                      className="input"
-                      placeholder="radhika@example.com"
-                    />
-                  </div>
-                  <div className="sm:col-span-2">
-                    <label className="input-label">Phone / WhatsApp (optional)</label>
-                    <input
-                      type="tel"
-                      value={formData.phone}
-                      onChange={e => setFormData({ ...formData, phone: e.target.value })}
-                      className="input"
-                      placeholder="+91 9876543210"
-                    />
-                  </div>
+                  <Input
+                    label="Your Name *"
+                    required
+                    placeholder="e.g. Ananya Sen"
+                    value={formData.name}
+                    onChange={e => setFormData({ ...formData, name: e.target.value })}
+                  />
+                  <Input
+                    label="Email Address *"
+                    type="email"
+                    required
+                    placeholder="e.g. ananya@example.com"
+                    value={formData.email}
+                    onChange={e => setFormData({ ...formData, email: e.target.value })}
+                  />
                 </div>
 
+                <Input
+                  label="Mobile / WhatsApp Number (Optional)"
+                  type="tel"
+                  placeholder="e.g. 98765 43210"
+                  value={formData.phone}
+                  onChange={e => setFormData({ ...formData, phone: e.target.value })}
+                />
+
                 {formData.subject === 'commission' && (
-                  <div
-                    className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 relative"
-                    style={{
-                      background: 'var(--ivory)',
-                      border: '1px solid var(--hairline-soft)',
-                      borderRadius: '2px',
-                    }}
-                  >
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="input-label">Desired Dimensions</label>
+                      <label className="font-mono text-[11px] uppercase tracking-wider text-ink font-semibold block mb-1">
+                        Preferred Dimensions
+                      </label>
                       <select
                         value={formData.dimensions}
                         onChange={e => setFormData({ ...formData, dimensions: e.target.value })}
-                        className="input"
+                        className="w-full bg-paper border border-line p-3 font-mono text-[16px] text-ink focus:outline-hidden focus:border-ink focus:shadow-[2px_2px_0_var(--accent)]"
                       >
                         <option>12×16 in (Small)</option>
                         <option>18×24 in (Medium)</option>
@@ -207,11 +193,13 @@ export const ContactCommissionScreen: React.FC = () => {
                       </select>
                     </div>
                     <div>
-                      <label className="input-label">Budget Range (₹)</label>
+                      <label className="font-mono text-[11px] uppercase tracking-wider text-ink font-semibold block mb-1">
+                        Budget Range (₹)
+                      </label>
                       <select
                         value={formData.budget}
                         onChange={e => setFormData({ ...formData, budget: e.target.value })}
-                        className="input"
+                        className="w-full bg-paper border border-line p-3 font-mono text-[16px] text-ink focus:outline-hidden focus:border-ink focus:shadow-[2px_2px_0_var(--accent)]"
                       >
                         <option>₹2,000 – ₹5,000</option>
                         <option>₹5,000 – ₹10,000</option>
@@ -223,62 +211,69 @@ export const ContactCommissionScreen: React.FC = () => {
                 )}
 
                 <div>
-                  <label className="input-label">Message / Motif Request *</label>
+                  <label className="font-mono text-[11px] uppercase tracking-wider text-ink font-semibold block mb-1">
+                    Message / Motif Request *
+                  </label>
                   <textarea
                     required
                     value={formData.message}
                     onChange={e => setFormData({ ...formData, message: e.target.value })}
-                    className="input min-h-[140px] resize-y"
-                    placeholder={formData.subject === 'commission'
-                      ? 'Describe the theme, deities, fish, peacocks, tree of life, or personal story you want painted…'
-                      : 'How can we help you?'
+                    className="w-full min-h-[140px] resize-y bg-paper border border-line p-3 font-sans text-[16px] text-ink focus:outline-hidden focus:border-ink focus:shadow-[2px_2px_0_var(--accent)]"
+                    placeholder={
+                      formData.subject === 'commission'
+                        ? 'Describe the theme (Matsya fish, Mayura peacock, Surya sun, Tree of Life) or specific dimensions...'
+                        : 'How can we help you?'
                     }
                   />
                 </div>
 
-                <button
+                <Button
                   type="submit"
                   disabled={loading}
-                  className="btn btn-primary btn-lg w-full justify-center disabled:opacity-50"
+                  variant="primary"
+                  size="lg"
+                  className="w-full"
                 >
                   {loading ? (
-                    <><Loader2 size={16} className="animate-spin" /> Sending to Natasha…</>
+                    <span className="flex items-center gap-2">
+                      <Loader2 size={16} className="animate-spin" /> SENDING TO NATASHA...
+                    </span>
                   ) : (
-                    <><Send size={14} /> Send Message to Studio</>
+                    <span className="flex items-center gap-2">
+                      <Send size={14} /> SEND MESSAGE TO STUDIO
+                    </span>
                   )}
-                </button>
+                </Button>
               </form>
             )}
           </div>
 
-          {/* ─── Contact Info ────────────────────────────────────────── */}
+          {/* Contact Info Sidebar */}
           <aside className="lg:col-span-5 space-y-6">
-            <div
-              className="p-6 space-y-6 relative"
-              style={{ background: 'var(--ivory-deep)', border: '1px solid var(--hairline-soft)', borderRadius: '4px' }}
-            >
-              <MithilaMotif type="four-corners" color="rgba(176,48,32,0.08)" />
-              <h3 className="font-display font-semibold text-title" style={{ color: 'var(--ink)' }}>
-                Studio Contact Details
-              </h3>
+            <div className="p-6 sm:p-8 bg-paper-2 border-2 border-ink shadow-[4px_4px_0_var(--ink)] space-y-6">
+              <div>
+                <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent font-semibold block mb-1">
+                  OFFICIAL CONTACT
+                </span>
+                <h3 className="font-display font-bold text-2xl text-ink uppercase tracking-tight">
+                  STUDIO DIRECT CONTACT
+                </h3>
+              </div>
 
               <div className="space-y-5">
                 {[
-                  { icon: Mail,    label: 'Email',    val: siteConfig.contact.email, href: `mailto:${siteConfig.contact.email}` },
-                  { icon: Phone,   label: 'Phone / WhatsApp', val: `${siteConfig.contact.displayPhone}`, href: siteConfig.contact.whatsappLink },
-                  { icon: MapPin,  label: 'Studio Location', val: siteConfig.origin },
-                  { icon: Clock,   label: 'Studio Hours',    val: 'Mon–Sat, 10:00 AM – 7:00 PM IST' },
-                  { icon: Globe,   label: 'Shipping', val: 'Pan-India Insured Express Courier' },
+                  { icon: Mail, label: 'Email', val: siteConfig.contact.email, href: `mailto:${siteConfig.contact.email}` },
+                  { icon: Phone, label: 'Phone / WhatsApp', val: `${siteConfig.contact.displayPhone}`, href: siteConfig.contact.whatsappLink },
+                  { icon: MapPin, label: 'Studio Location', val: siteConfig.origin },
+                  { icon: Clock, label: 'Studio Hours', val: 'Mon–Sat, 10:00 AM – 7:00 PM IST' },
+                  { icon: Globe, label: 'Shipping', val: 'Pan-India Insured Express Courier' },
                 ].map(item => (
                   <div key={item.label} className="flex items-start gap-3.5">
-                    <div
-                      className="p-2 rounded-sm shrink-0 mt-0.5"
-                      style={{ background: 'var(--ivory)', border: '1px solid var(--hairline-soft)' }}
-                    >
-                      <item.icon size={15} style={{ color: 'var(--vermilion)' }} />
+                    <div className="p-2 border border-ink bg-paper text-accent shrink-0 mt-0.5 shadow-[1px_1px_0_var(--ink)]">
+                      <item.icon size={15} />
                     </div>
                     <div>
-                      <p className="text-eyebrow" style={{ color: 'var(--ink-muted)', letterSpacing: '0.12em' }}>
+                      <p className="font-mono text-[10px] uppercase tracking-wider text-ink/60">
                         {item.label}
                       </p>
                       {item.href ? (
@@ -286,13 +281,12 @@ export const ContactCommissionScreen: React.FC = () => {
                           href={item.href}
                           target={item.href.startsWith('http') ? '_blank' : undefined}
                           rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                          className="font-ui text-body-sm hover:underline font-medium"
-                          style={{ color: 'var(--ink)' }}
+                          className="font-mono text-xs text-ink hover:text-accent font-semibold underline"
                         >
                           {item.val}
                         </a>
                       ) : (
-                        <p className="font-ui text-body-sm font-medium" style={{ color: 'var(--ink)' }}>
+                        <p className="font-mono text-xs text-ink font-semibold">
                           {item.val}
                         </p>
                       )}

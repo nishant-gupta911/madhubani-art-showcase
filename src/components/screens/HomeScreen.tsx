@@ -1,823 +1,386 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
-import { MadhubaniProduct, MithilaStyle } from '../../types';
-import { ArrowRight, Star, ShoppingBag, Eye, ArrowUpRight, Quote } from 'lucide-react';
-import { MithilaMotif, SectionEyebrow } from '../MithilaMotif';
+import { MadhubaniProduct } from '../../types';
+import { Button } from '@/components/ui/Button';
+import { PrintCard } from '@/components/ui/PrintCard';
+import { SectionHeader } from '@/components/ui/SectionHeader';
+import { MarqueeTicker } from '@/components/ui/MarqueeTicker';
+import { Seal, Barcode, RegistrationMark } from '@/components/ui/Ornaments';
+import { ArrowRight, ArrowUpRight, ShieldCheck, Truck, Sparkles, HeartHandshake } from 'lucide-react';
 import { siteConfig } from '../../config/site';
 
 interface HomeScreenProps {
   products: MadhubaniProduct[];
   onSelectProduct?: (p: MadhubaniProduct) => void;
-  onNavigateToShop?: (category?: string, style?: MithilaStyle) => void;
+  onNavigateToShop?: (category?: string) => void;
   onNavigateToAbout?: () => void;
   onAddToCart?: (p: MadhubaniProduct) => void;
   onQuickView?: (p: MadhubaniProduct) => void;
 }
 
-const TRADITIONS: { name: MithilaStyle; tagline: string; desc: string; img: string; count: number }[] = [
-  { name: 'Bharni',  tagline: 'Vibrant Pigment Density',  desc: 'Solid-fill tradition with double-line soot borders. Bold organic ochre, vermilion, and indigo.',         img: '/products/3.webp',  count: 18 },
-  { name: 'Kachni',  tagline: 'Pure Line Precision',       desc: 'Micro-hatching strokes in black soot. Zero solid fills — only rhythmic parallel line frequency.',       img: '/products/12.webp', count: 14 },
-  { name: 'Tantrik', tagline: 'Sacred Cosmic Geometry',    desc: 'Metaphysical yantras, solar alignments, and deity energy matrices in esoteric cosmological form.',       img: '/products/24.webp', count: 12 },
-  { name: 'Godna',   tagline: 'Folk Tattoo Concentrics',   desc: 'Ancient tribal body-ink vocabulary rendered on paper — concentric totems and protective flora.',         img: '/products/14.webp', count: 8  },
-  { name: 'Kohbar',  tagline: 'Nuptial Sanctuary Art',      desc: 'Ceremonial bridal chamber paintings with lotus rosettes, twin carp, bamboo stalks and solar blessings.', img: '/products/22.webp', count: 16 },
-];
-
-const TRUST_PILLARS = [
-  { title: 'Handpainted by Natasha Gupta', body: `Every single piece is personally sketched and painted by Natasha Gupta in ${siteConfig.origin}, preserving authentic Mithila tradition.`, icon: '✦' },
-  { title: 'GI-Tagged Heritage Art',      body: 'Madhubani (Mithila) art is a protected Geographical Indication of Bihar, celebrated for millennia.', icon: '✦' },
-  { title: 'Museum-Grade Packaging',       body: 'Framed art protected with corner shields and archival wrapping. Free shipping across India on orders above ₹1,499.', icon: '✦' },
-  { title: 'Direct from the Artist',       body: 'Zero middlemen, honest pricing, and transparent craftsmanship. Custom sizes and motifs available on request.', icon: '✦' },
-];
-
-const HERO_ARTWORKS = [
-  { src: '/products/hero-49.webp', title: 'Mahishasura Mardini', style: 'Tantrik' },
-  { src: '/products/hero-50.webp', title: 'Ardhanarishvara',     style: 'Bharni' },
-  { src: '/products/hero-22.webp', title: 'Sacred Kohbar Garden', style: 'Kohbar' },
-];
-
-export const HomeScreen: React.FC<HomeScreenProps> = ({
-  products, onSelectProduct, onNavigateToShop, onNavigateToAbout, onAddToCart, onQuickView,
-}) => {
-  const featured    = products.filter(p => p.isFeatured).slice(0, 8);
-  const newArrivals = products.filter(p => p.isNew).slice(0, 6);
-  const [heroIdx,   setHeroIdx]   = useState(0);
-  const [hasCycled, setHasCycled] = useState(false);
-  const [addedId,   setAddedId]   = useState<string | null>(null);
-  const heroTimer = useRef<number | null>(null);
-
-  const navigateShop = (category?: string, style?: MithilaStyle) => {
-    if (onNavigateToShop) onNavigateToShop(category, style);
-    else if (typeof window !== 'undefined') {
-      window.location.href = category ? `/shop/category/${category}` : '/shop';
-    }
-  };
-
-  const navigateAbout = () => {
-    if (onNavigateToAbout) onNavigateToAbout();
-    else if (typeof window !== 'undefined') window.location.href = '/about';
-  };
-
-  const selectProduct = (p: MadhubaniProduct) => {
-    if (onSelectProduct) onSelectProduct(p);
-    else if (typeof window !== 'undefined') window.location.href = `/shop/${p.slug || p.id}`;
-  };
-
-  const quickView = (p: MadhubaniProduct) => {
-    if (onQuickView) onQuickView(p);
-    else if (typeof window !== 'undefined') window.location.href = `/shop/${p.slug || p.id}`;
-  };
-
-  // Auto-cycle hero artwork
-  useEffect(() => {
-    heroTimer.current = window.setInterval(() => {
-      setHasCycled(true);
-      setHeroIdx(i => (i + 1) % HERO_ARTWORKS.length);
-    }, 5500);
-    return () => { if (heroTimer.current) clearInterval(heroTimer.current); };
-  }, []);
-
-  const handleAddToCart = (p: MadhubaniProduct) => {
-    if (onAddToCart) onAddToCart(p);
-    else if (typeof window !== 'undefined') window.location.href = `/shop/${p.slug || p.id}`;
-    setAddedId(p.id);
-    setTimeout(() => setAddedId(null), 1800);
-  };
-
-  const hero = HERO_ARTWORKS[heroIdx];
+export const HomeScreen: React.FC<HomeScreenProps> = ({ products }) => {
+  const featured = products.filter((p) => p.isFeatured).slice(0, 8);
+  const paintings = products.filter((p) => p.category === 'paintings').slice(0, 4);
 
   return (
-    <div className="band-ivory overflow-x-hidden w-full">
+    <div className="w-full bg-paper text-ink overflow-x-hidden selection:bg-accent selection:text-paper">
 
-      {/* ════════════════════════════════════════════════════════════
-          HERO — Cinematic split: editorial left + artwork right
-          ════════════════════════════════════════════════════════════ */}
-      <section className="relative overflow-hidden" style={{ minHeight: 'min(92vh, 860px)' }}>
-        {/* Background artwork — full bleed on mobile, right panel on desktop */}
-        <div className="absolute inset-0 lg:left-[44%]">
-          {HERO_ARTWORKS.map((hw, i) => {
-            if (i > 0 && !hasCycled) return null;
-            return (
-              <Image
-                key={hw.src}
-                src={hw.src}
-                alt={hw.title}
-                priority={i === 0}
-                loading={i === 0 ? 'eager' : 'lazy'}
-                fill
-                sizes="(max-width: 1024px) 100vw, 56vw"
-                className="object-cover object-center transition-opacity duration-1000"
-                style={{ opacity: i === heroIdx ? 1 : 0 }}
-              />
-            );
-          })}
-          {/* Gradient: full overlay on mobile, left fade on desktop */}
-          <div
-            className="absolute inset-0"
-            style={{
-              background: 'linear-gradient(to right, var(--ivory) 0%, rgba(250,246,239,0.92) 30%, rgba(250,246,239,0.4) 55%, transparent 100%)',
-            }}
-          />
-          <div
-            className="absolute inset-0 lg:hidden"
-            style={{ background: 'rgba(250,246,239,0.82)' }}
-          />
-        </div>
+      {/* ══════════════════════════════════════════════════════════════════
+          1. POSTER HERO — Archival Exhibition Gallery Screen-Print
+          ══════════════════════════════════════════════════════════════════ */}
+      <section className="relative pt-8 sm:pt-14 pb-12 sm:pb-20 border-b border-line overflow-hidden">
+        {/* Subtle decorative registration marks at corners */}
+        <div className="container relative">
+          <div className="absolute top-0 left-4"><RegistrationMark /></div>
+          <div className="absolute top-0 right-4"><RegistrationMark /></div>
 
-        {/* Editorial Left Panel */}
-        <div
-          className="relative z-10 container flex flex-col justify-center"
-          style={{ minHeight: 'inherit', paddingTop: '4rem', paddingBottom: '4rem' }}
-        >
-          <div className="max-w-xl space-y-7 animate-fade-up">
-            {/* Eyebrow */}
-            <div className="flex items-center gap-3">
-              <span className="w-8 h-px" style={{ background: 'var(--vermilion)' }} />
-              <span className="text-eyebrow" style={{ color: 'var(--vermilion)', letterSpacing: '0.18em' }}>
-                2,500 years of unbroken tradition
-              </span>
-            </div>
+          {/* Exhibition Top Kicker */}
+          <div className="text-center mb-4">
+            <span className="font-mono text-[11px] sm:text-xs tracking-[0.28em] uppercase text-accent font-semibold inline-block border-b border-line pb-1">
+              ORIGINAL MITHILA FOLK ART · STUDIO OF NATASHA GUPTA
+            </span>
+          </div>
 
-            {/* Headline */}
-            <div>
-              <h1
-                className="font-display font-bold leading-none"
-                style={{ fontSize: 'clamp(2.75rem, 6vw, 5.5rem)', letterSpacing: '-0.02em', color: 'var(--ink)' }}
-              >
-                Sacred Art
-                <br />
-                <span style={{ fontStyle: 'italic', fontWeight: 600, color: 'var(--vermilion)' }}>
-                  of Mithila.
-                </span>
-              </h1>
-            </div>
-
-            {/* Body */}
-            <p className="text-body-lg" style={{ color: 'var(--ink-soft)', maxWidth: '440px' }}>
-              Madhubani art, handpainted by Natasha Gupta in {siteConfig.origin}. Discover original framed paintings,
-              wearable handloom dupattas, and handcrafted artisan accessories.
+          {/* Giant Condensed Headline */}
+          <div className="text-center mb-8 sm:mb-12">
+            <h1 className="font-display text-5xl sm:text-7xl md:text-9xl tracking-tight text-ink uppercase leading-[0.88] select-none">
+              HANDPAINTED <br className="hidden sm:inline" />
+              <span className="text-accent">MADHUBANI</span>
+            </h1>
+            <p className="font-mono text-xs sm:text-sm tracking-[0.2em] uppercase text-ink-muted mt-3 max-w-xl mx-auto">
+              INDIVIDUALLY DRAWN WITH BAMBOO & NIB · NATURAL PIGMENTS · SIGNED ARCHIVAL PRINTS
             </p>
+          </div>
 
-            {/* CTAs */}
-            <div className="flex flex-wrap gap-3">
-              <button
-                onClick={() => navigateShop()}
-                className="btn btn-primary btn-lg"
-              >
-                Explore Shop ({products.length} Artworks)
-                <ArrowRight size={16} />
-              </button>
-              <button
-                onClick={navigateAbout}
-                className="btn btn-outline btn-lg"
-              >
-                Our Heritage
-              </button>
-            </div>
-
-            {/* Trust micro-stats */}
+          {/* Poster Centerpiece: Arch-Framed Art with Surya Sun Disc */}
+          <div className="relative max-w-3xl mx-auto my-6 sm:my-10 flex flex-col items-center">
+            {/* The Surya Sun Disc Aura */}
             <div
-              className="flex flex-wrap gap-8 pt-6"
-              style={{ borderTop: '1px solid var(--hairline-soft)' }}
-            >
-              {[
-                { n: '80',     label: 'Unique originals' },
-                { n: '100%',   label: 'Natural pigments' },
-                { n: '5★',     label: 'Collector rated' },
-              ].map(m => (
-                <div key={m.n}>
-                  <div
-                    className="font-display font-bold"
-                    style={{ fontSize: '1.75rem', color: 'var(--ink)', lineHeight: 1 }}
-                  >
-                    {m.n}
-                  </div>
-                  <div className="text-caption mt-1" style={{ color: 'var(--ink-muted)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-                    {m.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Hero artwork caption (desktop only) */}
-        <div
-          className="absolute bottom-8 right-8 z-10 hidden lg:flex items-center gap-3 px-4 py-2.5"
-          style={{ background: 'rgba(250,246,239,0.9)', border: '1px solid var(--hairline-soft)', borderRadius: '2px' }}
-        >
-          <div
-            className="w-1 h-8 rounded-full"
-            style={{ background: 'var(--vermilion)' }}
-          />
-          <div>
-            <p className="text-ui" style={{ color: 'var(--ink)', fontSize: '0.75rem' }}>{hero.title}</p>
-            <p className="text-caption" style={{ color: 'var(--ink-muted)' }}>{hero.style} Style · Jitwarpur, Bihar</p>
-          </div>
-        </div>
-
-        {/* Hero selector dots */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex gap-2 lg:hidden">
-          {HERO_ARTWORKS.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setHeroIdx(i)}
-              aria-label={`Go to slide ${i + 1}`}
-              className="rounded-full transition-all duration-300"
-              style={{
-                width: i === heroIdx ? '24px' : '6px',
-                height: '6px',
-                background: i === heroIdx ? 'var(--vermilion)' : 'rgba(26,18,9,0.25)',
-              }}
+              aria-hidden="true"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 sm:w-96 md:w-[480px] aspect-square rounded-full bg-accent/90 -z-10 shadow-[0_0_60px_rgba(184,50,31,0.25)] select-none"
             />
-          ))}
-        </div>
-      </section>
 
-      {/* ════════════════════════════════════════════════════════════
-          MARQUEE TRUST BAR
-          ════════════════════════════════════════════════════════════ */}
-      <div
-        className="overflow-hidden py-4"
-        style={{ borderTop: '1px solid var(--hairline-soft)', borderBottom: '1px solid var(--hairline-soft)', background: 'var(--ivory-deep)' }}
-      >
-        <div className="flex animate-marquee whitespace-nowrap gap-0">
-          {[...Array(2)].map((_, repeat) => (
-            <div key={repeat} className="flex items-center gap-0 shrink-0">
-              {[
-                '100% Handcrafted',
-                'Natural Earth Pigments Only',
-                'Individual Provenance Certificate',
-                'Free Express Shipping Above ₹1,999',
-                'Worldwide Insured Courier',
-                'Museum-Grade Packaging',
-                'Direct from Artisan Families',
-                'Zero Synthetic Dyes',
-              ].map((t, i) => (
-                <React.Fragment key={i}>
-                  <span className="text-eyebrow px-8" style={{ color: 'var(--ink-muted)', fontSize: '0.625rem', letterSpacing: '0.15em' }}>
-                    {t}
-                  </span>
-                  <span style={{ color: 'var(--vermilion)', opacity: 0.5, fontSize: '0.5rem' }}>✦</span>
-                </React.Fragment>
-              ))}
+            {/* Arch-Framed Painting Mount */}
+            <div className="relative w-full max-w-md sm:max-w-lg aspect-[4/5] bg-paper-2 border-2 border-ink p-3 shadow-[4px_4px_0_var(--ink)]">
+              <div className="relative w-full h-full overflow-hidden border border-line">
+                <Image
+                  src="/products/hero-49.webp"
+                  alt="Featured Madhubani Artwork by Natasha Gupta"
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 90vw, 500px"
+                  className="object-cover"
+                />
+                <div className="absolute bottom-2 left-2 right-2 bg-paper/95 border border-line px-3 py-1.5 flex items-center justify-between font-mono text-[10px] tracking-widest uppercase">
+                  <span>PLATE 49 · TANTRIK DEITY</span>
+                  <span className="text-accent font-bold">ORIGINAL 1 OF 1</span>
+                </div>
+              </div>
             </div>
-          ))}
-        </div>
-      </div>
 
-      {/* ════════════════════════════════════════════════════════════
-          FEATURED MASTERPIECES — 4-col editorial grid
-          ════════════════════════════════════════════════════════════ */}
-      <section className="py-20 band-ivory">
-        <div className="container space-y-12">
-          <div className="flex items-end justify-between gap-4">
-            <SectionEyebrow
-              eyebrow="Curated Selection"
-              headline={<>Featured<br className="hidden sm:block" /> Masterpieces</>}
-            />
-            <button
-              onClick={() => navigateShop()}
-              className="btn btn-outline btn-sm hidden sm:flex shrink-0 items-center gap-2"
-            >
-              View Collection ({products.length}) <ArrowRight size={14} />
-            </button>
-          </div>
-
-          <div className="product-grid">
-            {featured.map((p, i) => (
-              <article
-                key={p.id}
-                className="art-card group animate-fade-up"
-                style={{ animationDelay: `${i * 0.055}s`, borderRadius: '4px' }}
-              >
-                {/* Image container */}
-                <div
-                  className="relative overflow-hidden"
-                  style={{ aspectRatio: '4/5', background: 'var(--ivory-deep)', cursor: 'pointer' }}
-                  onClick={() => selectProduct(p)}
-                >
-                  <Image
-                    src={p.image}
-                    alt={p.title}
-                    priority={i < 2}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    className="art-img object-cover"
-                  />
-
-                  {/* Hover overlay */}
-                  <div className="card-actions">
-                    <div className="flex gap-2">
-                      <button
-                        onClick={e => { e.stopPropagation(); quickView(p); }}
-                        className="btn btn-outline btn-sm"
-                        style={{ background: 'rgba(250,246,239,0.95)', border: 'none', color: 'var(--ink)' }}
-                      >
-                        <Eye size={13} /> Quick View
-                      </button>
-                      <button
-                        onClick={e => { e.stopPropagation(); handleAddToCart(p); }}
-                        className="btn btn-primary btn-sm"
-                        aria-label={`Add ${p.name || p.title} to Cart`}
-                      >
-                        <ShoppingBag size={13} />
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Badges */}
-                  <div className="absolute top-3 left-3 flex flex-col gap-1.5">
-                    <span className="badge badge-warm">{p.style}</span>
-                  </div>
-                  {p.isNew && (
-                    <span className="badge badge-vermilion absolute top-3 right-3">New</span>
-                  )}
-                  {addedId === p.id && (
-                    <div
-                      className="absolute inset-0 flex items-center justify-center"
-                      style={{ background: 'rgba(176,48,32,0.9)' }}
-                    >
-                      <p className="text-eyebrow text-white">Added to cart</p>
-                    </div>
-                  )}
-                </div>
-
-                {/* Card info */}
-                <div className="p-4 space-y-2" style={{ borderTop: '1px solid var(--hairline-soft)' }}>
-                  <p className="text-caption" style={{ color: 'var(--ink-dim)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-                    {p.categoryShort}
-                  </p>
-                  <h3
-                    className="font-display font-semibold leading-snug line-clamp-2 cursor-pointer"
-                    style={{ fontSize: '1rem', color: 'var(--ink)', transition: 'color 0.2s' }}
-                    onClick={() => selectProduct(p)}
-                    onMouseEnter={e => (e.currentTarget.style.color = 'var(--vermilion)')}
-                    onMouseLeave={e => (e.currentTarget.style.color = 'var(--ink)')}
-                  >
-                    {p.title}
-                  </h3>
-                  {/* Dimensions & Medium */}
-                  <div className="flex items-center gap-1.5 text-caption text-ink-muted">
-                    <span>{p.dimensions}</span>
-                    <span>•</span>
-                    <span>{p.medium}</span>
-                  </div>
-                  {/* Price row */}
-                  <div
-                    className="flex items-center justify-between pt-2"
-                    style={{ borderTop: '1px solid var(--hairline-soft)' }}
-                  >
-                    <div className="flex items-baseline gap-2">
-                      <span className="font-display font-semibold" style={{ fontSize: '1.125rem', color: 'var(--ink)' }}>
-                        ₹{p.price.toLocaleString('en-IN')}
-                      </span>
-                      {p.originalPrice && (
-                        <span className="text-caption line-through" style={{ color: 'var(--ink-dim)' }}>
-                          ₹{p.originalPrice.toLocaleString('en-IN')}
-                        </span>
-                      )}
-                    </div>
-                    <button
-                      onClick={() => handleAddToCart(p)}
-                      className="btn btn-primary btn-xs"
-                      style={{ padding: '0.4rem 0.75rem' }}
-                      aria-label={`Add ${p.title} to cart`}
-                    >
-                      <ShoppingBag size={12} />
-                    </button>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-
-          {/* Mobile CTA */}
-          <div className="flex sm:hidden justify-center">
-            <button onClick={() => navigateShop()} className="btn btn-outline btn-lg">
-              View Collection ({products.length}) <ArrowRight size={16} />
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* ════════════════════════════════════════════════════════════
-          HERITAGE STORY — Immersive split section
-          ════════════════════════════════════════════════════════════ */}
-      <section
-        className="py-24"
-        style={{ background: 'var(--night)', color: 'var(--ivory)' }}
-      >
-        <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
-            {/* Left — editorial copy */}
-            <div className="lg:col-span-5 space-y-8">
+            {/* Ornaments Flanking */}
+            <div className="w-full flex items-center justify-between max-w-xl mt-6 px-4">
+              <Seal size={48} />
               <div className="flex items-center gap-3">
-                <span className="w-8 h-px" style={{ background: 'rgba(250,246,239,0.3)' }} />
-                <span className="text-eyebrow" style={{ color: 'rgba(250,246,239,0.5)', letterSpacing: '0.18em' }}>
-                  Provenance & Tradition
-                </span>
+                <Link href="/shop">
+                  <Button variant="primary" size="md">
+                    SHOP PAINTINGS
+                  </Button>
+                </Link>
+                <Link href="/gallery">
+                  <Button variant="ghost" size="md">
+                    EXPLORE GALLERY
+                  </Button>
+                </Link>
               </div>
-
-              <div className="space-y-4">
-                <h2
-                  className="font-display font-bold"
-                  style={{ fontSize: 'clamp(2rem, 3.5vw, 3rem)', lineHeight: '1.1', letterSpacing: '-0.02em', color: 'var(--ivory)' }}
-                >
-                  Art born from<br />
-                  <span style={{ fontStyle: 'italic', fontWeight: 600, color: 'rgba(250,246,239,0.6)' }}>
-                    a royal decree.
-                  </span>
-                </h2>
-                <p className="text-body" style={{ color: 'rgba(250,246,239,0.65)', maxWidth: '400px' }}>
-                  King Janaka commissioned the village artists of Mithila to paint all of Bihar for the divine wedding of Princess Sita and Lord Rama. For 2,500 years, this knowledge has passed mother to daughter — unbroken.
-                </p>
-              </div>
-
-              {/* Pillars */}
-              <ul className="space-y-5">
-                {[
-                  { t: 'Original Handpainted Art', s: 'Handcrafted individually by artist Natasha Gupta in Bihar' },
-                  { t: 'Fine Freehand Linework', s: 'Detailed double-line borders and motifs painted with fine brushes and traditional nibs' },
-                  { t: 'Damage-Proof Secure Packaging', s: 'Sturdy protective packaging with insured delivery across India' },
-                ].map(item => (
-                  <li key={item.t} className="flex items-start gap-4">
-                    <div
-                      className="shrink-0 flex items-center justify-center rounded-sm mt-0.5"
-                      style={{ width: '20px', height: '20px', background: 'rgba(176,48,32,0.3)', border: '1px solid rgba(176,48,32,0.5)' }}
-                    >
-                      <span style={{ color: 'var(--vermilion)', fontSize: '10px' }}>✦</span>
-                    </div>
-                    <div>
-                      <p className="text-ui font-semibold" style={{ color: 'var(--ivory)' }}>{item.t}</p>
-                      <p className="text-body-sm mt-0.5" style={{ color: 'rgba(250,246,239,0.5)' }}>{item.s}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-
-              <button
-                onClick={navigateAbout}
-                className="btn btn-ghost-light btn-lg"
-              >
-                Read our full heritage story <ArrowRight size={16} />
-              </button>
-            </div>
-
-            {/* Right — art mosaic */}
-            <div className="lg:col-span-7">
-              <div className="grid grid-cols-2 gap-3">
-                {/* Large featured image */}
-                <div
-                  className="row-span-2 overflow-hidden cursor-pointer group relative"
-                  style={{ borderRadius: '3px', border: '1px solid rgba(255,255,255,0.08)' }}
-                  onClick={() => selectProduct(products.find(p => p.image === '/products/49.webp') || products[0])}
-                >
-                  <Image
-                    src="/products/49.webp"
-                    alt="Featured Madhubani artwork"
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4 z-10"
-                    style={{ background: 'linear-gradient(to top, rgba(16,11,4,0.7) 0%, transparent 50%)' }}
-                  >
-                    <span className="text-eyebrow text-white" style={{ fontSize: '0.6rem' }}>View artwork →</span>
-                  </div>
-                </div>
-
-                {/* Smaller images */}
-                {['/products/22.webp', '/products/14.webp'].map((src, i) => (
-                  <div
-                    key={i}
-                    className="overflow-hidden cursor-pointer group relative"
-                    style={{ borderRadius: '3px', border: '1px solid rgba(255,255,255,0.08)', aspectRatio: '1' }}
-                    onClick={() => selectProduct(products.find(p => p.image === src) || products[i + 1])}
-                  >
-                    <Image
-                      src={src}
-                      alt="Traditional Mithila folk artwork"
-                      fill
-                      sizes="25vw"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                  </div>
-                ))}
-              </div>
-
-              {/* Motif accent */}
-              <div className="mt-5 flex justify-center opacity-30">
-                <MithilaMotif type="fish-pair" color="rgba(250,246,239,0.8)" width={80} />
-              </div>
+              <Barcode width={95} />
             </div>
           </div>
         </div>
       </section>
 
-      {/* ════════════════════════════════════════════════════════════
-          FIVE TRADITIONS — Style explorer
-          ════════════════════════════════════════════════════════════ */}
-      <section className="py-24 band-deep">
-        <div className="container space-y-14">
-          <SectionEyebrow
-            eyebrow="Five Lineage Disciplines"
-            headline={<>Mithila's Living<br />Traditions</>}
-            subhead="Each style carries its own symbolic canon, technical vocabulary, and spiritual meaning — passed mother to daughter for centuries."
-            align="center"
+      {/* ══════════════════════════════════════════════════════════════════
+          2. TRUST STRIP IN MONOSPACE (Truthful, honest guarantees)
+          ══════════════════════════════════════════════════════════════════ */}
+      <section className="bg-paper-2 py-4 border-b border-line">
+        <div className="container">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center font-mono text-xs tracking-[0.2em] uppercase text-ink">
+            <div className="flex items-center justify-center gap-2">
+              <span className="text-accent font-bold">✦</span>
+              <span>100% HANDPAINTED</span>
+            </div>
+            <div className="flex items-center justify-center gap-2">
+              <span className="text-accent font-bold">✦</span>
+              <span>DIRECT FROM ARTIST</span>
+            </div>
+            <div className="flex items-center justify-center gap-2">
+              <span className="text-accent font-bold">✦</span>
+              <span>INSURED INDIA SHIPPING</span>
+            </div>
+            <div className="flex items-center justify-center gap-2">
+              <span className="text-accent font-bold">✦</span>
+              <span>GIFT-READY PACKAGING</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════════
+          3. CATEGORY TILES AS THREE LARGE POSTERS
+          ══════════════════════════════════════════════════════════════════ */}
+      <section className="py-16 sm:py-24 border-b border-line">
+        <div className="container">
+          <SectionHeader
+            kicker="01 / DISCIPLINES"
+            title="THREE HANDCRAFTED MEDIUMS"
+            linkHref="/shop"
+            linkLabel="EXPLORE ALL MEDIUMS"
           />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-            {TRADITIONS.map((d, i) => (
-              <button
-                key={d.name}
-                onClick={() => navigateShop(undefined, d.name)}
-                className="group text-left flex flex-col overflow-hidden"
-                style={{
-                  background: 'var(--ivory)',
-                  border: '1px solid var(--hairline-soft)',
-                  borderRadius: '4px',
-                  transition: 'all 0.3s ease',
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.borderColor = 'var(--vermilion)';
-                  e.currentTarget.style.boxShadow = '0 8px 32px rgba(176,48,32,0.12)';
-                  e.currentTarget.style.transform = 'translateY(-3px)';
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.borderColor = 'var(--hairline-soft)';
-                  e.currentTarget.style.boxShadow = 'none';
-                  e.currentTarget.style.transform = 'translateY(0)';
-                }}
-              >
-                {/* Image */}
-                <div className="relative overflow-hidden" style={{ aspectRatio: '1', background: 'var(--ivory-deep)' }}>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Poster 1: Paintings */}
+            <article className="group bg-paper border border-line p-4 transition-all duration-200 hover:-translate-y-1 hover:shadow-[4px_4px_0_var(--accent)] flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between pb-3 border-b border-line font-mono text-xs tracking-widest text-ink-muted">
+                  <span>SERIES 01</span>
+                  <span className="text-accent font-bold">FRAMED ART</span>
+                </div>
+                <Link href="/shop/category/paintings" className="block relative aspect-[4/5] my-4 border border-line overflow-hidden bg-paper-2">
                   <Image
-                    src={d.img}
-                    alt={d.name}
+                    src="/products/1.webp"
+                    alt="Madhubani Paintings"
                     fill
-                    sizes="(max-width: 768px) 50vw, 20vw"
-                    className="art-img w-full h-full object-cover"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
                   />
-                  <div
-                    className="absolute inset-0 transition-opacity duration-300"
-                    style={{ background: 'rgba(16,11,4,0.18)', opacity: 0 }}
+                </Link>
+                <h3 className="font-display text-3xl text-ink uppercase tracking-tight">
+                  FRAMED PAINTINGS
+                </h3>
+                <p className="font-sans text-xs text-ink-soft mt-1 leading-relaxed">
+                  Authentic Mithila canvases and handmade paper paintings framed with double archival fillets.
+                </p>
+              </div>
+              <div className="mt-6 pt-3 border-t border-line">
+                <Link
+                  href="/shop/category/paintings"
+                  className="font-mono text-xs tracking-widest text-accent font-bold uppercase inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform"
+                >
+                  <span>VIEW PAINTINGS</span>
+                  <ArrowRight size={14} />
+                </Link>
+              </div>
+            </article>
+
+            {/* Poster 2: Dupattas */}
+            <article className="group bg-paper border border-line p-4 transition-all duration-200 hover:-translate-y-1 hover:shadow-[4px_4px_0_var(--accent)] flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between pb-3 border-b border-line font-mono text-xs tracking-widest text-ink-muted">
+                  <span>SERIES 02</span>
+                  <span className="text-accent font-bold">WEARABLE ART</span>
+                </div>
+                <Link href="/shop/category/dupattas" className="block relative aspect-[4/5] my-4 border border-line overflow-hidden bg-paper-2">
+                  <Image
+                    src="/products/31.webp"
+                    alt="Handpainted Dupattas"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
                   />
-                  {/* Number badge */}
-                  <span
-                    className="absolute bottom-3 left-3 text-eyebrow text-white"
-                    style={{ fontSize: '0.55rem', opacity: 0.9 }}
-                  >
-                    0{i + 1}
+                </Link>
+                <h3 className="font-display text-3xl text-ink uppercase tracking-tight">
+                  DUPATTAS & TEXTILES
+                </h3>
+                <p className="font-sans text-xs text-ink-soft mt-1 leading-relaxed">
+                  Hand-draped fine cotton and tussar silk dupattas painted with intricate floral and aquatic borders.
+                </p>
+              </div>
+              <div className="mt-6 pt-3 border-t border-line">
+                <Link
+                  href="/shop/category/dupattas"
+                  className="font-mono text-xs tracking-widest text-accent font-bold uppercase inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform"
+                >
+                  <span>VIEW TEXTILES</span>
+                  <ArrowRight size={14} />
+                </Link>
+              </div>
+            </article>
+
+            {/* Poster 3: Bags & Files */}
+            <article className="group bg-paper border border-line p-4 transition-all duration-200 hover:-translate-y-1 hover:shadow-[4px_4px_0_var(--accent)] flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between pb-3 border-b border-line font-mono text-xs tracking-widest text-ink-muted">
+                  <span>SERIES 03</span>
+                  <span className="text-accent font-bold">DAILY CARRY</span>
+                </div>
+                <Link href="/shop/category/bags_and_files" className="block relative aspect-[4/5] my-4 border border-line overflow-hidden bg-paper-2">
+                  <Image
+                    src="/products/80.webp"
+                    alt="Handpainted Bags and Files"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                </Link>
+                <h3 className="font-display text-3xl text-ink uppercase tracking-tight">
+                  BAGS & ORGANIZERS
+                </h3>
+                <p className="font-sans text-xs text-ink-soft mt-1 leading-relaxed">
+                  Heavy canvas laptop totes, wall organizers, and document folders adorned with sacred Mithila motifs.
+                </p>
+              </div>
+              <div className="mt-6 pt-3 border-t border-line">
+                <Link
+                  href="/shop/category/bags_and_files"
+                  className="font-mono text-xs tracking-widest text-accent font-bold uppercase inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform"
+                >
+                  <span>VIEW ACCESSORIES</span>
+                  <ArrowRight size={14} />
+                </Link>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════════
+          4. FEATURED PRINTS GALLERY GRID
+          ══════════════════════════════════════════════════════════════════ */}
+      <section className="py-16 sm:py-24 border-b border-line bg-paper-2">
+        <div className="container">
+          <SectionHeader
+            kicker="02 / CURATION"
+            title="FEATURED GALLERY PRINTS"
+            linkHref="/shop"
+            linkLabel="VIEW COMPLETE CATALOG"
+          />
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+            {featured.map((p, idx) => (
+              <PrintCard
+                key={p.id}
+                id={p.id}
+                refCode={`FIG. 0${idx + 1}`}
+                name={p.title || p.name || 'Madhubani Artwork'}
+                slug={p.slug || p.id}
+                image={p.image}
+                pricePaise={p.pricePaise || p.price * 100}
+                category={p.category}
+                isOriginal={p.category === 'paintings'}
+                stock={p.stock}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════════
+          5. MOTIF MARQUEE TICKER
+          ══════════════════════════════════════════════════════════════════ */}
+      <MarqueeTicker />
+
+      {/* ══════════════════════════════════════════════════════════════════
+          6. MEET NATASHA — Honest Solo Artist Monograph
+          ══════════════════════════════════════════════════════════════════ */}
+      <section className="py-16 sm:py-24 border-b border-line bg-paper">
+        <div className="container">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            {/* Visual Frame: Photo coming soon placeholder */}
+            <div className="lg:col-span-5">
+              <div className="relative aspect-[4/5] bg-paper-2 border-2 border-ink p-4 shadow-[4px_4px_0_var(--accent)] flex flex-col justify-between">
+                <div className="font-mono text-[10px] tracking-[0.24em] uppercase text-accent font-semibold flex justify-between">
+                  <span>STUDIO PORTRAIT</span>
+                  <span>NATASHA GUPTA</span>
+                </div>
+
+                <div className="border border-dashed border-ink/40 w-full h-64 flex flex-col items-center justify-center text-center p-6 bg-paper/50">
+                  <div className="w-12 h-12 rounded-full border border-ink/30 flex items-center justify-center font-display text-accent text-xl font-bold mb-2">
+                    N
+                  </div>
+                  <span className="font-mono text-xs tracking-widest uppercase text-ink font-semibold">
+                    ARTIST STUDIO PHOTOGRAPH
+                  </span>
+                  <span className="font-mono text-[10px] tracking-wider text-ink-muted mt-1 uppercase">
+                    [ PHOTO COMING SOON ]
                   </span>
                 </div>
 
-                {/* Text */}
-                <div className="p-4 flex flex-col gap-2 flex-1">
-                  <p className="text-eyebrow" style={{ color: 'var(--vermilion)', fontSize: '0.575rem' }}>
-                    {d.tagline}
-                  </p>
-                  <h3
-                    className="font-display font-semibold"
-                    style={{ fontSize: '1.125rem', color: 'var(--ink)', letterSpacing: '-0.01em' }}
-                  >
-                    {d.name}
-                  </h3>
-                  <p className="text-body-sm flex-1 leading-relaxed" style={{ color: 'var(--ink-muted)', fontSize: '0.75rem' }}>
-                    {d.desc}
-                  </p>
-                  <div
-                    className="flex items-center gap-1.5 mt-2 group-hover:gap-2.5 transition-all duration-300"
-                    style={{ color: 'var(--vermilion)' }}
-                  >
-                    <span className="text-eyebrow" style={{ fontSize: '0.575rem' }}>
-                      {d.count} artworks
-                    </span>
-                    <ArrowUpRight size={12} />
-                  </div>
+                <div className="font-mono text-[10px] tracking-wider text-ink-muted text-right">
+                  FARIDABAD, HARYANA
                 </div>
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ════════════════════════════════════════════════════════════
-          NEW ARRIVALS — Horizontal scroll
-          ════════════════════════════════════════════════════════════ */}
-      {newArrivals.length > 0 && (
-        <section className="py-20 band-ivory">
-          <div className="container space-y-10">
-            <div className="flex items-end justify-between gap-4">
-              <SectionEyebrow
-                eyebrow="Just Added"
-                headline="New Arrivals"
-              />
-              <button
-                onClick={() => navigateShop()}
-                className="btn btn-outline btn-sm hidden sm:flex items-center gap-2 shrink-0"
-              >
-                See all <ArrowRight size={13} />
-              </button>
+              </div>
             </div>
 
-            <div
-              className="flex gap-4 overflow-x-auto no-scrollbar pb-2 -mx-4 px-4 sm:mx-0 sm:px-0"
-              tabIndex={0}
-              role="region"
-              aria-label="New arrivals carousel"
-            >
-              {newArrivals.map(p => (
-                <article
-                  key={p.id}
-                  className="art-card group shrink-0"
-                  style={{ width: '220px', borderRadius: '4px', cursor: 'pointer' }}
-                  onClick={() => selectProduct(p)}
-                >
-                  <div
-                    className="relative overflow-hidden"
-                    style={{ aspectRatio: '4/5', background: 'var(--ivory-deep)' }}
-                  >
-                    <Image
-                      src={p.image}
-                      alt={p.title}
-                      fill
-                      sizes="220px"
-                      className="art-img w-full h-full object-cover"
-                    />
-                    <span className="badge badge-vermilion absolute top-2.5 left-2.5">New</span>
-                  </div>
-                  <div className="p-3.5 space-y-1.5">
-                    <p className="text-caption" style={{ color: 'var(--ink-dim)', letterSpacing: '0.08em', textTransform: 'uppercase', fontSize: '0.6rem' }}>
-                      {p.style}
-                    </p>
-                    <h4
-                      className="font-display font-semibold line-clamp-2"
-                      style={{ fontSize: '0.9375rem', color: 'var(--ink)', lineHeight: '1.25' }}
-                    >
-                      {p.title}
-                    </h4>
-                    <p className="font-display font-semibold" style={{ fontSize: '1rem', color: 'var(--ink)' }}>
-                      ₹{p.price.toLocaleString('en-IN')}
-                    </p>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* ════════════════════════════════════════════════════════════
-          CRAFTSMANSHIP PILLARS
-          ════════════════════════════════════════════════════════════ */}
-      <section className="py-24" style={{ background: 'var(--ivory-warm)' }}>
-        <div className="container space-y-16">
-          <div className="text-center space-y-4">
-            <div className="flex items-center justify-center gap-4">
-              <span className="w-10 h-px" style={{ background: 'var(--hairline)' }} />
-              <MithilaMotif type="peacock-eye" color="var(--vermilion)" width={28} height={28} />
-              <span className="w-10 h-px" style={{ background: 'var(--hairline)' }} />
-            </div>
-            <SectionEyebrow
-              eyebrow="Why Collect With Us"
-              headline={<>Craftsmanship.<br /><span style={{ fontStyle: 'italic' }}>Integrity.</span></>}
-              subhead="Every artwork you receive is a direct connection to a living tradition — not a reproduction, not a print."
-              align="center"
-            />
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {TRUST_PILLARS.map((pillar, i) => (
-              <div
-                key={pillar.title}
-                className="p-6 space-y-4"
-                style={{
-                  background: 'var(--ivory)',
-                  border: '1px solid var(--hairline-soft)',
-                  borderRadius: '4px',
-                }}
-              >
-                <div className="space-y-1">
-                  <span style={{ color: 'var(--vermilion)', fontSize: '0.875rem' }}>✦</span>
-                  <h3
-                    className="font-display font-semibold"
-                    style={{ fontSize: '1.0625rem', color: 'var(--ink)', letterSpacing: '-0.01em' }}
-                  >
-                    {pillar.title}
-                  </h3>
-                </div>
-                <p className="text-body-sm leading-relaxed" style={{ color: 'var(--ink-muted)' }}>
-                  {pillar.body}
+            {/* Story Editorial */}
+            <div className="lg:col-span-7 space-y-6">
+              <div className="font-mono text-xs tracking-[0.24em] uppercase text-accent font-semibold">
+                03 / THE ARTIST
+              </div>
+              <h2 className="font-display text-4xl sm:text-6xl text-ink uppercase tracking-tight leading-[0.92]">
+                PRESERVING THE SACRED LINES OF MITHILA
+              </h2>
+              <div className="font-sans text-sm sm:text-base text-ink-soft space-y-4 leading-relaxed">
+                <p>
+                  Natasha Gupta practices traditional Madhubani art independently from her studio in Faridabad. Rooted in the ancient visual language of Bihar’s Mithila region, her work bridges centuries-old ritual symbology with modern archival presentation.
+                </p>
+                <p>
+                  Every artwork begins with raw handmade paper or handwoven fabric. Using bamboo pens, fine nibs, and pigmented inks, she draws without preliminary stencils — each leaf, fish scale, and peacock feather emerging organically through steady devotion.
                 </p>
               </div>
-            ))}
-          </div>
 
-          {/* Motif divider */}
-          <div className="flex justify-center">
-            <MithilaMotif type="lotus-divider" color="var(--ink-muted)" width={300} />
-          </div>
-        </div>
-      </section>
-
-      {/* ════════════════════════════════════════════════════════════
-          AUTHENTIC PROVENANCE & ARTIST PLEDGE
-          ════════════════════════════════════════════════════════════ */}
-      <section className="py-24" style={{ background: 'var(--night)', color: 'var(--ivory)' }}>
-        <div className="container">
-          <div className="max-w-3xl mx-auto text-center space-y-8">
-            <SectionEyebrow
-              eyebrow="The Artisan Pledge"
-              headline="Honest Heritage, Zero Compromise"
-              align="center"
-              light
-            />
-
-            <div
-              className="px-8 py-10 relative"
-              style={{
-                background: 'rgba(255,255,255,0.04)',
-                border: '1px solid rgba(255,255,255,0.08)',
-                borderRadius: '4px',
-              }}
-            >
-              <MithilaMotif type="four-corners" color="rgba(176,48,32,0.5)" />
-
-              <blockquote
-                className="font-display"
-                style={{ fontSize: 'clamp(1.125rem, 2vw, 1.45rem)', fontStyle: 'italic', color: 'rgba(250,246,239,0.9)', lineHeight: '1.6', letterSpacing: '-0.01em' }}
-              >
-                "Every painting, dupatta, and accessory in this collection is created by hand with devotion.
-                No machine prints, no inflated markups, and no false claims. Madhubani art is sacred to our roots,
-                and each piece carries the genuine living culture of Mithila."
-              </blockquote>
-
-              <footer className="mt-8 space-y-1">
-                <p className="font-display font-semibold" style={{ color: 'var(--ivory)', fontSize: '1.05rem' }}>
-                  Natasha Gupta
-                </p>
-                <p className="text-eyebrow" style={{ color: 'var(--vermilion)', fontSize: '0.62rem', letterSpacing: '0.14em' }}>
-                  Founder & Artist · Vernika Enterprises
-                </p>
-              </footer>
+              <div className="pt-4 flex items-center gap-4">
+                <Link href="/about">
+                  <Button variant="ink" size="md">
+                    READ ARTIST MONOGRAPH
+                  </Button>
+                </Link>
+                <Link href="/contact">
+                  <Button variant="ghost" size="md">
+                    COMMISSION ARTWORK
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ════════════════════════════════════════════════════════════
-          FINAL CTA BAND
-          ════════════════════════════════════════════════════════════ */}
-      <section
-        className="py-28"
-        style={{
-          background: 'var(--ivory-warm)',
-          borderTop: '1px solid var(--hairline-soft)',
-        }}
-      >
-        <div className="container text-center space-y-8 max-w-2xl mx-auto">
-          {/* Motif decoration */}
-          <div className="flex justify-center">
-            <MithilaMotif type="fish-pair" color="var(--vermilion)" width={72} />
-          </div>
+      {/* ══════════════════════════════════════════════════════════════════
+          7. PROCESS STRIP — Three-Step Craft Truth
+          ══════════════════════════════════════════════════════════════════ */}
+      <section className="py-12 bg-paper-2 border-b border-line">
+        <div className="container">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 font-mono text-xs tracking-wider">
+            <div className="border border-line p-5 bg-paper">
+              <span className="text-accent font-bold text-sm block mb-1">01 / DRAWING</span>
+              <h4 className="font-display text-xl uppercase text-ink mb-1">BAMBOO & NIB LINES</h4>
+              <p className="text-ink-soft font-sans text-xs leading-normal">
+                Double soot outlines and rhythmic kachni micro-hatching executed by hand.
+              </p>
+            </div>
 
-          <div className="space-y-4">
-            <p className="text-eyebrow" style={{ color: 'var(--vermilion)', letterSpacing: '0.18em' }}>
-              The Complete Archive
-            </p>
-            <h2
-              className="font-display font-bold"
-              style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', letterSpacing: '-0.02em', color: 'var(--ink)', lineHeight: '1.08' }}
-            >
-              Explore all 80<br />
-              <span style={{ fontStyle: 'italic', fontWeight: 600 }}>sacred artworks.</span>
-            </h2>
-            <p className="text-body" style={{ color: 'var(--ink-muted)', maxWidth: '400px', margin: '0 auto' }}>
-              Filter by motif, style, price, and availability. Every purchase directly supports master artisan families in Jitwarpur, Bihar.
-            </p>
-          </div>
+            <div className="border border-line p-5 bg-paper">
+              <span className="text-accent font-bold text-sm block mb-1">02 / COLOR</span>
+              <h4 className="font-display text-xl uppercase text-ink mb-1">VIBRANT PIGMENTS</h4>
+              <p className="text-ink-soft font-sans text-xs leading-normal">
+                Rich vermilion, haldi ochre, lampblack, and neel mineral tones.
+              </p>
+            </div>
 
-          <div className="flex flex-wrap justify-center gap-3">
-            <button onClick={() => navigateShop()} className="btn btn-primary btn-lg">
-              Browse All Artworks <ArrowRight size={16} />
-            </button>
-            <button
-              onClick={() => navigateShop('kohbar_ceremonial', 'Kohbar')}
-              className="btn btn-outline btn-lg"
-            >
-              Wedding &amp; Kohbar Art
-            </button>
-          </div>
-
-          {/* Bottom motif */}
-          <div className="pt-4">
-            <MithilaMotif type="diamond-chain" color="var(--vermilion)" width="180px" height={10} className="mx-auto" />
+            <div className="border border-line p-5 bg-paper">
+              <span className="text-accent font-bold text-sm block mb-1">03 / ARCHIVE</span>
+              <h4 className="font-display text-xl uppercase text-ink mb-1">MUSEUM-GRADE FRAMING</h4>
+              <p className="text-ink-soft font-sans text-xs leading-normal">
+                Archival mats, reinforced corner guards, and secure insured delivery across India.
+              </p>
+            </div>
           </div>
         </div>
       </section>
+
     </div>
   );
 };

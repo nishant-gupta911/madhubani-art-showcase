@@ -2,11 +2,12 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
 import Image from 'next/image';
-import { Download, ChevronLeft, ChevronRight, Maximize2, Grid, BookOpen, ExternalLink, Sparkles } from 'lucide-react';
+import { Download, ChevronLeft, ChevronRight, Maximize2, Grid, BookOpen, ExternalLink, Sparkles, X } from 'lucide-react';
 import { SectionEyebrow } from '../MithilaMotif';
 import { MadhubaniProduct } from '../../types';
 import portfolioManifest from '../../../public/portfolio-pages/index.json';
 import catalogMap from '../../../scripts/catalog-map.json';
+import { Button } from '@/components/ui/Button';
 
 interface PortfolioScreenProps {
   products: MadhubaniProduct[];
@@ -59,48 +60,48 @@ export const PortfolioScreen: React.FC<PortfolioScreenProps> = ({ products, onSe
   const currentPageData = portfolioManifest[currentPage - 1];
 
   return (
-    <div className="min-h-screen pb-24" style={{ background: 'var(--paper)', color: 'var(--ink)' }}>
+    <div className="min-h-screen pb-24 bg-paper text-ink selection:bg-accent selection:text-paper">
       {/* ── Header Banner ─────────────────────────────────────────── */}
-      <section className="pt-16 pb-12 border-b" style={{ borderColor: 'var(--line)' }}>
-        <div className="container text-center space-y-4">
-          <SectionEyebrow
-            eyebrow="THE COMPLETE BODY OF WORK"
-            headline="Natasha Gupta's Artist Portfolio"
-            align="center"
-          />
-          <p className="text-body-sm mx-auto" style={{ color: 'var(--ink-soft)', maxWidth: '580px' }}>
+      <section className="pt-12 sm:pt-16 pb-10 border-b border-line">
+        <div className="container text-center space-y-3">
+          <div className="font-mono text-xs tracking-[0.26em] uppercase text-accent font-semibold">
+            02 / EXHIBITION GALLERY PORTFOLIO · 84 PLATES
+          </div>
+          <h1 className="font-display text-4xl sm:text-6xl text-ink uppercase tracking-tight leading-none">
+            NATASHA GUPTA&apos;S ARTIST PORTFOLIO
+          </h1>
+          <p className="font-mono text-xs tracking-wider uppercase text-ink-muted mx-auto max-w-xl">
             Explore every artwork from the original Mithila catalog in high-resolution detail.
-            Turn pages interactively or download the full print publication.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+          <div className="flex flex-wrap items-center justify-center gap-3 pt-3">
             <a
               href="/madhubani.pdf"
               download="Vernika_Enterprises_Madhubani_Catalog.pdf"
-              className="btn btn-primary inline-flex items-center gap-2"
-              style={{ background: 'var(--vermilion)', color: '#fff' }}
             >
-              <Download size={16} />
-              <span>Download Catalog (PDF, 21 MB)</span>
+              <Button variant="ink" size="md">
+                <Download size={14} className="mr-2" />
+                <span>DOWNLOAD COMPLETE CATALOG (PDF)</span>
+              </Button>
             </a>
 
-            <div className="flex rounded-md border p-1" style={{ borderColor: 'var(--line)', background: 'var(--paper-deep)' }}>
+            <div className="flex border p-1" style={{ borderColor: 'var(--line)', background: 'var(--paper-2)' }}>
               <button
                 onClick={() => setViewMode('flipbook')}
-                className={`px-3 py-1.5 text-xs font-medium rounded flex items-center gap-1.5 transition-colors ${
-                  viewMode === 'flipbook' ? 'bg-white shadow-sm text-ink' : 'text-ink-soft'
+                className={`px-3 py-1.5 text-xs font-mono uppercase transition-colors ${
+                  viewMode === 'flipbook' ? 'bg-paper text-ink shadow-[1px_1px_0_var(--ink)] font-semibold' : 'text-ink/60'
                 }`}
               >
-                <BookOpen size={14} />
+                <BookOpen size={14} className="inline mr-1.5" />
                 <span>Page Viewer</span>
               </button>
               <button
                 onClick={() => setViewMode('grid')}
-                className={`px-3 py-1.5 text-xs font-medium rounded flex items-center gap-1.5 transition-colors ${
-                  viewMode === 'grid' ? 'bg-white shadow-sm text-ink' : 'text-ink-soft'
+                className={`px-3 py-1.5 text-xs font-mono uppercase transition-colors ${
+                  viewMode === 'grid' ? 'bg-paper text-ink shadow-[1px_1px_0_var(--ink)] font-semibold' : 'text-ink/60'
                 }`}
               >
-                <Grid size={14} />
+                <Grid size={14} className="inline mr-1.5" />
                 <span>All Pages ({totalPages})</span>
               </button>
             </div>
@@ -123,15 +124,11 @@ export const PortfolioScreen: React.FC<PortfolioScreenProps> = ({ products, onSe
                   if (tab.id === 'bags') setCurrentPage(68);
                   if (tab.id === 'all') setCurrentPage(1);
                 }}
-                className={`px-3.5 py-1.5 text-xs rounded-full border transition-all ${
+                className={`px-3.5 py-1.5 text-xs font-mono border transition-all ${
                   activeFilter === tab.id
-                    ? 'border-vermilion font-semibold'
-                    : 'border-line text-ink-soft hover:border-ink-soft'
+                    ? 'border-accent bg-accent text-paper font-semibold shadow-[2px_2px_0_var(--ink)]'
+                    : 'border-line text-ink/70 hover:border-ink hover:text-ink'
                 }`}
-                style={{
-                  background: activeFilter === tab.id ? 'var(--vermilion)' : 'transparent',
-                  color: activeFilter === tab.id ? '#fff' : 'var(--ink-soft)',
-                }}
               >
                 {tab.label}
               </button>
@@ -195,7 +192,7 @@ export const PortfolioScreen: React.FC<PortfolioScreenProps> = ({ products, onSe
                     value={currentPage}
                     onChange={e => setCurrentPage(parseInt(e.target.value, 10))}
                     className="border rounded px-2 py-1 text-xs font-semibold"
-                    style={{ borderColor: 'var(--line)', background: '#fff', color: 'var(--ink)' }}
+                    style={{ borderColor: 'var(--line)', background: 'var(--paper)', color: 'var(--ink)' }}
                   >
                     {portfolioManifest.map(p => (
                       <option key={p.pageNumber} value={p.pageNumber}>
@@ -220,7 +217,7 @@ export const PortfolioScreen: React.FC<PortfolioScreenProps> = ({ products, onSe
               {matchedProduct && (
                 <div
                   className="mt-6 w-full rounded-lg p-4 border flex flex-wrap items-center justify-between gap-4"
-                  style={{ background: '#fff', borderColor: 'var(--vermilion)' }}
+                  style={{ background: 'var(--paper-2)', borderColor: 'var(--accent)' }}
                 >
                   <div className="flex items-center gap-3">
                     <span className="p-2 rounded-full bg-vermilion/10 text-vermilion">
@@ -245,7 +242,7 @@ export const PortfolioScreen: React.FC<PortfolioScreenProps> = ({ products, onSe
                       else if (typeof window !== 'undefined') window.location.href = `/shop/${matchedProduct.slug || matchedProduct.id}`;
                     }}
                     className="btn btn-sm inline-flex items-center gap-1.5"
-                    style={{ background: 'var(--vermilion)', color: '#fff' }}
+                    style={{ background: 'var(--accent)', color: 'var(--paper)' }}
                   >
                     <span>View Product</span>
                     <ExternalLink size={14} />
@@ -292,7 +289,7 @@ export const PortfolioScreen: React.FC<PortfolioScreenProps> = ({ products, onSe
                     setViewMode('flipbook');
                   }}
                   className="group relative rounded-lg border overflow-hidden cursor-pointer shadow-sm hover:shadow-md transition-all hover:-translate-y-1"
-                  style={{ background: '#fff', borderColor: 'var(--line)' }}
+                  style={{ background: 'var(--paper)', borderColor: 'var(--line)' }}
                 >
                   <div className="aspect-[3/4] w-full overflow-hidden bg-stone-100">
                     <img

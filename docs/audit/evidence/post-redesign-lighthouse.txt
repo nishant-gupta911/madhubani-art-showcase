@@ -1,0 +1,67 @@
+POST-REDESIGN LIGHTHOUSE MOBILE AUDIT REPORT
+==================================================
+Audit Timestamp: 2026-11-02T14:48:07.428Z
+
+Home (http://localhost:3000/):
+  Performance: 86
+  Accessibility: 94
+  Best Practices: 96
+  SEO: 100
+  LCP: 4256ms
+  CLS: 0
+  TBT: 59ms
+
+Shop (http://localhost:3000/shop):
+  Performance: 92
+  Accessibility: 95
+  Best Practices: 96
+  SEO: 100
+  LCP: 3392ms
+  CLS: 0
+  TBT: 31ms
+
+Category (http://localhost:3000/shop/category/paintings):
+  Performance: 78
+  Accessibility: 95
+  Best Practices: 96
+  SEO: 100
+  LCP: 6234ms
+  CLS: 0
+  TBT: 50ms
+
+Product (http://localhost:3000/shop/surya-deepavali-maiden-3-panel-wall-hanging-organizer):
+  Performance: 80
+  Accessibility: 96
+  Best Practices: 96
+  SEO: 100
+  LCP: 5484ms
+  CLS: 0
+  TBT: 31ms
+
+Gallery (http://localhost:3000/gallery):
+  Performance: 90
+  Accessibility: 92
+  Best Practices: 96
+  SEO: 100
+  LCP: 3616ms
+  CLS: 0
+  TBT: 47ms
+
+Cart (http://localhost:3000/cart):
+  Performance: 93
+  Accessibility: 96
+  Best Practices: 96
+  SEO: 100
+  LCP: 3160ms
+  CLS: 0
+  TBT: 83ms
+
+Checkout (http://localhost:3000/cart?step=checkout):
+  Performance: 94
+  Accessibility: 96
+  Best Practices: 96
+  SEO: 100
+  LCP: 3046ms
+  CLS: 0
+  TBT: 31ms
+

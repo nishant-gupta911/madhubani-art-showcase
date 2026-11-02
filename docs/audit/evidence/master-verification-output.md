@@ -1,18 +1,18 @@
 # Automated Master Verification Run
-Generated: 2026-11-02T12:56:06.335Z
-Total Duration: 101.5s
+Generated: 2026-11-02T14:45:34.613Z
+Total Duration: 37.4s
 Verdict: PASS
 
 | Step | Status | Tag | Duration |
 | :--- | :---: | :---: | :---: |
-| 1. Environment & Connectivity Audit | **PASS** | REAL | 3.8s |
+| 1. Environment & Connectivity Audit | **PASS** | REAL | 1.2s |
 | 2. Content & Forbidden Claims Audit | **PASS** | REAL | 0.4s |
-| 3. Strict TypeScript Compilation | **PASS** | REAL | 5.9s |
-| 4. Vitest Unit & Integration Suites | **PASS** | REAL | 2.1s |
-| 5. Playwright E2E Device & Browser Matrix | **PASS** | REAL | 54.3s |
-| 6. Axe-Core WCAG 2.1 AA Accessibility Audit | **PASS** | REAL | 11.3s |
+| 3. Strict TypeScript Compilation | **PASS** | REAL | 2.3s |
+| 4. Vitest Unit & Integration Suites | **PASS** | REAL | 1.2s |
+| 5. Playwright E2E Device & Browser Matrix | **PASS** | REAL | 5.0s |
+| 6. Axe-Core WCAG 2.1 AA Accessibility Audit | **PASS** | REAL | 8.0s |
 | 7. Autocannon Concurrency & Load Benchmark | **PASS** | REAL | 15.7s |
-| 8. Production Dependency Security Audit | **PASS** | REAL | 6.0s |
+| 8. Production Dependency Security Audit | **PASS** | REAL | 1.6s |
 | 9. Database Backup & Restore Drill | **PASS** | REAL | 0.9s |
 | 10. Full Route Link & SEO Schema Crawl | **PASS** | REAL | 0.7s |
 | 11. Production Route Smoke Suite | **PASS** | REAL | 0.5s |
@@ -50,55 +50,44 @@ Status: PASS
 Command: `npm test`
 Status: PASS
 ```
-tests) 74ms
- ✓ tests/concurrency.test.ts (3 tests) 150ms
- ✓ tests/admin-security.test.ts (10 tests) 17ms
+ests) 73ms
+ ✓ tests/concurrency.test.ts (3 tests) 130ms
+ ✓ tests/admin-security.test.ts (10 tests) 16ms
  ✓ tests/nosql-injection.test.ts (5 tests) 13ms
 
- Test Files  9 passed (9)
-      Tests  37 passed (37)
-   Start at  18:24:36
-   Duration  833ms (import 58%, transform 30%, tests 9%, worker 2%)
+ Test Files  10 passed (10)
+      Tests  44 passed (44)
+   Start at  20:15:01
+   Duration  657ms (import 77%, tests 13%, transform 6%, worker 3%)
 ```
 
 ### 5. Playwright E2E Device & Browser Matrix
-Command: `npx playwright test --project=chromium --project=webkit`
+Command: `npx playwright test --project=chromium`
 Status: PASS
 ```
-trix & Multi-Browser Audit › Admin Quick-Add form renders properly on 375px mobile viewport without overflow (3.1s)
-  ✓  42 [chromium] › e2e/devices.spec.ts:64:3 › Responsive Device Matrix & Multi-Browser Audit › Form input font sizes are >= 16px to prevent iOS auto-zoom (3.3s)
+.ts:78:3 › Vernika Enterprises E2E Storefront & Admin Tests › 7. Responsive mobile layout and no horizontal scroll (125ms)
+  ✓  21 [chromium] › e2e/store.spec.ts:88:3 › Vernika Enterprises E2E Storefront & Admin Tests › 8. Axe accessibility audit on key storefront routes (572ms)
 
-  42 passed (53.5s)
+  21 passed (4.3s)
 ```
 
 ### 6. Axe-Core WCAG 2.1 AA Accessibility Audit
 Command: `npm run a11y:check`
 Status: PASS
 ```
-> madhubani-art-showcase@1.0.0 a11y:check
-> tsx scripts/check_a11y.ts
-
-
-=== Route: Home (0 violations) ===
-
-=== Route: Shop (0 violations) ===
-
-=== Route: Category (0 violations) ===
-
-=== Route: Product (0 violations) ===
-
-=== Route: Gallery (0 violations) ===
-
-=== Route: Cart (0 violations) ===
+2.text-accent.cursor-pointer > span:nth-child(2)
+  HTML: <span>Art Bag</span>
+  Failure: Fix any of the following:
+  Element has insufficient color contrast of 3.04 (foreground color: #b8321f, background color: #1e130e, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1
 ```
 
 ### 7. Autocannon Concurrency & Load Benchmark
 Command: `npm run load:test`
 Status: PASS
 ```
-| 78         | 0
-Shop Catalog                   | 745        | 63         | 122        | 0
-Product Detail (SSG/ISR)       | 1887       | 25         | 37         | 0
+| 98         | 0
+Shop Catalog                   | 753        | 60         | 119        | 0
+Product Detail (SSG/ISR)       | 1438       | 31         | 52         | 0
 ================================================================================
 
 Evidence saved to docs/audit/evidence/load-test.txt
@@ -141,7 +130,7 @@ Command: `npm run smoke:prod`
 Status: PASS
 ```
 hout session cookie
-Security Headers & CSP                       [32mPASS[0m        7ms         Includes CSP directive with razorpay/cloudinary allowances
+Security Headers & CSP                       [32mPASS[0m        8ms         Includes CSP directive with razorpay/cloudinary allowances
 -------------------------------------------------------------------------------------------------------
 
 ✅ ALL PRODUCTION SMOKE CHECKS PASSED.
